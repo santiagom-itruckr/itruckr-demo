@@ -16,7 +16,7 @@ import { useEmailStore } from '@/stores/emailStore';
 function ProcessArea() {
   const [isLoading, setIsLoading] = useState(false);
   const { selectedCaseId, getCaseById } = useCasesStore();
-  const { getProcessById, addMessageToStep, advanceProcessStep, createEntitiesForStep } = useProcessesStore();
+  const { getProcessById, addMessageToStep, advanceProcessStep } = useProcessesStore();
   const { getDriverById } = useDriversStore();
   const { addMessageToConversation } = useConversationsStore();
   const { addLoad, updateLoad } = useLoadsStore();
@@ -203,7 +203,6 @@ function ProcessArea() {
           }
         })
 
-        // createEntitiesForStep(process.id, currentStep.id, apiResponse);
       }
 
       if (updatesEntities) {
@@ -232,15 +231,12 @@ function ProcessArea() {
               }
               break;
           }
-
         })
-
-        // createEntitiesForStep(process.id, currentStep.id, apiResponse);
       }
     };
 
     performStepActions();
-  }, [process?.currentStepIndex, process?.id, createEntitiesForStep]);
+  }, [process?.currentStepIndex, process?.id]);
 
   if (!activeCase) {
     return (

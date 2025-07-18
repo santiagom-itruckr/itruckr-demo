@@ -5,8 +5,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import {
   Search,
-  Check,
-  CheckCheck,
   User,
   Bot,
   ArrowUp
@@ -119,7 +117,6 @@ export function Chat() {
   const {
     conversations,
     addMessageToConversation,
-    getConversationById,
     addConversation
   } = useConversationsStore();
   const { getDriverById } = useDriversStore();
@@ -180,19 +177,6 @@ export function Chat() {
         content: messageText.trim(),
       });
       setMessageText('');
-    }
-  };
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'sent':
-        return <Check className="h-3 w-3 text-custom-text-disabled" />;
-      case 'delivered':
-        return <CheckCheck className="h-3 w-3 text-custom-text-disabled" />;
-      case 'read':
-        return <CheckCheck className="h-3 w-3 text-blue-500" />;
-      default:
-        return null;
     }
   };
 

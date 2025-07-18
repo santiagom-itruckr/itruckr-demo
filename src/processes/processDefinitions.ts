@@ -6,22 +6,16 @@ import {
   PackageCheck,
   ArrowRight,
   MapPin,
-  Package,
   FileUp,
-  Receipt,
   Check,
   AlertTriangle,
   Search,
-  ClipboardList,
   CheckCircle2,
   PackageSearch,
   PackagePlus,
   Mail,
-  PhoneCall,
   CalendarPlus,
-  CalendarCheck,
   BellRing,
-  MessageSquare,
   RefreshCcw
 } from 'lucide-react'
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useState } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -11,18 +11,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Search, Plus, Edit, Trash2, User, Building, Users, Shield } from 'lucide-react';
 import { useDriversStore } from '@/stores/driversStore';
 import { useCompaniesStore } from '@/stores/companiesStore';
-import { useTrucksStore } from '@/stores/trucksStore';
 
 const getStatusColor = (status: string) => {
-  return status === 'active' 
+  return status === 'active'
     ? 'bg-custom-success bg-opacity-20 text-custom-success'
     : 'bg-custom-text-disabled bg-opacity-20 text-custom-text-disabled';
 };
 
-function UserTable({ 
-  users, 
-  userType, 
-  searchTerm, 
+function UserTable({
+  users,
+  userType,
+  searchTerm,
   setSearchTerm,
   onAdd,
   onEdit,
@@ -84,7 +83,7 @@ function UserTable({
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button 
+            <Button
               onClick={handleAdd}
               className="bg-custom-primary-accent hover:bg-custom-primary-hover text-black"
             >
@@ -102,7 +101,7 @@ function UserTable({
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label className="text-custom-text-secondary">Name</Label>
-                <Input 
+                <Input
                   placeholder="Enter name"
                   defaultValue={editingUser?.name || ''}
                   className="bg-custom-background border-custom-border text-custom-text-primary"
@@ -110,7 +109,7 @@ function UserTable({
               </div>
               <div className="space-y-2">
                 <Label className="text-custom-text-secondary">Email</Label>
-                <Input 
+                <Input
                   type="email"
                   placeholder="Enter email"
                   defaultValue={editingUser?.email || ''}
@@ -119,7 +118,7 @@ function UserTable({
               </div>
               <div className="space-y-2">
                 <Label className="text-custom-text-secondary">Phone</Label>
-                <Input 
+                <Input
                   placeholder="Enter phone number"
                   defaultValue={editingUser?.phone || ''}
                   className="bg-custom-background border-custom-border text-custom-text-primary"
@@ -138,14 +137,14 @@ function UserTable({
                 </Select>
               </div>
               <div className="flex justify-end gap-2">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => setIsDialogOpen(false)}
                   className="border-custom-border text-custom-text-primary hover:bg-custom-surface-hover"
                 >
                   Cancel
                 </Button>
-                <Button 
+                <Button
                   onClick={() => setIsDialogOpen(false)}
                   className="bg-custom-primary-accent hover:bg-custom-primary-hover text-black"
                 >
@@ -230,9 +229,8 @@ export function Registration() {
   const [dispatchersSearch, setDispatchersSearch] = useState('');
   const [adminsSearch, setAdminsSearch] = useState('');
 
-  const { drivers, addDriver, updateDriver, deleteDriver } = useDriversStore();
-  const { companies, addCompany, updateCompany, deleteCompany } = useCompaniesStore();
-  const { trucks } = useTrucksStore();
+  const { drivers, deleteDriver } = useDriversStore();
+  const { companies, deleteCompany } = useCompaniesStore();
 
   // Mock dispatchers and admins for now - in a real app these would come from a users store
   const mockDispatchers = [
@@ -286,25 +284,25 @@ export function Registration() {
           <Tabs defaultValue="drivers" className="w-full">
             <div className="border-b border-custom-border">
               <TabsList className="grid w-full grid-cols-4 bg-transparent">
-                <TabsTrigger 
-                  value="drivers" 
+                <TabsTrigger
+                  value="drivers"
                   className="data-[state=active]:bg-custom-primary-accent data-[state=active]:text-black"
                 >
                   Drivers
                 </TabsTrigger>
-                <TabsTrigger 
+                <TabsTrigger
                   value="companies"
                   className="data-[state=active]:bg-custom-primary-accent data-[state=active]:text-black"
                 >
                   Companies
                 </TabsTrigger>
-                <TabsTrigger 
+                <TabsTrigger
                   value="dispatchers"
                   className="data-[state=active]:bg-custom-primary-accent data-[state=active]:text-black"
                 >
                   Dispatchers
                 </TabsTrigger>
-                <TabsTrigger 
+                <TabsTrigger
                   value="admins"
                   className="data-[state=active]:bg-custom-primary-accent data-[state=active]:text-black"
                 >

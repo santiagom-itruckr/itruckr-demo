@@ -20,7 +20,6 @@ import {
   X
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Markdown } from '@/components/ui/markdown';
 import { useEmailStore } from '@/stores/emailStore';
 import React from 'react';
 import { Textarea } from '../ui/textarea';
@@ -31,7 +30,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { emailTemplate } from '@/constants';
 
 // Email message component (simplified for list view)
 function EmailMessage({

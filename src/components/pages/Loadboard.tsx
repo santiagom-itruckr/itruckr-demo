@@ -8,7 +8,6 @@ import {
   Clock,
   Filter,
   Search,
-  RefreshCw,
   Star,
   Phone,
   Mail,
@@ -186,12 +185,11 @@ const generateLoadboardData = (): Load[] => [
 ];
 
 export function Loadboard() {
-  const [loads, setLoads] = useState<Load[]>(generateLoadboardData());
+  const [loads] = useState<Load[]>(generateLoadboardData());
   const [filteredLoads, setFilteredLoads] = useState<Load[]>(loads);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEquipment, setSelectedEquipment] = useState('all');
   const [sortBy, setSortBy] = useState('rate');
-  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     let filtered = loads;
@@ -238,14 +236,6 @@ export function Loadboard() {
 
     setFilteredLoads(filtered);
   }, [loads, searchTerm, selectedEquipment, sortBy]);
-
-  const handleRefresh = () => {
-    setIsRefreshing(true);
-    setTimeout(() => {
-      setLoads(generateLoadboardData());
-      setIsRefreshing(false);
-    }, 1000);
-  };
 
   const getUrgencyColor = (urgency: string) => {
     switch (urgency) {

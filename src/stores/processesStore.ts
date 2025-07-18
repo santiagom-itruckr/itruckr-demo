@@ -1,10 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import { useLoadsStore } from "./loadsStore"; // Assuming you have this
-import { useDriversStore } from "./driversStore"; // Assuming you have this
-import { useTrucksStore } from "./trucksStore"; // Assuming you have this
-import { useCompaniesStore } from "./companiesStore";
 import {
   BaseProcess,
   ChatMessage,
@@ -16,9 +12,6 @@ import {
   LoadProcess,
   OilChangeProcess,
   StepCompletionSource,
-  Driver,
-  Load,
-  Company,
 } from "../types/app";
 import { generateId, getCurrentIsoDate } from "./utils";
 
@@ -54,8 +47,6 @@ interface ProcessesState {
     status: ProcessStepStatus,
   ) => void;
   setProcessCurrentStep: (processId: string, stepId: string) => void;
-  createEntitiesForStep: (processId: string, stepId: string, apiResponse: Record<string, unknown>) => void;
-  updateEntitiesForStep: (processId: string, stepId: string) => void;
 }
 
 export const useProcessesStore = create<ProcessesState>()(
@@ -226,141 +217,6 @@ export const useProcessesStore = create<ProcessesState>()(
           }
         });
       },
-
-      createEntitiesForStep: (processId: string, stepId: string, apiResponse: Record<string, unknown>) => {
-        const process = get().processes.find((p) => p.id === processId);
-        if (!process) return;
-
-        const step = process.steps.find((s) => s.id === stepId);
-        if (!step || !step.createsEntities || !apiResponse) return;
-
-        step.createsEntities.forEach((creationConfig) => {
-          const { entityType, dataMap } = creationConfig;
-          let entityData: Record<string, unknown> | undefined;
-
-          // Extract data from apiResponse based on dataMap
-          if (dataMap) {
-            const pathParts = dataMap.split('.');
-            let currentData: unknown = apiResponse;
-            for (const part of pathParts) {
-              if (currentData && typeof currentData === 'object' && !Array.isArray(currentData) && part in currentData) {
-                currentData = (currentData as Record<string, unknown>)[part];
-              } else {
-                currentData = undefined;
-                break;
-              }
-            }
-            entityData = currentData as Record<string, unknown>; // Cast to the expected type
-          } else {
-            entityData = apiResponse; // If no dataMap, assume entire response is entity data
-          }
-
-          if (!entityData) return;
-
-          switch (entityType) {
-            case 'load':
-              useLoadsStore.getState().addLoad(entityData as unknown as Load);
-              break;
-            case 'driver':
-              useDriversStore.getState().addDriver(entityData as unknown as Driver);
-              break;
-            case 'company':
-              useCompaniesStore.getState().addCompany(entityData as unknown as Company);
-              break;
-            case 'road_emergency':
-              // Assuming you have a useRoadEmergenciesStore
-              // useRoadEmergoriesStore.getState().addRoadEmergency(entityData as RoadEmergency);
-              console.warn(`Entity type 'road_emergency' not yet fully implemented for creation.`);
-              break;
-            case 'truck':
-              // Assuming you have a useTrucksStore
-              // useTrucksStore.getState().addTruck(entityData as Truck);
-              console.warn(`Entity type 'truck' not yet fully implemented for creation.`);
-              break;
-            default:
-              console.warn(`Unknown entity type for creation: ${entityType}`);
-          }
-        });
-      },
-
-      updateEntitiesForStep: (processId, stepId) => {
-        const process = get().processes.find((p) => p.id === processId);
-        if (!process) return;
-
-        const step = process.steps.find((s) => s.id === stepId);
-        if (!step || !step.updatesEntities) return;
-
-        step.updatesEntities.forEach((update) => {
-          let resolvedUpdateData = { ...update.updateData };
-
-          if (process.type === 'load_process') {
-            const loadId = process.loadId;
-            for (const key in resolvedUpdateData) {
-              if (
-                typeof resolvedUpdateData[key] === 'string' &&
-                (resolvedUpdateData[key] as string).includes('${loadId}')
-              ) {
-                resolvedUpdateData[key] = (
-                  resolvedUpdateData[key] as string
-                ).replace('${loadId}', loadId);
-              }
-              if (
-                typeof resolvedUpdateData[key] === 'string' &&
-                (resolvedUpdateData[key] as string).includes('${driverId}')
-              ) {
-                // Handle driverId replacement if needed
-              }
-              if (
-                typeof resolvedUpdateData[key] === 'string' &&
-                (resolvedUpdateData[key] as string).includes('${currentDate}')
-              ) {
-                resolvedUpdateData[key] = getCurrentIsoDate();
-              }
-            }
-          } else if (process.type === 'oil_change') {
-            const emergencyId = process.roadEmergencyId;
-            for (const key in resolvedUpdateData) {
-              if (
-                typeof resolvedUpdateData[key] === 'string' &&
-                (resolvedUpdateData[key] as string).includes('${emergencyId}')
-              ) {
-                resolvedUpdateData[key] = (
-                  resolvedUpdateData[key] as string
-                ).replace('${emergencyId}', emergencyId);
-              }
-              if (
-                typeof resolvedUpdateData[key] === 'string' &&
-                (resolvedUpdateData[key] as string).includes('${currentDate}')
-              ) {
-                resolvedUpdateData[key] = getCurrentIsoDate();
-              }
-            }
-          }
-
-          console.log(
-            `[Real Update] Applying update for ${update.entityType} ID ${update.entityId}:`,
-            resolvedUpdateData,
-          );
-
-          if (update.entityType === 'Load') {
-            useLoadsStore
-              .getState()
-              .updateLoad(update.entityId, resolvedUpdateData as any);
-          } else if (update.entityType === 'Driver') {
-            useDriversStore
-              .getState()
-              .updateDriver(update.entityId, resolvedUpdateData as any);
-          } else if (update.entityType === 'Truck') {
-            useTrucksStore
-              .getState()
-              .updateTruck(update.entityId, resolvedUpdateData as any);
-          } else if (update.entityType === 'Company') {
-            useCompaniesStore
-              .getState()
-              .updateCompany(update.entityId, resolvedUpdateData as any);
-          }
-        });
-      }
     })),
     { name: "ProcessesStore" },
   ),

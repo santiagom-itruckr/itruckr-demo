@@ -19,7 +19,6 @@ import { useTrucksStore } from '@/stores/trucksStore';
 import { NotificationDefinitions } from './notifications/notificationDefinitions';
 import { useConversationsStore } from '@/stores/conversationsStore';
 import { DRIVER_1, LOAD_1, TRUCK_1 } from './constants';
-import { Driver, Load } from './types/app';
 
 function App() {
   const { addNotification } = useNotificationsStore();
@@ -30,7 +29,7 @@ function App() {
   const { addConversation } = useConversationsStore();
 
   useEffect(() => {
-    const brokerCompany = addCompany({
+    addCompany({
       id: 'B-001',
       name: 'ABC Logistics',
       email: 'contact@abclogistics.com',
@@ -39,7 +38,7 @@ function App() {
       companyType: 'broker'
     });
 
-    const carrierCompany = addCompany({
+    addCompany({
       id: 'C-001',
       name: 'ABC Carriers',
       email: 'contact@abclogistics.com',

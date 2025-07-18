@@ -20,7 +20,6 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useNavigation } from '@/contexts/NavigationContext';
-import { useTheme } from '@/contexts/ThemeContext';
 import { cn } from '@/lib/utils';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Logo from '../Logo';

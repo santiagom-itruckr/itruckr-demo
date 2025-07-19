@@ -1,16 +1,11 @@
-import { create } from "zustand";
-import { devtools } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
-import { Email, EmailFolder } from "../types/app";
-import { generateId, getCurrentIsoDate } from "./utils";
-import {
-  Mail,
-  Star,
-  Send,
-  FileText,
-  Archive,
-  Trash2
-} from 'lucide-react';
+import { Archive, FileText, Mail, Send, Star, Trash2 } from 'lucide-react';
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+
+import { Email, EmailFolder } from '../types/app';
+
+import { generateId, getCurrentIsoDate } from './utils';
 
 interface EmailsState {
   emails: Email[];
@@ -20,11 +15,11 @@ interface EmailsState {
   error: string | null;
 
   // Email Actions
-  addEmail: (emailData: Omit<Email, "id" | "timestamp">) => Email;
+  addEmail: (emailData: Omit<Email, 'id' | 'timestamp'>) => Email;
   getEmailById: (id: string) => Email | undefined;
   updateEmail: (
     emailId: string,
-    updates: Partial<Omit<Email, "id" | "timestamp">>
+    updates: Partial<Omit<Email, 'id' | 'timestamp'>>
   ) => void;
   deleteEmail: (emailId: string) => void;
 
@@ -62,50 +57,9 @@ const defaultFolders: EmailFolder[] = [
 
 // Mock data for development
 const mockEmails: Email[] = [
-  {
-    id: generateId(),
-    subject: 'Weekly Fleet Report',
-    content: 'Here is the weekly fleet performance report with detailed analytics and key metrics for the past week...',
-    sender: { name: 'Fleet Manager', email: 'fleet@company.com' },
-    recipients: ['you@company.com'],
-    cc: [],
-    bcc: [],
-    timestamp: getCurrentIsoDate(),
-    isRead: true,
-    isStarred: true,
-    isArchived: false,
-    isDeleted: false,
-    isSent: false,
-    isDraft: false,
-    hasAttachments: true,
-    attachments: [
-      { name: 'fleet-report.pdf', size: '2.3 MB', type: 'application/pdf', url: '#' }
-    ],
-    preview: 'Here is the weekly fleet performance report with detailed analytics...',
-    threadId: generateId(),
-    labels: ['important', 'reports'],
-  },
-  {
-    id: generateId(),
-    subject: 'Driver Schedule Update',
-    content: 'The driver schedules have been updated for next week. Please review the changes and confirm availability.',
-    sender: { name: 'HR Department', email: 'hr@company.com' },
-    recipients: ['you@company.com'],
-    cc: ['manager@company.com'],
-    bcc: [],
-    timestamp: new Date(Date.now() - 86400000).toISOString(),
-    isRead: true,
-    isStarred: false,
-    isArchived: false,
-    isDeleted: false,
-    isSent: false,
-    isDraft: false,
-    hasAttachments: false,
-    attachments: [],
-    preview: 'The driver schedules have been updated for next week. Please review...',
-    threadId: generateId(),
-    labels: ['schedule'],
-  },
+  // EMAIL_RATECON_INBOUND_STEP_5,
+  // EMAIL_RATECON_OUTBOUND_STEP_7,
+  // EMAIL_POD_OUTBOUND_STEP_10
 ];
 
 export const useEmailStore = create<EmailsState>()(
@@ -119,110 +73,110 @@ export const useEmailStore = create<EmailsState>()(
 
       // Email Actions
 
-      addEmail: (emailData) => {
+      addEmail: emailData => {
         const newEmail: Email = {
           ...emailData,
           id: generateId(),
           timestamp: getCurrentIsoDate(),
         };
-        set((state) => {
+        set(state => {
           state.emails.unshift(newEmail); // Add to beginning for chronological order
         });
         return newEmail;
       },
 
-      getEmailById: (id) => {
-        return get().emails.find((email) => email.id === id);
+      getEmailById: id => {
+        return get().emails.find(email => email.id === id);
       },
 
       updateEmail: (emailId, updates) => {
-        set((state) => {
-          const email = state.emails.find((e) => e.id === emailId);
+        set(state => {
+          const email = state.emails.find(e => e.id === emailId);
           if (email) {
             Object.assign(email, updates);
           }
         });
       },
 
-      deleteEmail: (emailId) => {
-        set((state) => {
-          state.emails = state.emails.filter((email) => email.id !== emailId);
+      deleteEmail: emailId => {
+        set(state => {
+          state.emails = state.emails.filter(email => email.id !== emailId);
         });
       },
 
       // Email Status Actions
 
-      markAsRead: (emailId) => {
-        set((state) => {
-          const email = state.emails.find((e) => e.id === emailId);
+      markAsRead: emailId => {
+        set(state => {
+          const email = state.emails.find(e => e.id === emailId);
           if (email) {
             email.isRead = true;
           }
         });
       },
 
-      markAsUnread: (emailId) => {
-        set((state) => {
-          const email = state.emails.find((e) => e.id === emailId);
+      markAsUnread: emailId => {
+        set(state => {
+          const email = state.emails.find(e => e.id === emailId);
           if (email) {
             email.isRead = false;
           }
         });
       },
 
-      toggleStar: (emailId) => {
-        set((state) => {
-          const email = state.emails.find((e) => e.id === emailId);
+      toggleStar: emailId => {
+        set(state => {
+          const email = state.emails.find(e => e.id === emailId);
           if (email) {
             email.isStarred = !email.isStarred;
           }
         });
       },
 
-      archiveEmail: (emailId) => {
-        set((state) => {
-          const email = state.emails.find((e) => e.id === emailId);
+      archiveEmail: emailId => {
+        set(state => {
+          const email = state.emails.find(e => e.id === emailId);
           if (email) {
             email.isArchived = true;
           }
         });
       },
 
-      unarchiveEmail: (emailId) => {
-        set((state) => {
-          const email = state.emails.find((e) => e.id === emailId);
+      unarchiveEmail: emailId => {
+        set(state => {
+          const email = state.emails.find(e => e.id === emailId);
           if (email) {
             email.isArchived = false;
           }
         });
       },
 
-      moveToTrash: (emailId) => {
-        set((state) => {
-          const email = state.emails.find((e) => e.id === emailId);
+      moveToTrash: emailId => {
+        set(state => {
+          const email = state.emails.find(e => e.id === emailId);
           if (email) {
             email.isDeleted = true;
           }
         });
       },
 
-      restoreFromTrash: (emailId) => {
-        set((state) => {
-          const email = state.emails.find((e) => e.id === emailId);
+      restoreFromTrash: emailId => {
+        set(state => {
+          const email = state.emails.find(e => e.id === emailId);
           if (email) {
             email.isDeleted = false;
           }
         });
       },
 
-      permanentlyDelete: (emailId) => {
+      permanentlyDelete: emailId => {
         get().deleteEmail(emailId);
       },
 
       // Folder Actions
 
-      setSelectedFolder: (folder) => {
-        set((state) => {
+      setSelectedFolder: folder => {
+        set(state => {
           state.selectedFolder = folder;
         });
       },
@@ -230,7 +184,7 @@ export const useEmailStore = create<EmailsState>()(
       // Gmail API Actions
 
       refreshEmails: async () => {
-        set((state) => {
+        set(state => {
           state.isLoading = true;
           state.error = null;
         });
@@ -248,19 +202,19 @@ export const useEmailStore = create<EmailsState>()(
 
           // For now, just simulate a refresh
           await new Promise(resolve => setTimeout(resolve, 1000));
-        } catch (error) {
-          set((state) => {
+        } catch {
+          set(state => {
             state.error = 'Failed to refresh emails';
           });
         } finally {
-          set((state) => {
+          set(state => {
             state.isLoading = false;
           });
         }
       },
 
-      sendEmail: async (emailData) => {
-        set((state) => {
+      sendEmail: async emailData => {
+        set(state => {
           state.isLoading = true;
           state.error = null;
         });
@@ -274,43 +228,57 @@ export const useEmailStore = create<EmailsState>()(
             subject: emailData.subject,
             content: emailData.content,
             sender: { name: 'You', email: 'you@company.com' }, // This would come from user profile
-            recipients: Array.isArray(emailData.to) ? emailData.to : [emailData.to],
-            cc: emailData.cc ? (Array.isArray(emailData.cc) ? emailData.cc : [emailData.cc]) : [],
-            bcc: emailData.bcc ? (Array.isArray(emailData.bcc) ? emailData.bcc : [emailData.bcc]) : [],
+            recipients: Array.isArray(emailData.to)
+              ? emailData.to
+              : [emailData.to],
+            cc: emailData.cc
+              ? Array.isArray(emailData.cc)
+                ? emailData.cc
+                : [emailData.cc]
+              : [],
+            bcc: emailData.bcc
+              ? Array.isArray(emailData.bcc)
+                ? emailData.bcc
+                : [emailData.bcc]
+              : [],
             isRead: true,
             isStarred: false,
             isArchived: false,
             isDeleted: false,
             isSent: true,
             isDraft: false,
-            hasAttachments: emailData.attachments ? emailData.attachments.length > 0 : false,
+            hasAttachments: emailData.attachments
+              ? emailData.attachments.length > 0
+              : false,
             attachments: emailData.attachments || [],
-            preview: emailData.content.substring(0, 100) + (emailData.content.length > 100 ? '...' : ''),
+            preview:
+              emailData.content.substring(0, 100) +
+              (emailData.content.length > 100 ? '...' : ''),
             threadId: emailData.threadId || generateId(),
             labels: emailData.labels || [],
             id: generateId(),
             timestamp: getCurrentIsoDate(),
           };
 
-          set((state) => {
+          set(state => {
             state.emails.unshift(sentEmail);
           });
 
           return sentEmail;
         } catch (error) {
-          set((state) => {
+          set(state => {
             state.error = 'Failed to send email';
           });
           throw error;
         } finally {
-          set((state) => {
+          set(state => {
             state.isLoading = false;
           });
         }
       },
 
       syncWithGmail: async () => {
-        set((state) => {
+        set(state => {
           state.isLoading = true;
           state.error = null;
         });
@@ -329,12 +297,12 @@ export const useEmailStore = create<EmailsState>()(
 
           // Simulate API call
           await new Promise(resolve => setTimeout(resolve, 2000));
-        } catch (error) {
-          set((state) => {
+        } catch {
+          set(state => {
             state.error = 'Failed to sync with Gmail';
           });
         } finally {
-          set((state) => {
+          set(state => {
             state.isLoading = false;
           });
         }
@@ -342,18 +310,18 @@ export const useEmailStore = create<EmailsState>()(
 
       // Utility Actions
 
-      setLoading: (loading) => {
-        set((state) => {
+      setLoading: loading => {
+        set(state => {
           state.isLoading = loading;
         });
       },
 
-      setError: (error) => {
-        set((state) => {
+      setError: error => {
+        set(state => {
           state.error = error;
         });
       },
     })),
-    { name: "EmailStore" },
-  ),
+    { name: 'EmailStore' }
+  )
 );

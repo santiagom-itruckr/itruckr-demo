@@ -30,7 +30,12 @@ const Logo: React.FC<LogoProps> = ({
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if ((event.key === 'Enter' || event.key === ' ') && onClick && !disabled && !loading) {
+    if (
+      (event.key === 'Enter' || event.key === ' ') &&
+      onClick &&
+      !disabled &&
+      !loading
+    ) {
       event.preventDefault();
       onClick();
     }
@@ -38,8 +43,9 @@ const Logo: React.FC<LogoProps> = ({
 
   const svgStyle: React.CSSProperties = {
     ...style,
-    cursor: (clickable || onClick) && !disabled && !loading ? 'pointer' : 'default',
-    opacity: disabled ? 0.5 : loading ? 0.7 : 1
+    cursor:
+      (clickable || onClick) && !disabled && !loading ? 'pointer' : 'default',
+    opacity: disabled ? 0.5 : loading ? 0.7 : 1,
   };
 
   const isInteractive = (onClick || clickable) && !disabled && !loading;
@@ -48,9 +54,9 @@ const Logo: React.FC<LogoProps> = ({
     <svg
       width={width}
       height={height}
-      viewBox="0 0 301 101"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+      viewBox='0 0 301 101'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
       className={className}
       style={svgStyle}
       onClick={handleClick}
@@ -62,12 +68,12 @@ const Logo: React.FC<LogoProps> = ({
       aria-busy={loading}
     >
       <path
-        d="M0.984375 0.0561523H200.984V100.056H0.984375V0.0561523Z"
-        fill="white"
+        d='M0.984375 0.0561523H200.984V100.056H0.984375V0.0561523Z'
+        fill='white'
       />
       <path
-        d="M200.984 0.0561523H300.984V100.056L200.984 0.0561523Z"
-        fill="#3cbd7a"
+        d='M200.984 0.0561523H300.984V100.056L200.984 0.0561523Z'
+        fill='#3cbd7a'
       />
     </svg>
   );

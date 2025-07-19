@@ -1,12 +1,14 @@
-import { create } from "zustand";
-import { devtools } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
-import { Load } from "../types/app";
-import { generateId, getCurrentIsoDate } from "./utils";
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+
+import { Load } from '../types/app';
+
+import { generateId, getCurrentIsoDate } from './utils';
 
 interface LoadsState {
   loads: Load[];
-  addLoad: (newLoad: Omit<Load, "id" | "createdDate" | "updatedDate">) => Load;
+  addLoad: (newLoad: Omit<Load, 'id' | 'createdDate' | 'updatedDate'>) => Load;
   getLoadById: (id: string) => Load | undefined;
   updateLoad: (loadId: string, updates: Partial<Load>) => void;
   deleteLoad: (loadId: string) => void;
@@ -19,26 +21,26 @@ export const useLoadsStore = create<LoadsState>()(
     immer((set, get) => ({
       loads: [],
 
-      addLoad: (newLoadData) => {
+      addLoad: newLoadData => {
         const load: Load = {
           ...newLoadData,
           id: generateId(),
           createdDate: getCurrentIsoDate(),
           updatedDate: getCurrentIsoDate(),
         };
-        set((state) => {
+        set(state => {
           state.loads.push(load);
         });
         return load;
       },
 
-      getLoadById: (id) => {
-        return get().loads.find((l) => l.id === id);
+      getLoadById: id => {
+        return get().loads.find(l => l.id === id);
       },
 
       updateLoad: (loadId, updates) => {
-        set((state) => {
-          const load = state.loads.find((l) => l.id === loadId);
+        set(state => {
+          const load = state.loads.find(l => l.id === loadId);
           if (load) {
             Object.assign(load, updates);
             load.updatedDate = getCurrentIsoDate();
@@ -46,15 +48,15 @@ export const useLoadsStore = create<LoadsState>()(
         });
       },
 
-      deleteLoad: (loadId) => {
-        set((state) => {
-          state.loads = state.loads.filter((l) => l.id !== loadId);
+      deleteLoad: loadId => {
+        set(state => {
+          state.loads = state.loads.filter(l => l.id !== loadId);
         });
       },
 
       assignDriverToLoad: (loadId, driverId) => {
-        set((state) => {
-          const load = state.loads.find((l) => l.id === loadId);
+        set(state => {
+          const load = state.loads.find(l => l.id === loadId);
           if (load) {
             load.driverId = driverId;
             load.updatedDate = getCurrentIsoDate();
@@ -62,10 +64,10 @@ export const useLoadsStore = create<LoadsState>()(
         });
       },
 
-      getLoadsByDriver: (driverId) => {
-        return get().loads.filter((l) => l.driverId === driverId);
+      getLoadsByDriver: driverId => {
+        return get().loads.filter(l => l.driverId === driverId);
       },
     })),
-    { name: "LoadsStore" },
-  ),
+    { name: 'LoadsStore' }
+  )
 );

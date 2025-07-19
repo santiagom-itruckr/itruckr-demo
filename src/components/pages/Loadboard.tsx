@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import {
   Truck,
   MapPin,
@@ -12,8 +10,11 @@ import {
   Phone,
   Mail,
   AlertCircle,
-  Zap
+  Zap,
 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+import { Card, CardContent } from '@/components/ui/card';
 
 // Type definitions for better type safety
 interface Broker {
@@ -60,12 +61,12 @@ const generateLoadboardData = (): Load[] => [
       name: 'Prime Logistics',
       rating: 4.8,
       phone: '(555) 123-4567',
-      email: 'dispatch@primelogistics.com'
+      email: 'dispatch@primelogistics.com',
     },
     postedTime: '2 hours ago',
     urgency: 'high',
     status: 'available',
-    autobooking: true
+    autobooking: true,
   },
   {
     id: 'DAT-2024-002',
@@ -83,12 +84,12 @@ const generateLoadboardData = (): Load[] => [
       name: 'FreightMax Solutions',
       rating: 4.6,
       phone: null,
-      email: 'loads@freightmax.com'
+      email: 'loads@freightmax.com',
     },
     postedTime: '45 minutes ago',
     urgency: 'medium',
     status: 'available',
-    autobooking: false
+    autobooking: false,
   },
   {
     id: 'DAT-2024-003',
@@ -106,12 +107,12 @@ const generateLoadboardData = (): Load[] => [
       name: 'Southwest Freight',
       rating: 4.3,
       phone: '(555) 456-7890',
-      email: null
+      email: null,
     },
     postedTime: '1 hour ago',
     urgency: 'low',
     status: 'available',
-    autobooking: false
+    autobooking: false,
   },
   {
     id: 'DAT-2024-004',
@@ -129,12 +130,12 @@ const generateLoadboardData = (): Load[] => [
       name: 'East Coast Express',
       rating: 4.9,
       phone: null,
-      email: null
+      email: null,
     },
     postedTime: '30 minutes ago',
     urgency: 'high',
     status: 'available',
-    autobooking: true
+    autobooking: true,
   },
   {
     id: 'DAT-2024-005',
@@ -152,12 +153,12 @@ const generateLoadboardData = (): Load[] => [
       name: 'Pacific Northwest Logistics',
       rating: 4.4,
       phone: null,
-      email: null
+      email: null,
     },
     postedTime: '3 hours ago',
     urgency: 'medium',
     status: 'available',
-    autobooking: true
+    autobooking: true,
   },
   {
     id: 'DAT-2024-006',
@@ -175,13 +176,13 @@ const generateLoadboardData = (): Load[] => [
       name: 'Central Freight Hub',
       rating: 4.2,
       phone: '(555) 789-0123',
-      email: 'dispatch@centralfreight.com'
+      email: 'dispatch@centralfreight.com',
     },
     postedTime: '4 hours ago',
     urgency: 'medium',
     status: 'available',
-    autobooking: false
-  }
+    autobooking: false,
+  },
 ];
 
 export function Loadboard() {
@@ -197,10 +198,8 @@ export function Loadboard() {
     // Search filter
     if (searchTerm) {
       filtered = filtered.filter(
-        (load) =>
-          load.origin.city
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()) ||
+        load =>
+          load.origin.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
           load.destination.city
             .toLowerCase()
             .includes(searchTerm.toLowerCase()) ||
@@ -210,8 +209,9 @@ export function Loadboard() {
 
     // Equipment filter
     if (selectedEquipment !== 'all') {
-      filtered = filtered.filter((load) =>
-        load.equipmentType.toLowerCase() === selectedEquipment.toLowerCase()
+      filtered = filtered.filter(
+        load =>
+          load.equipmentType.toLowerCase() === selectedEquipment.toLowerCase()
       );
     }
 
@@ -226,8 +226,7 @@ export function Loadboard() {
           return a.miles - b.miles;
         case 'pickupDate':
           return (
-            new Date(a.pickupDate).getTime() -
-            new Date(b.pickupDate).getTime()
+            new Date(a.pickupDate).getTime() - new Date(b.pickupDate).getTime()
           );
         default:
           return 0;
@@ -274,7 +273,7 @@ export function Loadboard() {
         key: 'book',
         label: 'Book Now',
         icon: Zap,
-        onClick: () => handleBookNow(load.id)
+        onClick: () => handleBookNow(load.id),
       });
     }
 
@@ -283,7 +282,7 @@ export function Loadboard() {
         key: 'phone',
         label: 'Negotiate Load',
         icon: Phone,
-        onClick: () => handleNegotiatePhone(load.id, load.broker.phone!)
+        onClick: () => handleNegotiatePhone(load.id, load.broker.phone!),
       });
     }
 
@@ -292,14 +291,14 @@ export function Loadboard() {
         key: 'email',
         label: 'Negotiate Load',
         icon: Mail,
-        onClick: () => handleNegotiateEmail(load.id, load.broker.email!)
+        onClick: () => handleNegotiateEmail(load.id, load.broker.email!),
       });
     }
 
     // If no buttons are available
     if (buttonConfigs.length === 0) {
       return (
-        <div className="text-sm text-custom-text-secondary italic">
+        <div className='text-sm text-custom-text-secondary italic'>
           No contact info available
         </div>
       );
@@ -307,7 +306,7 @@ export function Loadboard() {
 
     // Render buttons with first one getting primary styling
     return (
-      <div className="flex flex-col gap-2">
+      <div className='flex flex-col gap-2'>
         {buttonConfigs.map((config, index) => {
           const IconComponent = config.icon;
           const isPrimary = index === 0;
@@ -316,12 +315,13 @@ export function Loadboard() {
             <button
               key={config.key}
               onClick={config.onClick}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors text-sm font-medium ${isPrimary
-                ? 'bg-custom-primary-accent text-black hover:bg-custom-primary-accent/90'
-                : 'border border-custom-border text-custom-text-primary hover:bg-custom-surface-hover'
-                }`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors text-sm font-medium ${
+                isPrimary
+                  ? 'bg-custom-primary-accent text-black hover:bg-custom-primary-accent/90'
+                  : 'border border-custom-border text-custom-text-primary hover:bg-custom-surface-hover'
+              }`}
             >
-              <IconComponent className="h-4 w-4" />
+              <IconComponent className='h-4 w-4' />
               <span>{config.label}</span>
             </button>
           );
@@ -331,53 +331,53 @@ export function Loadboard() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       {/* Filters */}
-      <Card className="bg-custom-surface border-custom-border">
-        <CardContent className="p-4">
-          <div className="flex flex-wrap gap-4 items-center">
-            <div className="flex items-center gap-2">
-              <Search className="h-4 w-4 text-custom-text-secondary" />
+      <Card className='bg-custom-surface border-custom-border'>
+        <CardContent className='p-4'>
+          <div className='flex flex-wrap gap-4 items-center'>
+            <div className='flex items-center gap-2'>
+              <Search className='h-4 w-4 text-custom-text-secondary' />
               <input
-                type="text"
-                placeholder="Search by city or commodity..."
+                type='text'
+                placeholder='Search by city or commodity...'
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="px-3 py-2 border border-custom-border rounded-lg bg-custom-background text-custom-text-primary placeholder-custom-text-secondary focus:outline-none focus:ring-2 focus:ring-custom-primary-accent"
+                onChange={e => setSearchTerm(e.target.value)}
+                className='px-3 py-2 border border-custom-border rounded-lg bg-custom-background text-custom-text-primary placeholder-custom-text-secondary focus:outline-none focus:ring-2 focus:ring-custom-primary-accent'
               />
             </div>
 
-            <div className="flex items-center gap-2">
-              <Filter className="h-4 w-4 text-custom-text-secondary" />
+            <div className='flex items-center gap-2'>
+              <Filter className='h-4 w-4 text-custom-text-secondary' />
               <select
                 value={selectedEquipment}
-                onChange={(e) => setSelectedEquipment(e.target.value)}
-                className="px-3 py-2 border border-custom-border rounded-lg bg-custom-background text-custom-text-primary focus:outline-none focus:ring-2 focus:ring-custom-primary-accent"
+                onChange={e => setSelectedEquipment(e.target.value)}
+                className='px-3 py-2 border border-custom-border rounded-lg bg-custom-background text-custom-text-primary focus:outline-none focus:ring-2 focus:ring-custom-primary-accent'
               >
-                <option value="all">All Equipment</option>
-                <option value="dry van">Dry Van</option>
-                <option value="reefer">Reefer</option>
-                <option value="flatbed">Flatbed</option>
+                <option value='all'>All Equipment</option>
+                <option value='dry van'>Dry Van</option>
+                <option value='reefer'>Reefer</option>
+                <option value='flatbed'>Flatbed</option>
               </select>
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-custom-text-secondary">
+            <div className='flex items-center gap-2'>
+              <span className='text-sm text-custom-text-secondary'>
                 Sort by:
               </span>
               <select
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-2 border border-custom-border rounded-lg bg-custom-background text-custom-text-primary focus:outline-none focus:ring-2 focus:ring-custom-primary-accent"
+                onChange={e => setSortBy(e.target.value)}
+                className='px-3 py-2 border border-custom-border rounded-lg bg-custom-background text-custom-text-primary focus:outline-none focus:ring-2 focus:ring-custom-primary-accent'
               >
-                <option value="rate">Total Rate</option>
-                <option value="ratePerMile">Rate per Mile</option>
-                <option value="miles">Distance</option>
-                <option value="pickupDate">Pickup Date</option>
+                <option value='rate'>Total Rate</option>
+                <option value='ratePerMile'>Rate per Mile</option>
+                <option value='miles'>Distance</option>
+                <option value='pickupDate'>Pickup Date</option>
               </select>
             </div>
 
-            <div className="ml-auto text-sm text-custom-text-secondary">
+            <div className='ml-auto text-sm text-custom-text-secondary'>
               Showing {filteredLoads.length} of {loads.length} loads
             </div>
           </div>
@@ -386,57 +386,57 @@ export function Loadboard() {
 
       {/* Load Cards */}
       {filteredLoads.length === 0 ? (
-        <Card className="bg-custom-surface border-custom-border">
-          <CardContent className="p-8 text-center">
-            <Truck className="h-12 w-12 text-custom-text-secondary mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-custom-text-primary mb-2">
+        <Card className='bg-custom-surface border-custom-border'>
+          <CardContent className='p-8 text-center'>
+            <Truck className='h-12 w-12 text-custom-text-secondary mx-auto mb-4' />
+            <h3 className='text-lg font-medium text-custom-text-primary mb-2'>
               No loads found
             </h3>
-            <p className="text-custom-text-secondary">
+            <p className='text-custom-text-secondary'>
               Try adjusting your search criteria or filters
             </p>
           </CardContent>
         </Card>
       ) : (
-        <div className="space-y-4">
-          {filteredLoads.map((load) => (
+        <div className='space-y-4'>
+          {filteredLoads.map(load => (
             <Card
               key={load.id}
-              className="bg-custom-surface border-custom-border hover:shadow-lg transition-all duration-200"
+              className='bg-custom-surface border-custom-border hover:shadow-lg transition-all duration-200'
             >
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+              <CardContent className='p-6'>
+                <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 items-center'>
                   {/* Route Info */}
-                  <div className="lg:col-span-4">
-                    <div className="flex items-center gap-3">
-                      <div className="text-center">
-                        <p className="font-semibold text-custom-text-primary">
+                  <div className='lg:col-span-4'>
+                    <div className='flex items-center gap-3'>
+                      <div className='text-center'>
+                        <p className='font-semibold text-custom-text-primary'>
                           {load.origin.city}
                         </p>
-                        <p className="text-sm text-custom-text-secondary">
+                        <p className='text-sm text-custom-text-secondary'>
                           {load.origin.state}
                         </p>
                       </div>
-                      <div className="flex-1 flex items-center">
-                        <div className="w-full border-t-2 border-dashed border-custom-border relative">
-                          <Truck className="h-4 w-4 text-custom-primary-accent absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-custom-surface" />
+                      <div className='flex-1 flex items-center'>
+                        <div className='w-full border-t-2 border-dashed border-custom-border relative'>
+                          <Truck className='h-4 w-4 text-custom-primary-accent absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-custom-surface' />
                         </div>
                       </div>
-                      <div className="text-center">
-                        <p className="font-semibold text-custom-text-primary">
+                      <div className='text-center'>
+                        <p className='font-semibold text-custom-text-primary'>
                           {load.destination.city}
                         </p>
-                        <p className="text-sm text-custom-text-secondary">
+                        <p className='text-sm text-custom-text-secondary'>
                           {load.destination.state}
                         </p>
                       </div>
                     </div>
-                    <div className="mt-2 flex items-center gap-4 text-sm text-custom-text-secondary">
+                    <div className='mt-2 flex items-center gap-4 text-sm text-custom-text-secondary'>
                       <span>{load.miles} miles</span>
                       <span>{load.equipmentType}</span>
                       {load.autobooking && (
-                        <span className="flex items-center gap-1 text-custom-primary-accent">
-                          <Zap className="h-3 w-3" />
+                        <span className='flex items-center gap-1 text-custom-primary-accent'>
+                          <Zap className='h-3 w-3' />
                           Auto-book
                         </span>
                       )}
@@ -444,68 +444,67 @@ export function Loadboard() {
                   </div>
 
                   {/* Load Details */}
-                  <div className="flex flex-col items-start gap-1 lg:col-span-2">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-custom-text-secondary" />
-                      <span className="text-sm text-custom-text-primary">
+                  <div className='flex flex-col items-start gap-1 lg:col-span-2'>
+                    <div className='flex items-center gap-2'>
+                      <Calendar className='h-4 w-4 text-custom-text-secondary' />
+                      <span className='text-sm text-custom-text-primary'>
                         Pick: {new Date(load.pickupDate).toLocaleDateString()}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-custom-text-secondary" />
-                      <span className="text-sm text-custom-text-primary">
-                        Del:{' '}
-                        {new Date(load.deliveryDate).toLocaleDateString()}
+                    <div className='flex items-center gap-2'>
+                      <MapPin className='h-4 w-4 text-custom-text-secondary' />
+                      <span className='text-sm text-custom-text-primary'>
+                        Del: {new Date(load.deliveryDate).toLocaleDateString()}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Weight className="h-4 w-4 text-custom-text-secondary" />
-                      <span className="text-sm text-custom-text-primary">
+                    <div className='flex items-center gap-2'>
+                      <Weight className='h-4 w-4 text-custom-text-secondary' />
+                      <span className='text-sm text-custom-text-primary'>
                         {load.weight.toLocaleString()} lbs
                       </span>
                     </div>
                   </div>
 
                   {/* Broker Info */}
-                  <div className="flex flex-col items-center lg:col-span-2">
-                    <p className="font-medium text-custom-text-primary">
+                  <div className='flex flex-col items-center lg:col-span-2'>
+                    <p className='font-medium text-custom-text-primary'>
                       {load.broker.name}
                     </p>
-                    <div className="flex items-center gap-1">
-                      <Star className="h-3 w-3 text-yellow-500 fill-current" />
-                      <span className="text-sm text-custom-text-secondary">
+                    <div className='flex items-center gap-1'>
+                      <Star className='h-3 w-3 text-yellow-500 fill-current' />
+                      <span className='text-sm text-custom-text-secondary'>
                         {load.broker.rating}
                       </span>
                     </div>
-                    <p className="text-xs text-custom-text-secondary">
+                    <p className='text-xs text-custom-text-secondary'>
                       {load.commodity}
                     </p>
                   </div>
 
                   {/* Rate Info */}
-                  <div className="flex flex-col items-center lg:col-span-2 text-center">
-                    <p className="text-2xl font-bold text-custom-success">
+                  <div className='flex flex-col items-center lg:col-span-2 text-center'>
+                    <p className='text-2xl font-bold text-custom-success'>
                       ${load.rate.toLocaleString()}
                     </p>
-                    <p className="text-sm text-custom-text-secondary">
+                    <p className='text-sm text-custom-text-secondary'>
                       ${load.ratePerMile}/mile
                     </p>
                   </div>
 
                   {/* Actions */}
-                  <div className="lg:col-span-2">
+                  <div className='lg:col-span-2'>
                     {renderActionButtons(load)}
                   </div>
                 </div>
 
                 {/* Footer */}
-                <div className="mt-4 pt-4 border-t border-custom-border flex items-center justify-between">
-                  <div className="flex items-center gap-4 text-sm text-custom-text-secondary">
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
+                <div className='mt-4 pt-4 border-t border-custom-border flex items-center justify-between'>
+                  <div className='flex items-center gap-4 text-sm text-custom-text-secondary'>
+                    <div className='flex items-center gap-1'>
+                      <Clock className='h-3 w-3' />
                       <span>Posted {load.postedTime}</span>
                     </div>
-                    <div className="flex items-center gap-1">
+                    <div className='flex items-center gap-1'>
                       <AlertCircle
                         className={`h-3 w-3 ${getUrgencyColor(load.urgency)}`}
                       />
@@ -516,7 +515,7 @@ export function Loadboard() {
                       </span>
                     </div>
                   </div>
-                  <div className="text-sm text-custom-text-secondary">
+                  <div className='text-sm text-custom-text-secondary'>
                     Load ID: {load.id}
                   </div>
                 </div>
@@ -524,8 +523,7 @@ export function Loadboard() {
             </Card>
           ))}
         </div>
-      )
-      }
+      )}
     </div>
   );
 }

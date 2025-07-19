@@ -1,16 +1,17 @@
-import { useNavigation } from '@/contexts/NavigationContext';
+import { Chat } from '@/components/pages/Chat';
+import { Email } from '@/components/pages/Email';
 import { ITruckr } from '@/components/pages/ITruckr';
 import { Loads } from '@/components/pages/Loads';
 import { Payments } from '@/components/pages/Payments';
 import { Registration } from '@/components/pages/Registration';
-import { Chat } from '@/components/pages/Chat';
-import { Email } from '@/components/pages/Email';
+import { useNavigation } from '@/contexts/NavigationContext';
+
 import { Loadboard } from '../pages/Loadboard';
 
 export function MainContent() {
-  const renderPage = () => {
-    const { activePage } = useNavigation();
+  const { activePage } = useNavigation();
 
+  const renderPage = () => {
     switch (activePage) {
       case 'itruckr':
         return <ITruckr />;
@@ -32,7 +33,7 @@ export function MainContent() {
   };
 
   return (
-    <main className="flex-1 overflow-y-auto rounded-tl-xl pl-4 pt-4 lg:pl-6 lg:pt-6 transition-all duration-300">
+    <main className='flex-1 overflow-y-auto rounded-tl-xl pl-4 pt-4 lg:pl-6 lg:pt-6 transition-all duration-300'>
       {renderPage()}
     </main>
   );

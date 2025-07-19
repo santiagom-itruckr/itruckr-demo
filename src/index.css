@@ -10,32 +10,32 @@
   /* Theme-agnostic colors - these stay the same regardless of theme */
   --color-black: #10104c;
   --color-black-hover: #1e1e66;
-  --color-gray-50: #F9FAFB;
-  --color-gray-100: #F3F4F6;
-  --color-gray-200: #E5E7EB;
-  --color-gray-300: #D1D5DB;
-  --color-gray-400: #9CA3AF;
-  --color-gray-500: #6B7280;
-  --color-gray-600: #4B5563;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
   --color-gray-700: #374151;
-  --color-gray-800: #1F2937;
+  --color-gray-800: #1f2937;
   --color-gray-900: #111827;
   --green-accent: #3cbd7a;
 
   /* Light mode colors */
-  --custom-background: #F5F6F7;
-  --custom-surface: #FFFFFF;
-  --custom-surface-hover: #F0F1F2;
-  --custom-border: #D0D1D2;
-  --custom-text-primary: #1A1A1A;
-  --custom-text-secondary: #4D4D4D;
-  --custom-text-disabled: #A0A0A0;
+  --custom-background: #f5f6f7;
+  --custom-surface: #ffffff;
+  --custom-surface-hover: #f0f1f2;
+  --custom-border: #d0d1d2;
+  --custom-text-primary: #1a1a1a;
+  --custom-text-secondary: #4d4d4d;
+  --custom-text-disabled: #a0a0a0;
   --custom-primary-accent: #3cbd7a;
   --custom-primary-hover: #5adb99;
   --custom-primary-active: #5adb99;
-  --custom-success: #28A745;
-  --custom-warning: #FFC107;
-  --custom-error: #DC3545;
+  --custom-success: #28a745;
+  --custom-warning: #ffc107;
+  --custom-error: #dc3545;
 
   /* Original shadcn variables */
   --background: 0 0% 100%;

@@ -1,14 +1,16 @@
 // src/store/useCasesStore.ts (Updated)
-import { create } from "zustand";
-import { devtools } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
-import { Case, CaseStatus, CaseType, ProcessStep } from "../types/app"; // Import ProcessStep
-import { generateId, getCurrentIsoDate } from "./utils";
-import { useProcessesStore } from "./processesStore"; // Import the processes store
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+
 import {
   getLoadProcessSteps,
   getOilChangeProcessSteps,
-} from "../processes/processDefinitions"; // Import process definitions
+} from '../processes/processDefinitions'; // Import process definitions
+import { Case, CaseStatus, CaseType, ProcessStep } from '../types/app'; // Import ProcessStep
+
+import { useProcessesStore } from './processesStore'; // Import the processes store
+import { generateId, getCurrentIsoDate } from './utils';
 
 interface CasesState {
   cases: Case[];
@@ -34,8 +36,8 @@ export const useCasesStore = create<CasesState>()(
       cases: [],
       selectedCaseId: null,
 
-      setSelectedCase: (caseId) => {
-        set((state) => {
+      setSelectedCase: caseId => {
+        set(state => {
           state.selectedCaseId = caseId;
         });
       },
@@ -53,7 +55,7 @@ export const useCasesStore = create<CasesState>()(
           notificationId,
           userId,
           type,
-          status: "open",
+          status: 'open',
           title,
           description,
           createdAt: getCurrentIsoDate(),
@@ -63,9 +65,9 @@ export const useCasesStore = create<CasesState>()(
 
         // Determine which process steps to use based on case type
         let initialSteps: ProcessStep[] = [];
-        if (type === "load_process") {
+        if (type === 'load_process') {
           initialSteps = getLoadProcessSteps();
-        } else if (type === "oil_change") {
+        } else if (type === 'oil_change') {
           initialSteps = getOilChangeProcessSteps();
         } else {
           console.warn(`No defined process steps for case type: ${type}`);
@@ -81,7 +83,7 @@ export const useCasesStore = create<CasesState>()(
         // Link the newly created process to the case
         newCase.processId = newProcess.id;
 
-        set((state) => {
+        set(state => {
           state.cases.push(newCase);
           state.selectedCaseId = newCase.id;
         });
@@ -101,16 +103,20 @@ export const useCasesStore = create<CasesState>()(
       },
 
       updateCaseStatus: (caseId, status) => {
-        set((state) => {
-          const caseToUpdate = state.cases.find((c) => c.id === caseId);
+        set(state => {
+          const caseToUpdate = state.cases.find(c => c.id === caseId);
           if (caseToUpdate) {
             caseToUpdate.status = status;
             caseToUpdate.updatedAt = getCurrentIsoDate();
             // If the case is resolved/closed/cancelled, update the associated process too
             if (caseToUpdate.processId) {
-              const process = useProcessesStore.getState().getProcessById(caseToUpdate.processId);
+              const process = useProcessesStore
+                .getState()
+                .getProcessById(caseToUpdate.processId);
               if (process && process.status !== status) {
-                useProcessesStore.getState().updateProcessStatus(caseToUpdate.processId, status);
+                useProcessesStore
+                  .getState()
+                  .updateProcessStatus(caseToUpdate.processId, status);
               }
             }
           }
@@ -120,8 +126,8 @@ export const useCasesStore = create<CasesState>()(
       assignProcessToCase: (caseId, processId) => {
         // This function might become less critical if process creation is tightly coupled
         // with case creation, but could be useful for re-assigning or linking existing.
-        set((state) => {
-          const caseToUpdate = state.cases.find((c) => c.id === caseId);
+        set(state => {
+          const caseToUpdate = state.cases.find(c => c.id === caseId);
           if (caseToUpdate) {
             caseToUpdate.processId = processId;
             caseToUpdate.updatedAt = getCurrentIsoDate();
@@ -129,14 +135,14 @@ export const useCasesStore = create<CasesState>()(
         });
       },
 
-      getCaseById: (caseId) => {
-        return get().cases.find((c) => c.id === caseId);
+      getCaseById: caseId => {
+        return get().cases.find(c => c.id === caseId);
       },
 
-      getCasesByUserId: (userId) => {
-        return get().cases.filter((c) => c.userId === userId);
+      getCasesByUserId: userId => {
+        return get().cases.filter(c => c.userId === userId);
       },
     })),
-    { name: "CasesStore" },
-  ),
+    { name: 'CasesStore' }
+  )
 );

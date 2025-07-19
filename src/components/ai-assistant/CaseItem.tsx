@@ -1,6 +1,3 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import {
   Truck,
   MessageCircle,
@@ -10,6 +7,10 @@ import {
   CheckCircle,
   Fuel,
 } from 'lucide-react';
+import React from 'react';
+
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useProcessesStore } from '@/stores/processesStore';
 import { Case } from '@/types/app';
@@ -21,7 +22,12 @@ interface CaseItemProps {
   onDelete: (caseId: string) => void;
 }
 
-function CaseItem({ case: caseItem, isActive, onSelect, onDelete }: CaseItemProps) {
+function CaseItem({
+  case: caseItem,
+  isActive,
+  onSelect,
+  onDelete,
+}: CaseItemProps) {
   const { getProcessesByCaseId } = useProcessesStore();
 
   const handleDeleteCase = (e: React.MouseEvent, caseId: string) => {
@@ -54,11 +60,11 @@ function CaseItem({ case: caseItem, isActive, onSelect, onDelete }: CaseItemProp
   const getStatusIcon = () => {
     switch (caseItem.status) {
       case 'resolved':
-        return <CheckCircle className="w-3 h-3 text-custom-success" />;
+        return <CheckCircle className='w-3 h-3 text-custom-success' />;
       case 'in_progress':
-        return <Clock className="w-3 h-3 text-custom-warning" />;
+        return <Clock className='w-3 h-3 text-custom-warning' />;
       case 'open':
-        return <AlertCircle className="w-3 h-3 text-blue-500" />;
+        return <AlertCircle className='w-3 h-3 text-blue-500' />;
       default:
         return null;
     }
@@ -67,7 +73,9 @@ function CaseItem({ case: caseItem, isActive, onSelect, onDelete }: CaseItemProp
   const formatTimestamp = (timestamp: string) => {
     const date = new Date(timestamp);
     const now = new Date();
-    const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60));
+    const diffInMinutes = Math.floor(
+      (now.getTime() - date.getTime()) / (1000 * 60)
+    );
 
     if (diffInMinutes < 1) return 'Just now';
     if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
@@ -83,46 +91,52 @@ function CaseItem({ case: caseItem, isActive, onSelect, onDelete }: CaseItemProp
   return (
     <div
       className={cn(
-        "group flex flex-col gap-4 py-4 px-5 border-b border-x-4 border-x-transparent cursor-pointer",
-        isActive ? "border-l-green-accent bg-green-accent/50" : "",
+        'group flex flex-col gap-4 py-4 px-5 border-b border-x-4 border-x-transparent cursor-pointer',
+        isActive ? 'border-l-green-accent bg-green-accent/50' : ''
       )}
       onClick={() => onSelect(caseItem.id)}
     >
-      <div className="flex items-center gap-2">
-        <div className="flex-shrink-0 text-absolute-gray-400 p-2 rounded-lg border border-absolute-gray-200">
-          {getProcessTypeIcon("w-6 h-6")}
+      <div className='flex items-center gap-2'>
+        <div className='flex-shrink-0 text-absolute-gray-400 p-2 rounded-lg border border-absolute-gray-200'>
+          {getProcessTypeIcon('w-6 h-6')}
         </div>
-        <h4 className="font-medium text-md  apitalize text-start line-clamp-2 flex-1 text-custom-text-primary">
+        <h4 className='font-medium text-md  apitalize text-start line-clamp-2 flex-1 text-custom-text-primary'>
           {caseItem.title}
         </h4>
         <Button
-          size="icon"
-          onClick={(e) => handleDeleteCase(e, caseItem.id)}
-          className="opacity-0 group-hover:opacity-100 bg-red-100 hover:bg-red-200 transition-opacity"
-          aria-label="Delete case"
+          size='icon'
+          onClick={e => handleDeleteCase(e, caseItem.id)}
+          className='opacity-0 group-hover:opacity-100 bg-red-100 hover:bg-red-200 transition-opacity'
+          aria-label='Delete case'
         >
-          <Trash2 className="w-3 h-3 text-red-500" />
+          <Trash2 className='w-3 h-3 text-red-500' />
         </Button>
       </div>
 
-      <p className="text-start text-xs text-custom-text-secondary line-clamp-3">
+      <p className='text-start text-xs text-custom-text-secondary line-clamp-3'>
         {caseItem.description}
       </p>
 
-      <div className="flex items-center gap-2">
-        <Badge variant="outline" className={cn("text-xs", getProcessTypeBadgeColor())}>
+      <div className='flex items-center gap-2'>
+        <Badge
+          variant='outline'
+          className={cn('text-xs', getProcessTypeBadgeColor())}
+        >
           {caseItem.type === 'load_process' ? 'Load Process' : 'Road Support'}
         </Badge>
 
         {currentStep && (
-          <Badge variant="outline" className="text-xs text-custom-text-secondary">
+          <Badge
+            variant='outline'
+            className='text-xs text-custom-text-secondary'
+          >
             {currentStep.name.replace(/_/g, ' ')}
           </Badge>
         )}
 
         {getStatusIcon()}
 
-        <span className="justify-self-end text-xs text-custom-text-disabled">
+        <span className='justify-self-end text-xs text-custom-text-disabled'>
           {formatTimestamp(caseItem.updatedAt)}
         </span>
       </div>
@@ -130,4 +144,4 @@ function CaseItem({ case: caseItem, isActive, onSelect, onDelete }: CaseItemProp
   );
 }
 
-export default CaseItem; 
+export default CaseItem;

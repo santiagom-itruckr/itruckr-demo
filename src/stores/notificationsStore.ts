@@ -1,23 +1,29 @@
 // Updated store with fixes and support for notification definitions
-import { create } from "zustand";
-import { Notification, NotificationStatus, NotificationType } from "../types/app";
-import { generateId, getCurrentIsoDate } from "./utils";
-import { devtools } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
-import { NotificationDefinition } from "../notifications/notificationDefinitions";
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+
+import { NotificationDefinition } from '../notifications/notificationDefinitions';
+import {
+  Notification,
+  NotificationStatus,
+  NotificationType,
+} from '../types/app';
+
+import { generateId, getCurrentIsoDate } from './utils';
 
 interface NotificationsState {
   notifications: Notification[];
 
   // Original method - still works for manual notification creation
   addNotification: (payload: {
-    userId: string,
-    type: NotificationType,
-    title: string,
-    message: string,
-    status?: NotificationStatus
-    relatedEntityType?: string,
-    relatedEntityId: string,
+    userId: string;
+    type: NotificationType;
+    title: string;
+    message: string;
+    status?: NotificationStatus;
+    relatedEntityType?: string;
+    relatedEntityId: string;
   }) => Notification;
 
   // New method - creates notification from definition
@@ -40,7 +46,15 @@ export const useNotificationsStore = create<NotificationsState>()(
     immer((set, get) => ({
       notifications: [],
 
-      addNotification: ({ userId, type, title, message, status, relatedEntityType, relatedEntityId }) => {
+      addNotification: ({
+        userId,
+        type,
+        title,
+        message,
+        status,
+        relatedEntityType,
+        relatedEntityId,
+      }) => {
         const newNotification: Notification = {
           id: generateId(),
           userId,
@@ -48,18 +62,24 @@ export const useNotificationsStore = create<NotificationsState>()(
           title,
           message,
           timestamp: getCurrentIsoDate(),
-          status: status || "unread",
-          relatedEntityType: relatedEntityType as Notification["relatedEntityType"],
+          status: status || 'unread',
+          relatedEntityType:
+            relatedEntityType as Notification['relatedEntityType'],
           relatedEntityId,
         };
-        set((state) => {
+        set(state => {
           state.notifications.push(newNotification);
         });
         return newNotification;
       },
 
       // New method to create notifications from definitions
-      addNotificationFromDefinition: (userId, definition, relatedEntityId, status) => {
+      addNotificationFromDefinition: (
+        userId,
+        definition,
+        relatedEntityId,
+        status
+      ) => {
         const newNotification: Notification = {
           id: generateId(),
           userId,
@@ -67,54 +87,60 @@ export const useNotificationsStore = create<NotificationsState>()(
           title: definition.title,
           message: definition.message,
           timestamp: getCurrentIsoDate(),
-          status: status || "unread",
+          status: status || 'unread',
           relatedEntityType: definition.relatedEntityType,
           relatedEntityId,
         };
-        set((state) => {
+        set(state => {
           state.notifications.push(newNotification);
         });
         return newNotification;
       },
 
-      markNotificationAsRead: (notificationId) => {
-        set((state) => {
-          const notification = state.notifications.find((n) => n.id === notificationId);
+      markNotificationAsRead: notificationId => {
+        set(state => {
+          const notification = state.notifications.find(
+            n => n.id === notificationId
+          );
           if (notification) {
-            notification.status = "read";
+            notification.status = 'read';
           }
         });
       },
 
       markNotificationAsActioned: (notificationId, caseId) => {
-        set((state) => {
-          const notification = state.notifications.find((n) => n.id === notificationId);
+        set(state => {
+          const notification = state.notifications.find(
+            n => n.id === notificationId
+          );
           if (notification) {
-            notification.status = "actioned";
+            notification.status = 'actioned';
             notification.caseId = caseId;
           }
         });
       },
 
-      archiveNotification: (notificationId) => {
-        set((state) => {
-          const notification = state.notifications.find((n) => n.id === notificationId);
+      archiveNotification: notificationId => {
+        set(state => {
+          const notification = state.notifications.find(
+            n => n.id === notificationId
+          );
           if (notification) {
-            notification.status = "archived";
+            notification.status = 'archived';
           }
         });
       },
 
-      getUnreadNotifications: (userId) => {
+      getUnreadNotifications: userId => {
         return get().notifications.filter(
-          (n) => n.userId === userId && n.status === "unread",
+          n => n.userId === userId && n.status === 'unread'
         );
       },
 
-      getNotificationById: (notificationId) => {
-        return get().notifications.find((n) => n.id === notificationId);
+      getNotificationById: notificationId => {
+        return get().notifications.find(n => n.id === notificationId);
       },
     })),
-    { name: "NotificationsStore" },
-  ),
+    { name: 'NotificationsStore' }
+  )
 );

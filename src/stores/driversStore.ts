@@ -1,12 +1,14 @@
-import { create } from "zustand";
-import { devtools } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
-import { Driver, DriverStatus } from "../types/app";
-import { generateId } from "./utils"; // Assuming utils.ts exists
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+
+import { Driver, DriverStatus } from '../types/app';
+
+import { generateId } from './utils'; // Assuming utils.ts exists
 
 interface DriversState {
   drivers: Driver[];
-  addDriver: (newDriver: Omit<Driver, "joinDate">) => Driver;
+  addDriver: (newDriver: Omit<Driver, 'joinDate'>) => Driver;
   getDriverById: (id: string) => Driver | undefined;
   updateDriver: (driverId: string, updates: Partial<Driver>) => void;
   deleteDriver: (driverId: string) => void;
@@ -20,25 +22,25 @@ export const useDriversStore = create<DriversState>()(
     immer((set, get) => ({
       drivers: [],
 
-      addDriver: (newDriverData) => {
+      addDriver: newDriverData => {
         const driver: Driver = {
           ...newDriverData,
           id: newDriverData.id ?? generateId(),
           joinDate: new Date().toISOString(),
         };
-        set((state) => {
+        set(state => {
           state.drivers.push(driver);
         });
         return driver;
       },
 
-      getDriverById: (id) => {
-        return get().drivers.find((d) => d.id === id);
+      getDriverById: id => {
+        return get().drivers.find(d => d.id === id);
       },
 
       updateDriver: (driverId, updates) => {
-        set((state) => {
-          const driver = state.drivers.find((d) => d.id === driverId);
+        set(state => {
+          const driver = state.drivers.find(d => d.id === driverId);
           if (driver) {
             Object.assign(driver, updates);
             // Optionally update a 'lastUpdated' timestamp here
@@ -46,29 +48,29 @@ export const useDriversStore = create<DriversState>()(
         });
       },
 
-      deleteDriver: (driverId) => {
-        set((state) => {
-          state.drivers = state.drivers.filter((d) => d.id !== driverId);
+      deleteDriver: driverId => {
+        set(state => {
+          state.drivers = state.drivers.filter(d => d.id !== driverId);
         });
       },
 
       setDriverStatus: (driverId, status) => {
-        set((state) => {
-          const driver = state.drivers.find((d) => d.id === driverId);
+        set(state => {
+          const driver = state.drivers.find(d => d.id === driverId);
           if (driver) {
             driver.status = status;
           }
         });
       },
 
-      getDriversByCompany: (companyId) => {
-        return get().drivers.filter((d) => d.companyId === companyId);
+      getDriversByCompany: companyId => {
+        return get().drivers.filter(d => d.companyId === companyId);
       },
 
-      getDriverByTruckId: (truckId) => {
-        return get().drivers.find((d) => d.truckId === truckId);
+      getDriverByTruckId: truckId => {
+        return get().drivers.find(d => d.truckId === truckId);
       },
     })),
-    { name: "DriversStore" },
-  ),
+    { name: 'DriversStore' }
+  )
 );

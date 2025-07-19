@@ -1,5 +1,5 @@
-import ProcessSidebar from './ProcessSidebar';
 import ProcessArea from './ProcessArea';
+import ProcessSidebar from './ProcessSidebar';
 
 function AiAssistant() {
   return (

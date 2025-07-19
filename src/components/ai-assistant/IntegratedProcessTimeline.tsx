@@ -1,16 +1,12 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { Bot, CheckCheck, ChevronDown, ChevronRight, User } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+
 import { Button } from '@/components/ui/button';
-import {
-  Bot,
-  CheckCheck,
-  User,
-  ChevronDown,
-  ChevronRight
-} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AiAgentRole, ProcessStep, ProcessStepStatus } from '@/types/app';
-import { Separator } from '../ui/separator';
+
 import { Markdown } from '../ui/markdown';
+import { Separator } from '../ui/separator';
 
 interface IntegratedProcessTimelineProps {
   process: any;
@@ -49,7 +45,7 @@ function StepHeader({
   status,
   isExpanded,
   onToggle,
-  isFetching = false
+  isFetching = false,
 }: StepHeaderProps & { isFetching?: boolean }) {
   const isActive = status === 'in_progress';
   const isCompleted = status === 'completed';
@@ -77,20 +73,20 @@ function StepHeader({
         )}
       >
         {isCompleted ? (
-          <CheckCheck className="w-4 h-4" />
+          <CheckCheck className='w-4 h-4' />
         ) : step.lucideIcon ? (
           React.createElement(step.lucideIcon, { className: 'w-4 h-4' })
         ) : (
-          <span className="text-xs font-bold">{index + 1}</span>
+          <span className='text-xs font-bold'>{index + 1}</span>
         )}
       </div>
 
       {/* Step Header Content */}
       <div
-        className="flex items-center justify-between cursor-pointer group rounded-lg transition-colors duration-200"
+        className='flex items-center justify-between cursor-pointer group rounded-lg transition-colors duration-200'
         onClick={onToggle}
       >
-        <span className="text-xs text-start text-custom-text-secondary bg-gray-100 px-2 py-1 rounded-md transition-colors duration-200 group-hover:bg-gray-200 whitespace-nowrap">
+        <span className='text-xs text-start text-custom-text-secondary bg-gray-100 px-2 py-1 rounded-md transition-colors duration-200 group-hover:bg-gray-200 whitespace-nowrap'>
           {new Date(step.startedAt).toLocaleDateString()}
           <br />
           {new Date(step.startedAt).toLocaleTimeString()}
@@ -107,22 +103,23 @@ function StepHeader({
           {step.title}
         </h4>
 
-        <div className="flex gap-4 items-center transition-transform duration-200 ease-in-out">
+        <div className='flex gap-4 items-center transition-transform duration-200 ease-in-out'>
           {isFetching && (
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 border-2 border-blue-200 border-t-blue-600 rounded-full animate-spin" />
-              <span className="text-xs text-blue-600 font-medium">Working...</span>
+            <div className='flex items-center gap-2'>
+              <div className='w-4 h-4 border-2 border-blue-200 border-t-blue-600 rounded-full animate-spin' />
+              <span className='text-xs text-blue-600 font-medium'>
+                Working...
+              </span>
             </div>
           )}
 
           {isExpanded ? (
-            <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-gray-700" />
+            <ChevronDown className='w-4 h-4 text-gray-500 group-hover:text-gray-700' />
           ) : (
-            <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-gray-700" />
+            <ChevronRight className='w-4 h-4 text-gray-500 group-hover:text-gray-700' />
           )}
         </div>
       </div>
-
 
       {/* Expanded Content */}
       <div
@@ -131,7 +128,7 @@ function StepHeader({
           isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         )}
       >
-        <div className="px-3 flex flex-col gap-4">
+        <div className='px-3 flex flex-col gap-4'>
           <p
             className={cn(
               'text-sm text-start leading-relaxed transition-colors duration-200',
@@ -144,7 +141,7 @@ function StepHeader({
           </p>
 
           {/* Step Status Badge */}
-          <div className="flex items-center">
+          <div className='flex items-center'>
             <span
               className={cn(
                 'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium transition-all duration-200',
@@ -155,11 +152,7 @@ function StepHeader({
                     : 'bg-gray-100 text-gray-600 border border-gray-200'
               )}
             >
-              {isCompleted
-                ? 'Completed'
-                : isActive
-                  ? 'In Progress'
-                  : 'Pending'}
+              {isCompleted ? 'Completed' : isActive ? 'In Progress' : 'Pending'}
             </span>
           </div>
         </div>
@@ -191,9 +184,9 @@ function MessageBubble({ message, senderName, isUser }: MessageBubbleProps) {
               : 'bg-green-accent text-absolute-black'
           )}
         >
-          {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
+          {isUser ? <User className='w-4 h-4' /> : <Bot className='w-4 h-4' />}
         </div>
-        <span className="text-absolute-black">{senderName}</span>
+        <span className='text-absolute-black'>{senderName}</span>
       </div>
 
       {/* Chat bubble */}
@@ -205,7 +198,7 @@ function MessageBubble({ message, senderName, isUser }: MessageBubbleProps) {
             : 'py-3 bg-transparent border border-green-accent text-gray-800 rounded-tl-sm'
         )}
       >
-        <Markdown className="flex flex-col gap-2 text-start leading-relaxed break-words w-full">
+        <Markdown className='flex flex-col gap-2 text-start leading-relaxed break-words w-full'>
           {message.content}
         </Markdown>
 
@@ -217,7 +210,7 @@ function MessageBubble({ message, senderName, isUser }: MessageBubbleProps) {
         >
           {new Date(message.timestamp).toLocaleTimeString([], {
             hour: '2-digit',
-            minute: '2-digit'
+            minute: '2-digit',
           })}
         </span>
       </div>
@@ -233,19 +226,19 @@ function StepMessages({ step }: StepMessagesProps) {
       'Operations Agent': 'Operations Agent',
       'Rate Negotiator': 'Rate Negotiator',
       'Maintenance Support Agent': 'Emergency Support',
-      'General Assistant': 'Assistant'
+      'General Assistant': 'Assistant',
     };
 
     return agentNames[agentRole] || 'Assistant';
   };
 
   return (
-    <div className="flex flex-col animate-in slide-in-from-top-2 duration-300">
-      <h5 className="text-sm font-medium text-absolute-black flex items-center gap-2 mb-4 transition-colors duration-200">
+    <div className='flex flex-col animate-in slide-in-from-top-2 duration-300'>
+      <h5 className='text-sm font-medium text-absolute-black flex items-center gap-2 mb-4 transition-colors duration-200'>
         Conversation ({step.messages.length})
       </h5>
 
-      <div className="flex flex-col gap-3">
+      <div className='flex flex-col gap-3'>
         {step.messages.map((message: any, index: number) => {
           const isUser = message.senderType === 'user';
           const senderName = isUser
@@ -255,7 +248,7 @@ function StepMessages({ step }: StepMessagesProps) {
           return (
             <div
               key={message.id}
-              className="animate-in slide-in-from-bottom-1 duration-300"
+              className='animate-in slide-in-from-bottom-1 duration-300'
               style={{ animationDelay: `${index * 50}ms` }}
             >
               <MessageBubble
@@ -273,15 +266,16 @@ function StepMessages({ step }: StepMessagesProps) {
 
 function StepActions({ step, onCompleteStep }: StepActionsProps) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className='flex flex-wrap gap-2'>
       {step.nextStepOptions!.map((option: any, optionIndex: number) => (
         <Button
-          key={optionIndex}
-          variant="outline"
-          size="sm"
+          key={option}
+          variant='outline'
+          size='sm'
           className={cn(
-            "text-xs hover:bg-gray-50 transition-all duration-200 hover:shadow-sm animate-in slide-in-from-bottom-1",
-            optionIndex === 0 && "bg-absolute-black text-absolute-gray-200 hover:bg-absolute-black-hover hover:text-white"
+            'text-xs hover:bg-gray-50 transition-all duration-200 hover:shadow-sm animate-in slide-in-from-bottom-1',
+            optionIndex === 0 &&
+              'bg-absolute-black text-absolute-gray-200 hover:bg-absolute-black-hover hover:text-white'
           )}
           style={{ animationDelay: `${optionIndex * 100}ms` }}
           onClick={() => onCompleteStep()}
@@ -297,7 +291,7 @@ function IntegratedProcessTimeline({
   process,
   onCompleteStep,
   isLoading,
-  onTimelineCompleteStepReady
+  onTimelineCompleteStepReady,
 }: IntegratedProcessTimelineProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const prevStepCountRef = useRef(0);
@@ -315,7 +309,7 @@ function IntegratedProcessTimeline({
   };
 
   const toggleStepExpansion = (stepIndex: number) => {
-    setExpandedSteps((prev) => {
+    setExpandedSteps(prev => {
       const newSet = new Set(prev);
       if (newSet.has(stepIndex)) {
         newSet.delete(stepIndex);
@@ -329,7 +323,7 @@ function IntegratedProcessTimeline({
   const handleCompleteStep = () => {
     // Close the current step before completing
     const currentStep = process.currentStepIndex;
-    setExpandedSteps((prev) => {
+    setExpandedSteps(prev => {
       const newSet = new Set(prev);
       newSet.delete(currentStep);
       return newSet;
@@ -367,7 +361,7 @@ function IntegratedProcessTimeline({
       setTimeout(() => {
         containerRef.current?.scrollTo({
           top: containerRef.current.scrollHeight,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       }, 100);
     }
@@ -383,7 +377,7 @@ function IntegratedProcessTimeline({
       currentStepIndex >= 0
     ) {
       setTimeout(() => {
-        setExpandedSteps((prev) => new Set(prev).add(currentStepIndex));
+        setExpandedSteps(prev => new Set(prev).add(currentStepIndex));
       }, 200);
     }
 
@@ -393,7 +387,7 @@ function IntegratedProcessTimeline({
   return (
     <div
       ref={containerRef}
-      className="flex flex-col flex-1 gap-7 py-6 px-4 max-h-full overflow-y-auto scroll-smooth"
+      className='flex flex-col flex-1 gap-7 py-6 px-4 max-h-full overflow-y-auto scroll-smooth'
     >
       {process.steps.map((step: ProcessStep, index: number) => {
         const status = step.status;
@@ -417,10 +411,9 @@ function IntegratedProcessTimeline({
             className={cn(
               'relative flex flex-col rounded-xl border transition-all py-5 px-4',
               isExpanded ? 'gap-4' : 'gap-0',
-              isActive &&
-              'border-absolute-black shadow-md hover:shadow-lg',
+              isActive && 'border-absolute-black shadow-md hover:shadow-lg',
               isCompleted &&
-              'border-gray-300 bg-gray-50 shadow-lg hover:shadow-xl',
+                'border-gray-300 bg-gray-50 shadow-lg hover:shadow-xl',
               'transform-gpu'
             )}
             style={{ animationDelay: `${index * 100}ms` }}

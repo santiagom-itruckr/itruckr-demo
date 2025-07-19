@@ -1,6 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
 
-type Page = 'itruckr' | 'loadboard' | 'chat' | 'email' | 'loads' | 'payments' | 'registration';
+type Page =
+  | 'itruckr'
+  | 'loadboard'
+  | 'chat'
+  | 'email'
+  | 'loads'
+  | 'payments'
+  | 'registration';
 
 interface NavigationContextType {
   activePage: Page;
@@ -9,14 +16,27 @@ interface NavigationContextType {
   setSidebarCollapsed: (collapsed: boolean) => void;
 }
 
-const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
+const NavigationContext = createContext<NavigationContextType | undefined>(
+  undefined
+);
 
-export function NavigationProvider({ children }: { children: React.ReactNode }) {
+export function NavigationProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [activePage, setActivePage] = useState<Page>('itruckr');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <NavigationContext.Provider value={{ activePage, setActivePage, sidebarCollapsed, setSidebarCollapsed }}>
+    <NavigationContext.Provider
+      value={{
+        activePage,
+        setActivePage,
+        sidebarCollapsed,
+        setSidebarCollapsed,
+      }}
+    >
       {children}
     </NavigationContext.Provider>
   );

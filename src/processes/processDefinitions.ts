@@ -112,11 +112,11 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
         "A Load has been found and is currently being negocitated with the broker.",
       messages: [],
       aiAgentAssigned: 'Rate Negotiator',
-      // triggersApiCall: {
-      //   endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/call-ended-f1',
-      //   method: 'GET',
-      //   expect: { message: 'call ended' },
-      // },
+      triggersApiCall: {
+        endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/call-ended-f1',
+        method: 'GET',
+        expect: { message: 'call ended' },
+      },
       startedAt: '',
       lucideIcon: Handshake,
     },
@@ -160,12 +160,12 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
       messages: [],
       aiAgentAssigned: 'Rate Negotiator',
       // awaitFor: 1000,
-      // triggersApiCall: {
-      //   endpoint:
-      //     'https://itruckrlabs.app.n8n.cloud/webhook/arrived-rateconfirmation',
-      //   method: 'GET',
-      //   expect: { message: 'message sent' },
-      // },
+      triggersApiCall: {
+        endpoint:
+          'https://itruckrlabs.app.n8n.cloud/webhook/arrived-rateconfirmation',
+        method: 'GET',
+        expect: { message: 'message sent' },
+      },
       startedAt: '',
       lucideIcon: BadgeDollarSign,
     },
@@ -213,11 +213,11 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
         'Driver has been notified and is expected to confirm the load.',
       messages: [],
       aiAgentAssigned: 'Operations Agent',
-      // triggersApiCall: {
-      //   endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/confirmation-driver',
-      //   method: 'GET',
-      //   expect: { message: 'confirmed' },
-      // },
+      triggersApiCall: {
+        endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/confirmation-driver',
+        method: 'GET',
+        expect: { message: 'confirmed' },
+      },
       updatesEntities: [
         {
           entityType: 'conversation',
@@ -308,11 +308,11 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
       description: 'Driver has arrived at the delivery location.',
       messages: [],
       // awaitFor: 1000,
-      // triggersApiCall: {
-      //   endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/submitted-image',
-      //   method: 'GET',
-      //   expect: { message: 'Email POD Accepted' },
-      // },
+      triggersApiCall: {
+        endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/submitted-image',
+        method: 'GET',
+        expect: { message: 'Email POD Accepted' },
+      },
       updatesEntities: [
         {
           entityType: 'conversation',
@@ -456,11 +456,11 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       description:
         'The process of finding and booking a suitable oil change appointment for the truck.',
       messages: [],
-      // triggersApiCall: {
-      //   endpoint: "https://itruckrlabs.app.n8n.cloud/webhook/confirm-call-workshop-ended",
-      //   method: "GET",
-      //   expect: { message: "Call Workshop Ended" }
-      // },
+      triggersApiCall: {
+        endpoint: "https://itruckrlabs.app.n8n.cloud/webhook/confirm-call-workshop-ended",
+        method: "GET",
+        expect: { message: "Call Workshop Ended" }
+      },
       updatesEntities: [
         {
           entityType: 'conversation',

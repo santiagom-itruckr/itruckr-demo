@@ -1,9 +1,9 @@
 import {
-  NotificationType,
-  EntityType,
   Driver,
-  Truck,
+  EntityType,
   Load,
+  NotificationType,
+  Truck,
 } from '../types/app';
 
 interface BaseNotificationDefinition {
@@ -50,12 +50,17 @@ export const NotificationDefinitions = {
     title: string,
     message: string,
     relatedEntityType?: EntityType
-  ): GenericNotificationDefinition => ({
-    type,
-    title,
-    message,
-    relatedEntityType,
-  }),
+  ): GenericNotificationDefinition => {
+    const notification: GenericNotificationDefinition = {
+      type,
+      title,
+      message,
+    };
+    if (relatedEntityType !== undefined) {
+      notification.relatedEntityType = relatedEntityType;
+    }
+    return notification;
+  },
 
   createNewLoadProcess: ({
     driver,

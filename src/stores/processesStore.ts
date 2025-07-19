@@ -4,14 +4,14 @@ import { immer } from 'zustand/middleware/immer';
 
 import {
   BaseProcess,
-  ChatMessage,
-  ProcessStep,
-  ProcessStepStatus,
   CaseStatus,
   CaseType,
-  MessageSenderType,
+  ChatMessage,
   LoadProcess,
+  MessageSenderType,
   OilChangeProcess,
+  ProcessStep,
+  ProcessStepStatus,
   StepCompletionSource,
 } from '../types/app';
 
@@ -130,8 +130,8 @@ export const useProcessesStore = create<ProcessesState>()(
 
           if (nextStepIndex < process.steps.length) {
             const nextStep = process.steps[nextStepIndex];
-            nextStep.status = 'in_progress';
-            nextStep.startedAt = getCurrentIsoDate();
+            nextStep!.status = 'in_progress';
+            nextStep!.startedAt = getCurrentIsoDate();
             process.currentStepIndex = nextStepIndex;
           } else {
             // Process completed

@@ -191,13 +191,13 @@ export interface ApiCallPayload {
  */
 export interface EntityCreationConfig {
   entityType:
-    | 'load'
-    | 'driver'
-    | 'company'
-    | 'notification'
-    | 'truck'
-    | 'conversation'
-    | 'email';
+  | 'load'
+  | 'driver'
+  | 'company'
+  | 'notification'
+  | 'truck'
+  | 'conversation'
+  | 'email';
   newEntity?: any;
   withDelay?: number;
 }
@@ -356,7 +356,7 @@ export interface Notification {
   message: string;
   timestamp: string;
   status: NotificationStatus;
-  relatedEntityType?: EntityType;
+  relatedEntityType?: EntityType | undefined;
   relatedEntityId?: string;
   caseId?: string;
 }

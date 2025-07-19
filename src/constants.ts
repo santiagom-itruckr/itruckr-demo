@@ -180,7 +180,7 @@ DRIVER MUST BE ON TIME ON HIS PU AND DELIVER APPT.`,
       name: '31724985_rate_agreement_doc_1751571688731.pdf',
       size: '142kb',
       type: 'application/pdf',
-      url: '/31724985_rate_agreement_doc_1751571688731.pdf',
+      url: './31724985_rate_agreement_doc_1751571688731.pdf',
     },
   ],
   preview: 'Rate Confirmation',
@@ -275,7 +275,7 @@ export const EMAIL_POD_OUTBOUND_STEP_10 = {
       name: 'POD.jpeg',
       size: '163kb',
       type: 'image/',
-      url: '/POD.jpeg',
+      url: './POD.jpeg',
     },
   ],
   preview:
@@ -379,7 +379,8 @@ export const DRIVER_1 = {
 } as Driver;
 
 export const LOAD_1 = {
-  externalLoadId: 'L-2024-001',
+  id: 'L-001',
+  externalLoadId: 'L-2024-002',
   driverId: 'D-158',
   status: 'in_transit',
   dropOffLocation: {
@@ -409,6 +410,7 @@ export const LOAD_1 = {
 } as Load;
 
 export const LOAD_2 = {
+  id: 'L-002',
   externalLoadId: 'L-2024-002',
   driverId: 'D-158',
   status: 'new',
@@ -435,4 +437,37 @@ export const LOAD_2 = {
     ratePerMile: 1.96,
   },
   weightLbs: 46600,
+} as Load;
+
+export const LOAD_3 = {
+  id: 'L-003',
+  externalLoadId: 'L-2024-003',
+  driverId: 'D-158',
+  status: 'in_transit',
+  pickUpLocation: {
+    address: "6466 Pine Rd",
+    city: "Chicago",
+    state: "IL",
+    zipCode: "26836",
+  },
+  dropOffLocation: {
+    address: "2216 Main St",
+    city: "Dallas",
+    state: "TX",
+    zipCode: "15580",
+  },
+  pickUpDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // Tomorrow
+  deliveryDate: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(), // Day after tomorrow
+  brokerCompanyId: 'B-001',
+  carrierCompanyId: 'c-001',
+  factoring: false,
+  rate: {
+    total: 2450,
+    currency: 'USD',
+    ratePerMile: 2.45,
+  },
+  paymentTerms: 'Net 30',
+  weightLbs: 45000,
+  cargoDescription: 'Electronics',
+  specialInstructions: 'Handle with care',
 } as Load;

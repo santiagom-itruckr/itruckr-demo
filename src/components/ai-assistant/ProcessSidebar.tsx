@@ -1,4 +1,4 @@
-import { Search, Plus } from 'lucide-react';
+import { Plus, Search } from 'lucide-react';
 import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -40,11 +40,13 @@ function ProcessSidebar() {
     });
   };
 
-  const filteredCases = userCases.filter(
-    caseItem =>
-      caseItem.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      caseItem.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredCases = userCases
+    .filter(
+      caseItem =>
+        caseItem.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        caseItem.description.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
   return (
     <div className='w-80 border-r border-custom-border flex flex-col'>
@@ -83,7 +85,7 @@ function ProcessSidebar() {
               case={caseItem}
               isActive={caseItem.id === selectedCaseId} // We'll implement selection state later
               onSelect={() => setSelectedCase(caseItem.id)}
-              onDelete={() => {}} // We'll implement deletion later
+              onDelete={() => { }} // We'll implement deletion later
             />
           ))
         )}

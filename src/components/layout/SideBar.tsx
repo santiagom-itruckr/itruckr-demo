@@ -1,14 +1,14 @@
 import {
-  House,
-  Truck,
   CreditCard,
-  Users,
-  MessageCircle,
-  Mail,
-  User,
-  Settings,
+  House,
   LogOut,
+  Mail,
   MapPinned,
+  MessageCircle,
+  Settings,
+  Truck,
+  User,
+  Users,
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -32,12 +32,12 @@ import Logo from '../Logo';
 
 const navItems = [
   { id: 'itruckr', label: 'ITruckr', icon: House },
-  { id: 'loadboard', label: 'Loadboard', icon: MapPinned },
-  { id: 'chat', label: 'Chat', icon: MessageCircle },
   { id: 'email', label: 'Email', icon: Mail },
+  { id: 'chat', label: 'Chat', icon: MessageCircle },
   { id: 'loads', label: 'Loads', icon: Truck },
-  { id: 'payments', label: 'Payments', icon: CreditCard },
+  { id: 'loadboard', label: 'Loadboard', icon: MapPinned },
   { id: 'registration', label: 'Registration', icon: Users },
+  { id: 'payments', label: 'Payments', icon: CreditCard },
 ] as const;
 
 const mockUser = {

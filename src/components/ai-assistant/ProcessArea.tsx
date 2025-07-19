@@ -1,8 +1,7 @@
 import { Bot } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-import { DRIVER_1, TRUCK_1 } from '@/constants';
-import { NotificationDefinitions } from '@/notifications/notificationDefinitions';
+import { DRIVER_1 } from '@/constants';
 import { useCasesStore } from '@/stores/casesStore';
 import { useConversationsStore } from '@/stores/conversationsStore';
 import { useDriversStore } from '@/stores/driversStore';
@@ -84,18 +83,12 @@ function ProcessArea() {
               }
               break;
             case 'notification':
-              const oilChangeNotification =
-                NotificationDefinitions.creatOilChangeNotification({
-                  driver: DRIVER_1,
-                  truck: TRUCK_1,
-                });
-
               addNotification({
                 userId: '1',
-                type: oilChangeNotification.type,
-                title: oilChangeNotification.title,
-                message: oilChangeNotification.message,
-                relatedEntityType: oilChangeNotification.relatedEntityType,
+                type: newEntity.type,
+                title: newEntity.title,
+                message: newEntity.message,
+                relatedEntityType: newEntity.relatedEntityType,
                 relatedEntityId: DRIVER_1.id,
               });
               break;
@@ -128,6 +121,8 @@ function ProcessArea() {
         try {
           switch (entityType) {
             case 'load':
+              console.log(entityId, updateData);
+
               updateLoad(entityId, updateData as unknown as Load);
               break;
             case 'conversation':
@@ -197,6 +192,7 @@ function ProcessArea() {
           if (expectMatched && !isCancelled) {
             await updateEntities(updatesEntities, stepIndex, 'api');
             completeStep();
+            setIsLoading(false);
           } else if (retryCount < maxRetries && !isCancelled) {
             retryCount++;
             console.log(
@@ -270,8 +266,6 @@ function ProcessArea() {
             updatesEntities,
             process.currentStepIndex
           );
-
-          setIsLoading(false);
         } else if (awaitFor && !triggersApiCall! && !requiredUserInput) {
           setIsLoading(true);
           await new Promise(resolve => setTimeout(resolve, awaitFor));

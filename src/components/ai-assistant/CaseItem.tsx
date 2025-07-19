@@ -1,11 +1,11 @@
 import {
-  Truck,
-  MessageCircle,
-  Trash2,
-  Clock,
   AlertCircle,
   CheckCircle,
+  Clock,
   Fuel,
+  MessageCircle,
+  Trash2,
+  Truck,
 } from 'lucide-react';
 import React from 'react';
 
@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useProcessesStore } from '@/stores/processesStore';
 import { Case } from '@/types/app';
+import { formatTimestamp } from '../../stores/utils';
 
 interface CaseItemProps {
   case: Case;
@@ -68,19 +69,6 @@ function CaseItem({
       default:
         return null;
     }
-  };
-
-  const formatTimestamp = (timestamp: string) => {
-    const date = new Date(timestamp);
-    const now = new Date();
-    const diffInMinutes = Math.floor(
-      (now.getTime() - date.getTime()) / (1000 * 60)
-    );
-
-    if (diffInMinutes < 1) return 'Just now';
-    if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
-    if (diffInMinutes < 1440) return `${Math.floor(diffInMinutes / 60)}h ago`;
-    return date.toLocaleDateString();
   };
 
   // Get current process step if available

@@ -39,11 +39,11 @@ const getStatusColor = (status: string) => {
     case 'confirmed':
     case 'pending_driver_confirmation':
     case 'pending_broker_confirmation':
-      return 'bg-custom-warning bg-opacity-20 text-custom-warning';
+      return 'bg-absolute-black bg-opacity-20 text-white';
     case 'cancelled':
       return 'bg-custom-error text-custom-error';
     case 'new':
-      return 'bg-green-accent text-white';
+      return 'bg-white border border-green-accent text-green-accent';
     default:
       return 'bg-absolut-gray-300';
   }

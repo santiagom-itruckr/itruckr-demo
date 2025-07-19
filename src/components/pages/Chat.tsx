@@ -1,5 +1,5 @@
 import { ArrowUp, Bot, Search, User } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -68,7 +68,7 @@ function ChatMessageBubble({
       case 'POD':
         return (
           <img
-            src='/POD.jpeg'
+            src='./POD.jpeg'
             alt='POD'
             className='max-w-xs rounded-sm mb-2'
           />
@@ -77,7 +77,7 @@ function ChatMessageBubble({
       case 'Invoice':
         return (
           <img
-            src='/Invoice.jpeg'
+            src='./Invoice.jpeg'
             alt='Invoice'
             className='max-w-xs rounded-sm mb-2'
           />
@@ -152,10 +152,20 @@ function ChatMessagesList({
   contactName: string;
 }) {
   const { getDriverById } = useDriversStore();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   return (
-    <div className='flex flex-col flex-1 gap-3 p-4 overflow-y-auto'>
-      {messages.map((message, index) => {
+    <div
+      ref={messagesEndRef}
+      className='flex flex-col flex-1 gap-3 p-4 overflow-y-auto'
+    >
+      {messages.map((message) => {
         let senderName = contactName;
 
         // Determine sender name
@@ -172,19 +182,14 @@ function ChatMessagesList({
         }
 
         return (
-          <div
+          <ChatMessageBubble
             key={message.id}
-            className='animate-in slide-in-from-bottom-1 duration-300'
-            style={{ animationDelay: `${index * 50}ms` }}
-          >
-            <ChatMessageBubble
-              message={message}
-              senderName={senderName}
-              senderType={message.senderType}
-              senderId={message.senderId}
-              currentUserId={currentUserId}
-            />
-          </div>
+            message={message}
+            senderName={senderName}
+            senderType={message.senderType}
+            senderId={message.senderId}
+            currentUserId={currentUserId}
+          />
         );
       })}
     </div>

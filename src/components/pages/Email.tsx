@@ -73,8 +73,8 @@ function EmailMessage({
       </Button>
 
       <p className={cn(
-        'flex items-center gap-2 basis-60 font-medium truncate',
-        email.isRead ? 'text-absolute-gray-500' : 'text-absolute-gray-700'
+        'flex items-center gap-2 basis-52 font-medium truncate',
+        email.isRead ? 'text-absolute-gray-400' : 'text-absolute-black'
       )}>
         {email.sender.name}
         {email.hasAttachments && <Paperclip className='h-3 w-3' />}
@@ -83,7 +83,7 @@ function EmailMessage({
       <div
         className={cn(
           'flex-1 text-start truncate',
-          email.isRead ? 'text-absolute-gray-500' : 'text-absolute-gray-700'
+          email.isRead ? 'text-absolute-gray-400' : 'text-absolute-gray-800'
         )}
       >
         <span className='text-sm'>{email.subject}</span>
@@ -500,9 +500,11 @@ export function Email() {
   const getUnreadCount = (folder: string) => {
     return emails.filter(email => {
       if (folder === 'inbox')
-        return !email.isRead && !email.isArchived && !email.isDeleted;
+        return !email.isRead && !email.isArchived && !email.isDeleted && !email.isSent;
       if (folder === 'starred')
-        return !email.isRead && email.isStarred && !email.isDeleted;
+        return !email.isRead && email.isStarred && !email.isDeleted && !email.isSent;
+      if (folder === 'sent')
+        return !email.isRead && email.isSent && !email.isDeleted;
       return false;
     }).length;
   };

@@ -23,6 +23,7 @@ import { useDriversStore } from '@/stores/driversStore';
 import { useLoadsStore } from '@/stores/loadsStore';
 import { useNotificationsStore } from '@/stores/notificationsStore';
 import { Notification } from '@/types/app';
+import { formatTimestamp } from '../../stores/utils';
 
 interface NotificationItemProps {
   notification: Notification;
@@ -56,16 +57,6 @@ function NotificationItem({ notification }: NotificationItemProps) {
 
     // Mark notification as actioned
     markNotificationAsActioned(notification.id, newCase.id);
-  };
-
-  const formatTimestamp = (timestamp: string) => {
-    if (!timestamp) return '';
-    const date = new Date(timestamp);
-    return date.toLocaleDateString('en-US', {
-      month: '2-digit',
-      day: '2-digit',
-      year: 'numeric',
-    });
   };
 
   const getNotificationIcon = (className: string) => {

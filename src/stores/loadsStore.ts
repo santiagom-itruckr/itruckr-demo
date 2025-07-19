@@ -5,11 +5,11 @@ import { immer } from 'zustand/middleware/immer';
 import { Load } from '../types/app';
 
 import mockData from '../mock-data';
-import { generateId, getCurrentIsoDate } from './utils';
+import { getCurrentIsoDate } from './utils';
 
 interface LoadsState {
   loads: Load[];
-  addLoad: (newLoad: Omit<Load, 'id' | 'createdDate' | 'updatedDate'>) => Load;
+  addLoad: (newLoad: Omit<Load, 'createdDate' | 'updatedDate'>) => Load;
   getLoadById: (id: string) => Load | undefined;
   updateLoad: (loadId: string, updates: Partial<Load>) => void;
   deleteLoad: (loadId: string) => void;
@@ -25,7 +25,6 @@ export const useLoadsStore = create<LoadsState>()(
       addLoad: newLoadData => {
         const load: Load = {
           ...newLoadData,
-          id: generateId(),
           createdDate: getCurrentIsoDate(),
           updatedDate: getCurrentIsoDate(),
         };
@@ -42,6 +41,7 @@ export const useLoadsStore = create<LoadsState>()(
       updateLoad: (loadId, updates) => {
         set(state => {
           const load = state.loads.find(l => l.id === loadId);
+
           if (load) {
             Object.assign(load, updates);
             load.updatedDate = getCurrentIsoDate();

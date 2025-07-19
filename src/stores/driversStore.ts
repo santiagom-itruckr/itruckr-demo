@@ -4,6 +4,7 @@ import { immer } from 'zustand/middleware/immer';
 
 import { Driver, DriverStatus } from '../types/app';
 
+import mockData from '../mock-data';
 import { generateId } from './utils'; // Assuming utils.ts exists
 
 interface DriversState {
@@ -20,7 +21,7 @@ interface DriversState {
 export const useDriversStore = create<DriversState>()(
   devtools(
     immer((set, get) => ({
-      drivers: [],
+      drivers: mockData.drivers as Driver[],
 
       addDriver: newDriverData => {
         const driver: Driver = {

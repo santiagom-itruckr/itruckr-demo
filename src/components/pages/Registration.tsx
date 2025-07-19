@@ -1,18 +1,18 @@
 import {
-  Search,
-  Plus,
+  Building,
   Edit,
+  Plus,
+  Search,
+  Shield,
   Trash2,
   User,
-  Building,
   Users,
-  Shield,
 } from 'lucide-react';
 import { useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import {
   Dialog,
   DialogContent,
@@ -43,7 +43,7 @@ import { useDriversStore } from '@/stores/driversStore';
 
 const getStatusColor = (status: string) => {
   return status === 'active'
-    ? 'bg-custom-success bg-opacity-20 text-custom-success'
+    ? 'bg-green-accent bg-opacity-20 text-white'
     : 'bg-custom-text-disabled bg-opacity-20 text-custom-text-disabled';
 };
 
@@ -107,7 +107,7 @@ function UserTable({
   };
 
   return (
-    <div className='space-y-4'>
+    <div className='flex flex-col gap-4'>
       {/* Header */}
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-2'>
@@ -124,10 +124,9 @@ function UserTable({
             >
               <Plus className='h-4 w-4' />
               <span className='ml-2'>Add {userType.slice(0, -1)}</span>
-              Add {userType.slice(0, -1)}
             </Button>
           </DialogTrigger>
-          <DialogContent className='bg-custom-surface border-custom-border'>
+          <DialogContent className='bg-custom-surface border-gray-300'>
             <DialogHeader>
               <DialogTitle className='text-custom-text-primary'>
                 {editingUser ? 'Edit' : 'Add'} {userType.slice(0, -1)}
@@ -135,37 +134,37 @@ function UserTable({
             </DialogHeader>
             <div className='space-y-4'>
               <div className='space-y-2'>
-                <Label className='text-custom-text-secondary'>Name</Label>
+                <Label className='text-gray-600'>Name</Label>
                 <Input
                   placeholder='Enter name'
                   defaultValue={editingUser?.name || ''}
-                  className='bg-custom-background border-custom-border text-custom-text-primary'
+                  className='bg-custom-background border-gray-300 text-custom-text-primary'
                 />
               </div>
               <div className='space-y-2'>
-                <Label className='text-custom-text-secondary'>Email</Label>
+                <Label className='text-gray-600'>Email</Label>
                 <Input
                   type='email'
                   placeholder='Enter email'
                   defaultValue={editingUser?.email || ''}
-                  className='bg-custom-background border-custom-border text-custom-text-primary'
+                  className='bg-custom-background border-gray-300 text-custom-text-primary'
                 />
               </div>
               <div className='space-y-2'>
-                <Label className='text-custom-text-secondary'>Phone</Label>
+                <Label className='text-gray-600'>Phone</Label>
                 <Input
                   placeholder='Enter phone number'
                   defaultValue={editingUser?.phone || ''}
-                  className='bg-custom-background border-custom-border text-custom-text-primary'
+                  className='bg-custom-background border-gray-300 text-custom-text-primary'
                 />
               </div>
               <div className='space-y-2'>
-                <Label className='text-custom-text-secondary'>Status</Label>
+                <Label className='text-gray-600'>Status</Label>
                 <Select defaultValue={editingUser?.status || 'active'}>
-                  <SelectTrigger className='bg-custom-background border-custom-border text-custom-text-primary'>
+                  <SelectTrigger className='bg-custom-background border-gray-300 text-custom-text-primary'>
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className='bg-custom-surface border-custom-border'>
+                  <SelectContent className='bg-custom-surface border-gray-300'>
                     <SelectItem value='active'>Active</SelectItem>
                     <SelectItem value='inactive'>Inactive</SelectItem>
                   </SelectContent>
@@ -175,7 +174,7 @@ function UserTable({
                 <Button
                   variant='outline'
                   onClick={() => setIsDialogOpen(false)}
-                  className='border-custom-border text-custom-text-primary hover:bg-custom-surface-hover'
+                  className='border-gray-300 text-custom-text-primary hover:bg-custom-surface-hover'
                 >
                   Cancel
                 </Button>
@@ -198,7 +197,7 @@ function UserTable({
           placeholder={`Search ${userType}...`}
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
-          className='pl-10 bg-custom-background border-custom-border text-custom-text-primary'
+          className='pl-10 bg-custom-background border-gray-300 text-custom-text-primary'
         />
       </div>
 
@@ -206,21 +205,21 @@ function UserTable({
       <div className='overflow-x-auto'>
         <Table>
           <TableHeader>
-            <TableRow className='border-custom-border'>
-              <TableHead className='text-custom-text-secondary'>Name</TableHead>
-              <TableHead className='text-custom-text-secondary'>
+            <TableRow className='border-gray-300'>
+              <TableHead className='text-gray-600'>Name</TableHead>
+              <TableHead className='text-gray-600'>
                 Email
               </TableHead>
-              <TableHead className='text-custom-text-secondary'>
+              <TableHead className='text-gray-600'>
                 Phone
               </TableHead>
-              <TableHead className='text-custom-text-secondary'>
+              <TableHead className='text-gray-600'>
                 Status
               </TableHead>
-              <TableHead className='text-custom-text-secondary'>
+              <TableHead className='text-gray-600'>
                 Join Date
               </TableHead>
-              <TableHead className='text-custom-text-secondary'>
+              <TableHead className='text-gray-600'>
                 Actions
               </TableHead>
             </TableRow>
@@ -229,7 +228,7 @@ function UserTable({
             {filteredUsers.map(user => (
               <TableRow
                 key={user.id}
-                className='border-custom-border hover:bg-custom-surface-hover'
+                className='text-start border-gray-300 hover:bg-custom-surface-hover'
               >
                 <TableCell className='font-medium text-custom-text-primary'>
                   {user.name}
@@ -256,7 +255,7 @@ function UserTable({
                       variant='ghost'
                       size='sm'
                       onClick={() => handleEdit(user)}
-                      className='text-custom-text-secondary hover:text-custom-text-primary hover:bg-custom-surface-hover'
+                      className='text-gray-600 hover:text-custom-text-primary hover:bg-custom-surface-hover'
                     >
                       <Edit className='h-4 w-4' />
                     </Button>
@@ -348,102 +347,87 @@ export function Registration() {
   };
 
   return (
-    <div className='space-y-6'>
-      <div className='flex items-center justify-between'>
-        <h1 className='text-3xl font-bold text-custom-text-primary'>
-          User Registration
-        </h1>
-        <Badge className='bg-custom-warning bg-opacity-20 text-custom-warning'>
-          Admin Only
-        </Badge>
-      </div>
+    <Card className='bg-custom-surface border-gray-300 h-full'>
+      <Tabs defaultValue='drivers' className='flex flex-col w-full h-full'>
+        <TabsList className='border-b border-gray-300 grid w-full h-fit grid-cols-4 bg-transparent'>
+          <TabsTrigger
+            value='drivers'
+            className='py-2 data-[state=active]:bg-green-accent data-[state=active]:text-absolute-black'
+          >
+            Drivers
+          </TabsTrigger>
+          <TabsTrigger
+            value='companies'
+            className='py-2 data-[state=active]:bg-green-accent data-[state=active]:text-absolute-black'
+          >
+            Companies
+          </TabsTrigger>
+          <TabsTrigger
+            value='dispatchers'
+            className='py-2 data-[state=active]:bg-green-accent data-[state=active]:text-absolute-black'
+          >
+            Dispatchers
+          </TabsTrigger>
+          <TabsTrigger
+            value='admins'
+            className='py-2 data-[state=active]:bg-green-accent data-[state=active]:text-absolute-black'
+          >
+            Admins
+          </TabsTrigger>
+        </TabsList>
 
-      <Card className='bg-custom-surface border-custom-border'>
-        <CardContent className='p-0'>
-          <Tabs defaultValue='drivers' className='w-full'>
-            <div className='border-b border-custom-border'>
-              <TabsList className='grid w-full grid-cols-4 bg-transparent'>
-                <TabsTrigger
-                  value='drivers'
-                  className='data-[state=active]:bg-custom-primary-accent data-[state=active]:text-black'
-                >
-                  Drivers
-                </TabsTrigger>
-                <TabsTrigger
-                  value='companies'
-                  className='data-[state=active]:bg-custom-primary-accent data-[state=active]:text-black'
-                >
-                  Companies
-                </TabsTrigger>
-                <TabsTrigger
-                  value='dispatchers'
-                  className='data-[state=active]:bg-custom-primary-accent data-[state=active]:text-black'
-                >
-                  Dispatchers
-                </TabsTrigger>
-                <TabsTrigger
-                  value='admins'
-                  className='data-[state=active]:bg-custom-primary-accent data-[state=active]:text-black'
-                >
-                  Admins
-                </TabsTrigger>
-              </TabsList>
-            </div>
+        <div className='flex-1 p-6'>
+          <TabsContent value='drivers' className='h-full'>
+            <UserTable
+              users={drivers}
+              userType='drivers'
+              searchTerm={driversSearch}
+              setSearchTerm={setDriversSearch}
+              onAdd={handleDriverAdd}
+              onEdit={handleDriverEdit}
+              onDelete={handleDriverDelete}
+            />
+          </TabsContent>
 
-            <div className='p-6'>
-              <TabsContent value='drivers' className='mt-0'>
-                <UserTable
-                  users={drivers}
-                  userType='drivers'
-                  searchTerm={driversSearch}
-                  setSearchTerm={setDriversSearch}
-                  onAdd={handleDriverAdd}
-                  onEdit={handleDriverEdit}
-                  onDelete={handleDriverDelete}
-                />
-              </TabsContent>
+          <TabsContent value='companies' className='h-full'>
+            <UserTable
+              users={companies}
+              userType='companies'
+              searchTerm={companiesSearch}
+              setSearchTerm={setCompaniesSearch}
+              onAdd={handleCompanyAdd}
+              onEdit={handleCompanyEdit}
+              onDelete={handleCompanyDelete}
+            />
+          </TabsContent>
 
-              <TabsContent value='companies' className='mt-0'>
-                <UserTable
-                  users={companies}
-                  userType='companies'
-                  searchTerm={companiesSearch}
-                  setSearchTerm={setCompaniesSearch}
-                  onAdd={handleCompanyAdd}
-                  onEdit={handleCompanyEdit}
-                  onDelete={handleCompanyDelete}
-                />
-              </TabsContent>
+          <TabsContent value='dispatchers' className='h-full'>
+            <UserTable
+              users={mockDispatchers}
+              userType='dispatchers'
+              searchTerm={dispatchersSearch}
+              setSearchTerm={setDispatchersSearch}
+              onAdd={() => console.log('Add dispatcher')}
+              onEdit={dispatcher =>
+                console.log('Edit dispatcher', dispatcher)
+              }
+              onDelete={id => console.log('Delete dispatcher', id)}
+            />
+          </TabsContent>
 
-              <TabsContent value='dispatchers' className='mt-0'>
-                <UserTable
-                  users={mockDispatchers}
-                  userType='dispatchers'
-                  searchTerm={dispatchersSearch}
-                  setSearchTerm={setDispatchersSearch}
-                  onAdd={() => console.log('Add dispatcher')}
-                  onEdit={dispatcher =>
-                    console.log('Edit dispatcher', dispatcher)
-                  }
-                  onDelete={id => console.log('Delete dispatcher', id)}
-                />
-              </TabsContent>
-
-              <TabsContent value='admins' className='mt-0'>
-                <UserTable
-                  users={mockAdmins}
-                  userType='admins'
-                  searchTerm={adminsSearch}
-                  setSearchTerm={setAdminsSearch}
-                  onAdd={() => console.log('Add admin')}
-                  onEdit={admin => console.log('Edit admin', admin)}
-                  onDelete={id => console.log('Delete admin', id)}
-                />
-              </TabsContent>
-            </div>
-          </Tabs>
-        </CardContent>
-      </Card>
-    </div>
+          <TabsContent value='admins' className='h-full'>
+            <UserTable
+              users={mockAdmins}
+              userType='admins'
+              searchTerm={adminsSearch}
+              setSearchTerm={setAdminsSearch}
+              onAdd={() => console.log('Add admin')}
+              onEdit={admin => console.log('Edit admin', admin)}
+              onDelete={id => console.log('Delete admin', id)}
+            />
+          </TabsContent>
+        </div>
+      </Tabs>
+    </Card>
   );
 }

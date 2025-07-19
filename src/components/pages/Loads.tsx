@@ -1,4 +1,4 @@
-import { Search, Filter, Calendar, MapPin, User, Clock } from 'lucide-react';
+import { Calendar, Clock, Filter, MapPin, Search, User } from 'lucide-react';
 import { useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
@@ -33,7 +33,7 @@ import { useLoadsStore } from '@/stores/loadsStore';
 const getStatusColor = (status: string) => {
   switch (status.toLowerCase()) {
     case 'delivered':
-      return 'bg-custom-success bg-opacity-20 text-custom-success';
+      return 'bg-green-accent bg-opacity-20 text-white';
     case 'in_transit':
       return 'bg-blue-500 bg-opacity-20 text-blue-500';
     case 'confirmed':
@@ -85,9 +85,16 @@ export function Loads() {
     return matchesSearch && matchesStatus && matchesDriver;
   });
 
-  const totalPages = Math.ceil(filteredLoads.length / itemsPerPage);
+  // Sort loads by pickup date, newer first
+  const sortedLoads = filteredLoads.sort((a, b) => {
+    const dateA = new Date(a.pickUpDate);
+    const dateB = new Date(b.pickUpDate);
+    return dateB.getTime() - dateA.getTime(); // Descending order (newer first)
+  });
+
+  const totalPages = Math.ceil(sortedLoads.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedLoads = filteredLoads.slice(
+  const paginatedLoads = sortedLoads.slice(
     startIndex,
     startIndex + itemsPerPage
   );

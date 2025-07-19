@@ -5,6 +5,7 @@ import { immer } from 'zustand/middleware/immer';
 
 import { Email, EmailFolder } from '../types/app';
 
+import mockData from '../mock-data';
 import { generateId, getCurrentIsoDate } from './utils';
 
 interface EmailsState {
@@ -55,17 +56,10 @@ const defaultFolders: EmailFolder[] = [
   { id: 'trash', name: 'Trash', icon: Trash2, count: 0 },
 ];
 
-// Mock data for development
-const mockEmails: Email[] = [
-  // EMAIL_RATECON_INBOUND_STEP_5,
-  // EMAIL_RATECON_OUTBOUND_STEP_7,
-  // EMAIL_POD_OUTBOUND_STEP_10
-];
-
 export const useEmailStore = create<EmailsState>()(
   devtools(
     immer((set, get) => ({
-      emails: mockEmails,
+      emails: [...mockData.inboxEmails, ...mockData.sentEmails],
       folders: defaultFolders,
       selectedFolder: 'inbox',
       isLoading: false,

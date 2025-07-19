@@ -171,7 +171,18 @@ function Notifications() {
   );
   const unreadCount = getUnreadNotifications(currentUserId).length;
 
-  const sortedNotifications = userNotifications.sort((a, b) => {
+  const filteredNotifications = userNotifications.filter(notification => {
+    switch (sortBy) {
+      case 'unread':
+        return notification.status === 'unread';
+      case 'read':
+        return notification.status === 'read';
+      default:
+        return true; // 'all' - show all notifications
+    }
+  });
+
+  const sortedNotifications = filteredNotifications.sort((a, b) => {
     // Unread notifications come before read notifications
     if (a.status === 'unread' && b.status !== 'unread') {
       return -1;

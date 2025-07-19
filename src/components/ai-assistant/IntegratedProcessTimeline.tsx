@@ -269,13 +269,13 @@ function StepActions({ step, onCompleteStep }: StepActionsProps) {
     <div className='flex flex-wrap gap-2'>
       {step.nextStepOptions!.map((option: any, optionIndex: number) => (
         <Button
-          key={option}
+          key={option.label}
           variant='outline'
           size='sm'
           className={cn(
             'text-xs hover:bg-gray-50 transition-all duration-200 hover:shadow-sm animate-in slide-in-from-bottom-1',
             optionIndex === 0 &&
-              'bg-absolute-black text-absolute-gray-200 hover:bg-absolute-black-hover hover:text-white'
+            'bg-absolute-black text-absolute-gray-200 hover:bg-absolute-black-hover hover:text-white'
           )}
           style={{ animationDelay: `${optionIndex * 100}ms` }}
           onClick={() => onCompleteStep()}
@@ -413,7 +413,7 @@ function IntegratedProcessTimeline({
               isExpanded ? 'gap-4' : 'gap-0',
               isActive && 'border-absolute-black shadow-md hover:shadow-lg',
               isCompleted &&
-                'border-gray-300 bg-gray-50 shadow-lg hover:shadow-xl',
+              'border-gray-300 bg-gray-50 shadow-lg hover:shadow-xl',
               'transform-gpu'
             )}
             style={{ animationDelay: `${index * 100}ms` }}

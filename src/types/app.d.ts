@@ -392,7 +392,6 @@ export interface BaseProcess {
  * Describes a single step within a multi-step process.
  */
 export interface ProcessStep<NameType extends string = string> {
-  // Added generic <NameType> with a default of 'string'
   id: string;
   name: NameType;
   title: string;
@@ -415,6 +414,8 @@ export interface ProcessStep<NameType extends string = string> {
     data?: Record<string, unknown>;
   }[];
   lucideIcon?: LucideIcon;
+  executionId?: string;
+  lastExecutedAt?: string;
 }
 
 /**

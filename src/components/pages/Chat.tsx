@@ -12,6 +12,7 @@ import { useConversationsStore } from '@/stores/conversationsStore';
 import { useDriversStore } from '@/stores/driversStore';
 import { MessageSenderType } from '@/types/app';
 
+import { formatVerboseDate } from '../../stores/utils';
 import { Textarea } from '../ui/textarea';
 
 function ChatMessageBubble({
@@ -68,7 +69,7 @@ function ChatMessageBubble({
         return (
           <img
             src='/POD.jpeg'
-            alt='Test'
+            alt='POD'
             className='max-w-xs rounded-sm mb-2'
           />
         );
@@ -76,8 +77,8 @@ function ChatMessageBubble({
       case 'Invoice':
         return (
           <img
-            src='/Invoce.jpeg'
-            alt='Test'
+            src='/Invoice.jpeg'
+            alt='Invoice'
             className='max-w-xs rounded-sm mb-2'
           />
         );
@@ -134,7 +135,7 @@ function ChatMessageBubble({
             messageStyle.alignment === 'right' ? 'self-start' : ''
           )}
         >
-          {message.timestamp}
+          {formatVerboseDate(message.timestamp)}
         </span>
       </div>
     </div>
@@ -248,12 +249,21 @@ export function Chat() {
     return conv || addConversation(String(selectedContact.id));
   }, [conversations, selectedContact, addConversation]);
 
-  const filteredContacts = contacts.filter(
-    contact =>
-      contact &&
-      (contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.phone.includes(searchTerm))
-  );
+  const filteredContacts = contacts
+    .filter(
+      contact =>
+        contact &&
+        (contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          contact.phone.includes(searchTerm))
+    )
+    .sort((a, b) => {
+      // Sort by timestamp in descending order (most recent first)
+      // Handle cases where timestamp might be empty
+      if (!a.timestamp && !b.timestamp) return 0;
+      if (!a.timestamp) return 1;
+      if (!b.timestamp) return -1;
+      return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
+    });
 
   const handleSendMessage = () => {
     if (messageText.trim() && selectedConversation) {
@@ -280,7 +290,7 @@ export function Chat() {
           />
         </div>
 
-        <div className='flex flex-col'>
+        <div className='flex flex-col overflow-y-auto'>
           {filteredContacts.map(contact =>
             contact ? (
               <div
@@ -310,31 +320,28 @@ export function Chat() {
                 <div className='flex-1 min-w-0'>
                   <div className='flex items-center justify-between'>
                     <h3
-                      className={`font-medium truncate ${
-                        selectedContact && selectedContact.id === contact.id
-                          ? 'text-black'
-                          : 'text-custom-text-primary'
-                      }`}
+                      className={`font-medium truncate ${selectedContact && selectedContact.id === contact.id
+                        ? 'text-black'
+                        : 'text-custom-text-primary'
+                        }`}
                     >
                       {contact.name}
                     </h3>
                     <span
-                      className={`text-xs ${
-                        selectedContact && selectedContact.id === contact.id
-                          ? 'text-black opacity-70'
-                          : 'text-custom-text-secondary'
-                      }`}
+                      className={`text-xs ${selectedContact && selectedContact.id === contact.id
+                        ? 'text-black opacity-70'
+                        : 'text-custom-text-secondary'
+                        }`}
                     >
-                      {contact.timestamp}
+                      {formatVerboseDate(contact.timestamp)}
                     </span>
                   </div>
                   <div className='flex items-center justify-between'>
                     <p
-                      className={`text-sm truncate ${
-                        selectedContact && selectedContact.id === contact.id
-                          ? 'text-black opacity-70'
-                          : 'text-custom-text-secondary'
-                      }`}
+                      className={`text-sm truncate ${selectedContact && selectedContact.id === contact.id
+                        ? 'text-black opacity-70'
+                        : 'text-custom-text-secondary'
+                        }`}
                     >
                       {contact.lastMessage}
                     </p>

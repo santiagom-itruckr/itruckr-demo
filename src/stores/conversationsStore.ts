@@ -2,8 +2,9 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { Conversation, ChatMessage } from '../types/app'; // Import both types
+import { ChatMessage, Conversation } from '../types/app'; // Import both types
 
+import mockData from '../mock-data';
 import { generateId, getCurrentIsoDate } from './utils';
 
 interface ConversationsState {
@@ -39,7 +40,7 @@ interface ConversationsState {
 export const useConversationsStore = create<ConversationsState>()(
   devtools(
     immer((set, get) => ({
-      conversations: [],
+      conversations: mockData.driverConversations as Conversation[],
 
       // Conversation Actions
 

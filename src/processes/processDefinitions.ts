@@ -1,22 +1,22 @@
 import {
-  BadgeDollarSign,
-  UserCheck,
-  ClipboardCheck,
-  Truck,
-  PackageCheck,
-  ArrowRight,
-  MapPin,
-  FileUp,
-  Check,
   AlertTriangle,
-  Search,
-  CheckCircle2,
-  PackageSearch,
-  PackagePlus,
-  Mail,
-  CalendarPlus,
+  ArrowRight,
+  BadgeDollarSign,
   BellRing,
+  CalendarPlus,
+  Check,
+  CheckCircle2,
+  ClipboardCheck,
+  FileUp,
+  Mail,
+  MapPin,
+  PackageCheck,
+  PackagePlus,
+  PackageSearch,
   RefreshCcw,
+  Search,
+  Truck,
+  UserCheck,
 } from 'lucide-react';
 
 import {
@@ -25,21 +25,28 @@ import {
   EMAIL_RATECON_INBOUND_STEP_5,
   EMAIL_RATECON_OUTBOUND_STEP_7,
   LOAD_2,
+  LOAD_PROCESS_STEP_13_AGENT_CHAT_MESSAGE,
   LOAD_PROCESS_STEP_13_DRIVER_CHAT_MESSAGE_1,
   LOAD_PROCESS_STEP_13_DRIVER_CHAT_MESSAGE_2,
   LOAD_PROCESS_STEP_1_AGENT_MESSAGE,
   LOAD_PROCESS_STEP_3_AGENT_CHAT_MESSAGE,
   LOAD_PROCESS_STEP_3_AGENT_MESSAGE,
   LOAD_PROCESS_STEP_6_DRIVER_CHAT_MESSAGE,
+  OIL_CHANGE_STEP_1_AGENT_CHAT_MESSAGE,
+  OIL_CHANGE_STEP_2_AGENT_CHAT_MESSAGE,
+  OIL_CHANGE_STEP_2_DRIVER_CHAT_MESSAGE,
+  OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_1,
+  OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_2,
+  OIL_CHANGE_STEP_4_DRIVER_MESSAGE,
 } from '@/constants';
 
-import { generateId, getCurrentIsoDate } from '../stores/utils'; // Assuming utils.ts is in store folder
+import { generateId } from '../stores/utils'; // Assuming utils.ts is in store folder
 import {
-  ProcessStep,
-  LoadProcessStepName,
-  OilChangeProcessStepName,
   Email,
   Load,
+  LoadProcessStepName,
+  OilChangeProcessStepName,
+  ProcessStep,
 } from '../types/app';
 
 /**
@@ -288,12 +295,6 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
       description: 'Proof of Delivery document have been sent by the driver.',
       messages: [],
       awaitFor: 10000,
-      createsEntities: [
-        {
-          entityType: 'email',
-          newEntity: EMAIL_POD_OUTBOUND_STEP_10 as Email,
-        },
-      ],
       updatesEntities: [
         {
           entityType: 'conversation',
@@ -304,7 +305,6 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
           entityType: 'conversation',
           entityId: '',
           updateData: LOAD_PROCESS_STEP_13_DRIVER_CHAT_MESSAGE_2,
-          withDelay: 2000,
         },
       ],
       aiAgentAssigned: 'Operations Agent',
@@ -320,7 +320,16 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
         'The load process has been successfully completed and billed.',
       messages: [],
       aiAgentAssigned: 'General Assistant',
-      createsEntities: [{ entityType: 'notification' }],
+      createsEntities: [
+        {
+          entityType:
+            'notification'
+        },
+        {
+          entityType: 'email',
+          newEntity: EMAIL_POD_OUTBOUND_STEP_10 as Email,
+        }
+      ],
       updatesEntities: [
         {
           entityType: 'load',
@@ -335,11 +344,7 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
         {
           entityType: 'conversation',
           entityId: '',
-          updateData: {
-            content: 'POD Received & Validated',
-            senderId: 'system',
-            senderType: 'system',
-          },
+          updateData: LOAD_PROCESS_STEP_13_AGENT_CHAT_MESSAGE,
           withDelay: 10000,
         },
       ],
@@ -361,17 +366,23 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       title: 'Oil Change Needed',
       status: 'pending',
       description:
-        'The system has detected that an oil change is due for a truck based on mileage or time.',
-      messages: [
+        'The system has detected that an oil change is due for the truck (T-001) based on mileage.',
+      messages: [],
+      updatesEntities: [
         {
-          id: '001',
-          senderId: 'ai_agent',
-          senderType: 'ai_agent',
-          timestamp: getCurrentIsoDate(),
-          content: '# Maintenance Alert: Oil Change Due',
+          entityType: 'conversation',
+          entityId: '',
+          updateData: OIL_CHANGE_STEP_1_AGENT_CHAT_MESSAGE,
         },
       ],
       aiAgentAssigned: 'Maintenance Support Agent',
+      nextStepOptions: [
+        {
+          label: 'Continue',
+          action: 'complete_step',
+          data: { actionType: 'continue' },
+        },
+      ],
       lucideIcon: AlertTriangle,
       startedAt: '',
     },
@@ -383,12 +394,20 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       description:
         'An automated notification has been sent to the truck driver regarding the upcoming oil change.',
       messages: [],
+      awaitFor: 20000,
+      updatesEntities: [
+        {
+          entityType: 'conversation',
+          entityId: '',
+          updateData: OIL_CHANGE_STEP_2_DRIVER_CHAT_MESSAGE,
+        },
+        {
+          entityType: 'conversation',
+          entityId: '',
+          updateData: OIL_CHANGE_STEP_2_AGENT_CHAT_MESSAGE,
+        },
+      ],
       aiAgentAssigned: 'Maintenance Support Agent',
-      // triggersApiCall: {
-      //   endpoint: "https://itruckrlabs.app.n8n.cloud/webhook/gestion-llamadas",
-      //   method: "GET",
-      //   expect: { status_call: "call ended" }
-      // },
       lucideIcon: Mail,
       startedAt: '',
     },
@@ -400,12 +419,25 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       description:
         'The process of finding and booking a suitable oil change appointment for the truck.',
       messages: [],
-      aiAgentAssigned: 'Maintenance Support Agent',
       // triggersApiCall: {
-      //   endpoint: "/api/appointments/find_slots",
+      //   endpoint: "https://itruckrlabs.app.n8n.cloud/webhook/gestion-llamadas",
       //   method: "GET",
-      //   data: { truckId: "${truckId}", serviceType: "oil_change" },
+      //   expect: { status_call: "call ended" }
       // },
+      awaitFor: 10000,
+      updatesEntities: [
+        {
+          entityType: 'conversation',
+          entityId: '',
+          updateData: OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_1,
+        },
+        {
+          entityType: 'conversation',
+          entityId: '',
+          updateData: OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_2,
+        },
+      ],
+      aiAgentAssigned: 'Maintenance Support Agent',
       lucideIcon: CalendarPlus,
       startedAt: '',
     },
@@ -418,15 +450,6 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
         'The truck driver has been informed about the details of the confirmed oil change appointment.',
       messages: [],
       aiAgentAssigned: 'Maintenance Support Agent',
-      // triggersApiCall: {
-      //   endpoint: "/api/notifications/send",
-      //   method: "POST",
-      //   data: {
-      //     recipient: "${driverId}",
-      //     type: "appointment_details",
-      //     message: "Your oil change is scheduled for [Date] at [Time] at [Location].",
-      //   },
-      // },
       lucideIcon: BellRing,
       startedAt: '',
     },
@@ -438,6 +461,14 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       description:
         'The Driver is currently at Total Truck Care and Maintenance Montgomery, IL',
       messages: [],
+      updatesEntities: [
+        {
+          entityType: 'conversation',
+          entityId: '',
+          updateData: OIL_CHANGE_STEP_4_DRIVER_MESSAGE,
+        },
+      ],
+      awaitFor: 20000,
       aiAgentAssigned: 'Maintenance Support Agent',
       lucideIcon: RefreshCcw,
       startedAt: '',

@@ -49,6 +49,7 @@ interface ProcessesState {
     status: ProcessStepStatus
   ) => void;
   setProcessCurrentStep: (processId: string, stepId: string) => void;
+  updateProcessStepExecution: (processId: string, stepId: string, executionId: string) => void;
 }
 
 export const useProcessesStore = create<ProcessesState>()(
@@ -222,6 +223,20 @@ export const useProcessesStore = create<ProcessesState>()(
                 step.completedAt = ''; // Use empty string instead of undefined
               }
             });
+          }
+        });
+      },
+
+      updateProcessStepExecution: (processId, stepId, executionId) => {
+        set(state => {
+          const process = state.processes.find(p => p.id === processId);
+          if (!process) return;
+
+          const step = process.steps.find(s => s.id === stepId);
+          if (step) {
+            step.executionId = executionId;
+            step.lastExecutedAt = getCurrentIsoDate();
+            process.updatedAt = getCurrentIsoDate();
           }
         });
       },

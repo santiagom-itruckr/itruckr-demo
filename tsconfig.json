@@ -5,9 +5,14 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "es2018", // Or "esnext" for modern JS
+    "module": "commonjs", // Or "es2020", "esnext" for ES modules
+    "outDir": "./dist", // Output directory for compiled JS
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./mockDataGenerator.ts", "./src/*"]
     }
   }
 }

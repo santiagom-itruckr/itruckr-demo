@@ -74,6 +74,11 @@ const markdownComponents = {
     <strong className='font-semibold text-foreground'>{children}</strong>
   ),
   em: ({ children }: any) => <em className='italic'>{children}</em>,
+  a: ({ children, href }: any) => (
+    <a href={href} className='text-blue-600 hover:underline'>
+      {children}
+    </a>
+  ),
 };
 
 export const Markdown: React.FC<MarkdownProps> = ({ children, className }) => {

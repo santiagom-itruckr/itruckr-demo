@@ -10,6 +10,7 @@ import {
   NotificationType,
 } from '../types/app';
 
+import mockData from '../mock-data';
 import { generateId, getCurrentIsoDate } from './utils';
 
 interface NotificationsState {
@@ -44,7 +45,7 @@ interface NotificationsState {
 export const useNotificationsStore = create<NotificationsState>()(
   devtools(
     immer((set, get) => ({
-      notifications: [],
+      notifications: mockData.notifications as Notification[],
 
       addNotification: ({
         userId,

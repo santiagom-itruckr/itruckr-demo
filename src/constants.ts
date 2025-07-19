@@ -1,6 +1,8 @@
 import { generateId, getCurrentIsoDate } from './stores/utils';
 import { ChatMessage, Driver, Email, Load, Truck } from './types/app';
 
+// LOAD PROCESS
+
 export const LOAD_PROCESS_STEP_1_AGENT_MESSAGE = {
   id: '001',
   senderId: 'ai_agent',
@@ -129,27 +131,10 @@ export const LOAD_PROCESS_STEP_13_DRIVER_CHAT_MESSAGE_2 = {
 };
 
 export const LOAD_PROCESS_STEP_13_AGENT_CHAT_MESSAGE = {
-  senderId: 'system',
-  senderType: 'system',
+  senderId: 'ai_agent',
+  senderType: 'ai_agent',
   content: 'POD Received & Validated',
 };
-
-export const OIL_CHANGE_STEP_1_AGENT_MESSAGE =
-  'Hi John Smith, your truck is due for a routine oil change. Want me to help you find a nearby workshop?		';
-export const OIL_CHANGE_STEP_2_DRIVER_MESSAGE = 'YES';
-export const OIL_CHANGE_STEP_2_AGENT_MESSAGE =
-  'Great. I’m checking for workshops near your current location 	';
-export const OIL_CHANGE_STEP_3_AGENT_MESSAGE_1 = `Appointment confirmed for 3:00 pm. 
-
-PTR Truck Repair
-1415 Bohr Ave, Montgomery, IL 60538"				
-				
-Location:
-<a href="https://maps.app.goo.gl/J6LuzUTeTD6MGJeD8">https://maps.app.goo.gl/J6LuzUTeTD6MGJeD8</a>
-`;
-export const OIL_CHANGE_STEP_3_AGENT_MESSAGE_2 =
-  'All set! Just send me the invoice when you’re finished';
-export const OIL_CHANGE_STEP_4_DRIVER_MESSAGE = 'Invoice';
 
 export const EMAIL_RATECON_INBOUND_STEP_5 = {
   id: generateId(),
@@ -283,13 +268,68 @@ export const EMAIL_POD_OUTBOUND_STEP_10 = {
   isDeleted: false,
   isSent: true,
   isDraft: false,
-  hasAttachments: false,
-  attachments: [],
+  hasAttachments: true,
+  attachments: [
+    {
+      name: 'POD.jpeg',
+      size: '163kb',
+      type: 'image/',
+      url: '/POD.jpeg',
+    },
+  ],
   preview:
     'We are pleased to inform you that your load with the following details has been successfully delivered.',
   threadId: generateId(),
   labels: ['Load'],
 } as Email;
+
+// OIL CHANGE PROCESS
+
+export const OIL_CHANGE_STEP_1_AGENT_CHAT_MESSAGE = {
+  senderId: 'ai_agent',
+  senderType: 'ai_agent',
+  content: 'Hi John Smith, your truck is due for a routine oil change. Want me to help you find a nearby workshop?'
+};
+
+export const OIL_CHANGE_STEP_2_DRIVER_CHAT_MESSAGE = {
+  senderId: 'D-158',
+  senderType: 'user',
+  content: 'YES'
+};
+
+export const OIL_CHANGE_STEP_2_AGENT_CHAT_MESSAGE = {
+  senderId: 'ai_agent',
+  senderType: 'ai_agent',
+  content: 'Great. I&apos;m checking for workshops near your current location'
+};
+
+export const OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_1 = {
+  senderId: 'ai_agent',
+  senderType: 'ai_agent',
+  content: `Appointment confirmed for 3:00 pm.
+
+&nbsp;
+
+**PTR Truck Repair**
+
+1415 Bohr Ave, Montgomery, IL 60538
+
+Location: https://maps.app.goo.gl/J6LuzUTeTD6MGJeD8`
+};
+
+export const OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_2 = {
+  senderId: 'ai_agent',
+  senderType: 'ai_agent',
+  content: 'All set! Just send me the invoice when you’re finished'
+};
+
+export const OIL_CHANGE_STEP_4_DRIVER_MESSAGE = {
+  senderId: 'D-158',
+  senderType: 'user',
+  content: 'Invoice'
+};
+
+// ENTITIES
 
 export const TRUCK_1 = {
   id: 'T-001',

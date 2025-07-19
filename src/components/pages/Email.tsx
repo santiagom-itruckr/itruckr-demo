@@ -51,7 +51,7 @@ function EmailMessage({
   return (
     <div
       className={cn(
-        'flex items-center gap-4 py-2 pr-4 pl-2 border-b border-custom-border border-l-4 border-l-transparent cursor-pointer hover:bg-gray-50 transition-colors',
+        'flex items-center gap-4 py-3 pr-4 pl-2 border-b border-custom-border border-l-4 border-l-transparent cursor-pointer hover:bg-gray-50 transition-colors',
         isSelected && 'bg-blue-50 border-l-blue-500'
       )}
       onClick={onClick}
@@ -72,7 +72,7 @@ function EmailMessage({
         )}
       </Button>
 
-      <p className='flex items-center gap-2 basis-32 font-medium truncate'>
+      <p className='flex items-center gap-2 basis-60 font-medium truncate'>
         {email.sender.name}
         {email.hasAttachments && <Paperclip className='h-3 w-3' />}
       </p>
@@ -547,7 +547,7 @@ export function Email() {
                 className={cn(
                   'flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-gray-50 border-l-4 border-l-transparent',
                   selectedFolder === folder.id &&
-                    'bg-green-accent/50 border-l-green-accent'
+                  'bg-green-accent/50 border-l-green-accent'
                 )}
                 onClick={() => handleSelectFolder(folder.id)}
               >

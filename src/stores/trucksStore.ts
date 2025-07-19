@@ -4,6 +4,7 @@ import { immer } from 'zustand/middleware/immer';
 
 import { Truck, TruckStatus } from '../types/app';
 
+import mockData from '../mock-data';
 import { generateId } from './utils';
 
 interface TrucksState {
@@ -18,7 +19,7 @@ interface TrucksState {
 export const useTrucksStore = create<TrucksState>()(
   devtools(
     immer((set, get) => ({
-      trucks: [],
+      trucks: mockData.trucks as Truck[],
 
       addTruck: newTruckData => {
         const truck: Truck = {

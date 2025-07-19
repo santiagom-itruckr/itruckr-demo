@@ -4,6 +4,7 @@ import { immer } from 'zustand/middleware/immer';
 
 import { Load } from '../types/app';
 
+import mockData from '../mock-data';
 import { generateId, getCurrentIsoDate } from './utils';
 
 interface LoadsState {
@@ -19,7 +20,7 @@ interface LoadsState {
 export const useLoadsStore = create<LoadsState>()(
   devtools(
     immer((set, get) => ({
-      loads: [],
+      loads: mockData.deliveredLoads as Load[],
 
       addLoad: newLoadData => {
         const load: Load = {

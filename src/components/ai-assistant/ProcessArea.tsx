@@ -23,8 +23,12 @@ import ProcessInput from './ProcessInput';
 function ProcessArea() {
   const [isLoading, setIsLoading] = useState(false);
   const { selectedCaseId, getCaseById } = useCasesStore();
-  const { getProcessById, addMessageToStep, advanceProcessStep } =
-    useProcessesStore();
+  const {
+    getProcessById,
+    addMessageToStep,
+    advanceProcessStep,
+    updateProcessStepExecution
+  } = useProcessesStore();
   const { getDriverById } = useDriversStore();
   const { addMessageToConversation } = useConversationsStore();
   const { addLoad, updateLoad } = useLoadsStore();
@@ -46,7 +50,7 @@ function ProcessArea() {
   const driver = getDriverById(activeCase?.relatedEntityId!);
 
   useEffect(() => {
-    const isCancelled = false;
+    let isCancelled = false;
     let isProcessing = false;
 
     const createEntities = async (
@@ -188,6 +192,8 @@ function ProcessArea() {
             ? deepEqual(apiCall.expect, responseBody)
             : true;
 
+          // const expectMatched = true;
+
           if (expectMatched && !isCancelled) {
             await updateEntities(updatesEntities, stepIndex, 'api');
             completeStep();
@@ -228,17 +234,28 @@ function ProcessArea() {
         return;
       }
 
+      const currentStep = process.steps[process.currentStepIndex];
+      const {
+        id: stepId,
+        executionId: stepExecutionId,
+        requiredUserInput,
+        triggersApiCall,
+        updatesEntities,
+        createsEntities,
+        awaitFor,
+      } = currentStep!;
+
+      // Check if this step has already been executed
+      const executionId = `${process.id}-${stepId}-${process.currentStepIndex}`;
+      if (stepExecutionId === executionId) {
+        console.log('Step already executed, skipping...');
+        return;
+      }
+
       isProcessing = true;
 
       try {
-        const currentStep = process.steps[process.currentStepIndex];
-        const {
-          requiredUserInput,
-          triggersApiCall,
-          updatesEntities,
-          createsEntities,
-          awaitFor,
-        } = currentStep!;
+        updateProcessStepExecution(process.id, stepId, executionId);
 
         // Create entities first (no await to prevent blocking)
         createEntities(createsEntities, process.currentStepIndex);

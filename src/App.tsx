@@ -74,7 +74,7 @@ function App() {
     );
 
     // Create a demo conversation for John Smith (driverId: 'D-158')
-    addConversation('D-158', [] as any);
+    addConversation('D-158', [{ timestamp: new Date() }] as any);
   }, []);
 
   return (

@@ -257,6 +257,8 @@ export interface Company {
 export interface Truck {
   id: string;
   type: TruckType;
+  brand: string;
+  model: string;
   licensePlate: string;
   capacity: {
     weightLbs: number;
@@ -424,6 +426,7 @@ export interface ProcessStep<NameType extends string = string> {
 type LoadProcessStepName =
   | 'waiting_dispatcher_confirmation'
   | 'looking_for_loads'
+  | 'negociating_load'
   | 'load_booked'
   | 'waiting_rate_confirmation'
   | 'load_confirmed_broker'

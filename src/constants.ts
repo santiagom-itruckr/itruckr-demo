@@ -85,7 +85,7 @@ export const LOAD_PROCESS_STEP_3_AGENT_CHAT_MESSAGE = {
 You’ve been assigned a new load. Please review the details below
 
 **ℹ️ General Information**
-* **Truck Assigned:** #[Truck Number]
+* **Truck Assigned:** 58
 * **Commodity:** 3 Stainless Steel Coils
 * **Weight:** 46600.00 Lbs
 * **Miles:** 760.00
@@ -103,10 +103,11 @@ You’ve been assigned a new load. Please review the details below
 * **Delivery Date:** 07/08/2025 15:00
 * **Delivery Window:** 08:00 - 15:00
 
-**📋 Special Instructions**
-
-[Insert any notes here like appointment required, lumpers, or FCFS]
-
+**📋 Aditional Information**
+* **Truck Brand:** Freightliner
+* **Truck Model:** 2017
+* **Truck Color:** White
+* **VIN Last 4 digits:** 6320
 ---
 
 Let us know if you have any issues. Drive safe!`,
@@ -332,8 +333,10 @@ export const OIL_CHANGE_STEP_4_DRIVER_MESSAGE = {
 // ENTITIES
 
 export const TRUCK_1 = {
-  id: 'T-001',
+  id: '58',
   type: 'dry_van',
+  brand: 'Freightliner',
+  model: '2017',
   licensePlate: 'ABC-123',
   capacity: {
     weightLbs: 80000,
@@ -350,7 +353,7 @@ export const DRIVER_1 = {
   phone: '(555) 123-4567',
   companyId: 'C-001',
   licenseNumber: 'DL123456789',
-  truckId: 'T-001',
+  truckId: '58',
   isInsuranceValid: true,
   remainingDrivingHours: 8,
   currentLocation: {

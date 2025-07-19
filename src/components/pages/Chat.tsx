@@ -1,5 +1,5 @@
 import { ArrowUp, Bot, Search, User } from 'lucide-react';
-import React from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -192,12 +192,14 @@ function ChatMessagesList({
 }
 
 export function Chat() {
-  const { conversations, addMessageToConversation, addConversation } =
-    useConversationsStore();
+  const {
+    conversations,
+    addMessageToConversation,
+    addConversation
+  } = useConversationsStore();
   const { getDriverById } = useDriversStore();
 
-  // Build contacts from conversations + driver info
-  const contacts = React.useMemo(() => {
+  const contacts = useMemo(() => {
     return conversations
       .map(conv => {
         const driver = getDriverById(conv.driverId);
@@ -221,17 +223,23 @@ export function Chat() {
           conversationId: conv.id,
         };
       })
-      .filter((c): c is NonNullable<typeof c> => c !== null);
+      .filter((c): c is NonNullable<typeof c> => c !== null)
+      .sort((a, b) => {
+        // Sort by timestamp in descending order (most recent first)
+        if (!a.timestamp && !b.timestamp) return 0;
+        if (!a.timestamp) return 1;
+        if (!b.timestamp) return -1;
+        return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
+      });
   }, [conversations, getDriverById]);
 
-  const [selectedContact, setSelectedContact] = React.useState(
+  const [selectedContact, setSelectedContact] = useState(
     contacts[0] ?? null
   );
-  const [messageText, setMessageText] = React.useState('');
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [messageText, setMessageText] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  React.useEffect(() => {
-    // If contacts change, keep selectedContact in sync
+  useEffect(() => {
     if (
       contacts.length > 0 &&
       (!selectedContact || !contacts.find(c => c.id === selectedContact.id))
@@ -241,7 +249,8 @@ export function Chat() {
       setSelectedContact(null);
     }
   }, [contacts, selectedContact]);
-  const selectedConversation = React.useMemo(() => {
+
+  const selectedConversation = useMemo(() => {
     if (!selectedContact) return null;
     const conv = conversations.find(
       conv => String(conv.driverId) === String(selectedContact.id)
@@ -264,6 +273,25 @@ export function Chat() {
       if (!b.timestamp) return -1;
       return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
     });
+
+  // Only sync selectedContact with contacts, not filteredContacts
+  useEffect(() => {
+    if (
+      contacts.length > 0 &&
+      (!selectedContact || !contacts.find(c => c.id === selectedContact.id))
+    ) {
+      // Select the most recent contact (first after sorting by timestamp)
+      const sortedContacts = [...contacts].sort((a, b) => {
+        if (!a.timestamp && !b.timestamp) return 0;
+        if (!a.timestamp) return 1;
+        if (!b.timestamp) return -1;
+        return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
+      });
+      setSelectedContact(sortedContacts[0] ?? null);
+    } else if (contacts.length === 0 && selectedContact) {
+      setSelectedContact(null);
+    }
+  }, [contacts, selectedContact]);
 
   const handleSendMessage = () => {
     if (messageText.trim() && selectedConversation) {

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 
 type Page =
-  | 'itruckr'
+  | 'iTruckr'
   | 'loadboard'
   | 'chat'
   | 'email'
@@ -25,7 +25,7 @@ export function NavigationProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [activePage, setActivePage] = useState<Page>('itruckr');
+  const [activePage, setActivePage] = useState<Page>('iTruckr');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (

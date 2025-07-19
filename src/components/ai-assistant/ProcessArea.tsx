@@ -161,7 +161,7 @@ function ProcessArea() {
       updatesEntities: EntityUpdateConfig[] | undefined,
       stepIndex: number
     ) => {
-      const maxRetries = 5;
+      const maxRetries = 10;
       let retryCount = 0;
 
       const deepEqual = (obj1: any, obj2: any): boolean => {
@@ -200,9 +200,9 @@ function ProcessArea() {
           } else if (retryCount < maxRetries && !isCancelled) {
             retryCount++;
             console.log(
-              `Retrying in 30 seconds... (${retryCount}/${maxRetries})`
+              `Retrying in 15 seconds... (${retryCount}/${maxRetries})`
             );
-            setTimeout(callApiWithRetry, 30000);
+            setTimeout(callApiWithRetry, 15000);
           } else if (!isCancelled) {
             console.error('Max retries reached or expected value not found');
           }

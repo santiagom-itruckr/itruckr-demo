@@ -13,7 +13,7 @@ export function MainContent() {
 
   const renderPage = () => {
     switch (activePage) {
-      case 'itruckr':
+      case 'iTruckr':
         return <ITruckr />;
       case 'loadboard':
         return <Loadboard />;

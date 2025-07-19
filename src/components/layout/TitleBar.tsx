@@ -41,7 +41,7 @@ export function TitleBar() {
             {sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           </TooltipContent>
         </Tooltip>
-        <h1 className='text-3xl font-bold text-custom-text-primary capitalize'>
+        <h1 className='text-3xl font-bold text-custom-text-primary'>
           {activePage}
         </h1>
       </div>

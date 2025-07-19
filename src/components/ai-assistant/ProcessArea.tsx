@@ -156,7 +156,7 @@ function ProcessArea() {
       updatesEntities: EntityUpdateConfig[] | undefined,
       stepIndex: number
     ) => {
-      const maxRetries = 15;
+      const maxRetries = 60;
       let retryCount = 0;
 
       const deepEqual = (obj1: any, obj2: any): boolean => {

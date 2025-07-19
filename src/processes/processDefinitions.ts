@@ -91,11 +91,11 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
       messages: [],
       aiAgentAssigned: 'Rate Negotiator',
       awaitFor: 5000,
-      // triggersApiCall: {
-      //   endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/gestion-llamadas',
-      //   method: 'GET',
-      //   expect: { message: "Workflow was started" },
-      // },
+      triggersApiCall: {
+        endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/gestion-llamadas',
+        method: 'GET',
+        expect: { message: "Workflow was started" },
+      },
       startedAt: '',
       lucideIcon: PackageSearch,
     },
@@ -108,11 +108,11 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
         "A Load has been found and is currently being negocitated with the broker.",
       messages: [],
       aiAgentAssigned: 'Rate Negotiator',
-      // triggersApiCall: {
-      //   endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/call-ended-f1',
-      //   method: 'GET',
-      //   expect: { message: 'call ended' },
-      // },
+      triggersApiCall: {
+        endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/call-ended-f1',
+        method: 'GET',
+        expect: { message: 'call ended' },
+      },
       startedAt: '',
       lucideIcon: Handshake,
     },
@@ -156,12 +156,12 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
       messages: [],
       aiAgentAssigned: 'Rate Negotiator',
       // awaitFor: 1000,
-      // triggersApiCall: {
-      //   endpoint:
-      //     'https://itruckrlabs.app.n8n.cloud/webhook/arrived-rateconfirmation',
-      //   method: 'GET',
-      //   expect: { message: 'message sent' },
-      // },
+      triggersApiCall: {
+        endpoint:
+          'https://itruckrlabs.app.n8n.cloud/webhook/arrived-rateconfirmation',
+        method: 'GET',
+        expect: { message: 'message sent' },
+      },
       startedAt: '',
       lucideIcon: BadgeDollarSign,
     },
@@ -415,7 +415,7 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       description:
         'An automated notification has been sent to the truck driver regarding the upcoming oil change.',
       messages: [],
-      awaitFor: 20000,
+      awaitFor: 10000,
       triggersApiCall: {
         endpoint: "https://itruckrlabs.app.n8n.cloud/webhook/workshop-call",
         method: "GET",
@@ -450,7 +450,6 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
         method: "GET",
         expect: { message: "Call Workshop Ended" }
       },
-      awaitFor: 10000,
       updatesEntities: [
         {
           entityType: 'conversation',
@@ -475,6 +474,7 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       description:
         'The truck driver has been informed about the details of the confirmed oil change appointment.',
       messages: [],
+      awaitFor: 10000,
       aiAgentAssigned: 'Maintenance Support Agent',
       lucideIcon: BellRing,
       startedAt: '',
@@ -494,7 +494,7 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
           updateData: OIL_CHANGE_STEP_4_DRIVER_MESSAGE,
         },
       ],
-      awaitFor: 20000,
+      awaitFor: 10000,
       aiAgentAssigned: 'Maintenance Support Agent',
       lucideIcon: RefreshCcw,
       startedAt: '',
@@ -512,15 +512,3 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
     },
   ];
 }
-
-/**
- *
- * 1. Se crea el caso
- * 2. Driver Notified. Se le escribe al driver y le pregunta si quiere buscar &  El Driver confirma que quiere que le busquen un workshop
- * 3. Looking for near Workshops & Trigger de la llamada.
- * 4. Oil Change Appointment Confirmend
- * 5. Driver Notified of Appointment
- * 6. Driver at Workshop Location | Total Truck Care and Maintenance Montgomery, IL
- * 7. Invoice Received & Oil Change Confirmed | New Load for Driver
- *
- */

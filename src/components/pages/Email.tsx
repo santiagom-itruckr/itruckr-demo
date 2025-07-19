@@ -72,7 +72,10 @@ function EmailMessage({
         )}
       </Button>
 
-      <p className='flex items-center gap-2 basis-60 font-medium truncate'>
+      <p className={cn(
+        'flex items-center gap-2 basis-60 font-medium truncate',
+        email.isRead ? 'text-absolute-gray-500' : 'text-absolute-gray-700'
+      )}>
         {email.sender.name}
         {email.hasAttachments && <Paperclip className='h-3 w-3' />}
       </p>
@@ -80,7 +83,7 @@ function EmailMessage({
       <div
         className={cn(
           'flex-1 text-start truncate',
-          email.isRead ? 'text-absolute-gray-600' : 'text-absolute-gray-700'
+          email.isRead ? 'text-absolute-gray-500' : 'text-absolute-gray-700'
         )}
       >
         <span className='text-sm'>{email.subject}</span>

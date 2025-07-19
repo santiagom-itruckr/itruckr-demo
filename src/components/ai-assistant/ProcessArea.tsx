@@ -161,7 +161,7 @@ function ProcessArea() {
       updatesEntities: EntityUpdateConfig[] | undefined,
       stepIndex: number
     ) => {
-      const maxRetries = 10;
+      const maxRetries = 15;
       let retryCount = 0;
 
       const deepEqual = (obj1: any, obj2: any): boolean => {
@@ -200,9 +200,9 @@ function ProcessArea() {
           } else if (retryCount < maxRetries && !isCancelled) {
             retryCount++;
             console.log(
-              `Retrying in 15 seconds... (${retryCount}/${maxRetries})`
+              `Retrying in 10 seconds... (${retryCount}/${maxRetries})`
             );
-            setTimeout(callApiWithRetry, 15000);
+            setTimeout(callApiWithRetry, 10000);
           } else if (!isCancelled) {
             console.error('Max retries reached or expected value not found');
           }
@@ -213,9 +213,9 @@ function ProcessArea() {
           if (retryCount < maxRetries) {
             retryCount++;
             console.log(
-              `Retrying after error in 15 seconds... (${retryCount}/${maxRetries})`
+              `Retrying after error in 10 seconds... (${retryCount}/${maxRetries})`
             );
-            setTimeout(callApiWithRetry, 15000);
+            setTimeout(callApiWithRetry, 10000);
           } else {
             console.error('Max retries reached after errors');
           }
@@ -262,13 +262,17 @@ function ProcessArea() {
 
         if (triggersApiCall) {
           setIsLoading(true);
+
+          if (awaitFor) await new Promise(resolve => setTimeout(resolve, awaitFor));
+
           await performApiCall(
             triggersApiCall,
             updatesEntities,
             process.currentStepIndex
           );
+
           setIsLoading(false);
-        } else if (awaitFor && !requiredUserInput) {
+        } else if (awaitFor && !triggersApiCall! && !requiredUserInput) {
           setIsLoading(true);
           await new Promise(resolve => setTimeout(resolve, awaitFor));
 

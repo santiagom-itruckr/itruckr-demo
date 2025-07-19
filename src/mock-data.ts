@@ -1945,7 +1945,7 @@ export default {
     {
       "id": "h5uyhc0scytyrccr5vrxo",
       "subject": "Rate Confirmation - Load #L-588125",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-588125. Pickup: San Diego, OH - Delivery: Philadelphia, DE. Total Rate: $1857.71.\n\nRegards,\nGreen Line Logistics 3",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-588125. Pickup: San Diego, OH - Delivery: Philadelphia, DE. Total Rate: $1857.71.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nGreen Line Logistics 3",
       "sender": {
         "name": "Green Line Logistics 3",
         "email": "contact@pioneerfreight.com",
@@ -1972,7 +1972,7 @@ export default {
           "url": "https://example.com/attachments/t22cn4u52ihqh464t4y96.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-588125. Pickup: San Diego, O...",
+      "preview": "Please find attached the rate confirmation for Load #L-588125. Pickup: San Diego, O...",
       "threadId": "2nuw8u54kzr5mkyrvhsrd5",
       "labels": [
         "inbox",
@@ -1982,7 +1982,7 @@ export default {
     {
       "id": "db6ol3xrjnlaoeuu3qxc3",
       "subject": "Rate Confirmation - Load #L-301968",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-301968. Pickup: Houston, MD - Delivery: San Diego, ID. Total Rate: $1692.69.\n\nRegards,\nApex Transport Solutions 1",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-301968. Pickup: Houston, MD - Delivery: San Diego, ID. Total Rate: $1692.69.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nApex Transport Solutions 1",
       "sender": {
         "name": "Apex Transport Solutions 1",
         "email": "contact@greenlinelogistics.com",
@@ -2009,7 +2009,7 @@ export default {
           "url": "https://example.com/attachments/dph9mwzxde6wvmunywognp.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-301968. Pickup: Houston, MD ...",
+      "preview": "Please find attached the rate confirmation for Load #L-301968. Pickup: Houston, MD ...",
       "threadId": "esd0qstlqrs0s0nnqh6slvo",
       "labels": [
         "inbox",
@@ -2019,7 +2019,7 @@ export default {
     {
       "id": "7wm1awrk67kgm5r988u3hq",
       "subject": "Rate Confirmation - Load #L-405234",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-405234. Pickup: Phoenix, NC - Delivery: Phoenix, VA. Total Rate: $4913.56.\n\nRegards,\nBlue Sky Carriers 2",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-405234. Pickup: Phoenix, NC - Delivery: Phoenix, VA. Total Rate: $4913.56.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nBlue Sky Carriers 2",
       "sender": {
         "name": "Blue Sky Carriers 2",
         "email": "contact@greenlinelogistics.com",
@@ -2046,7 +2046,7 @@ export default {
           "url": "https://example.com/attachments/x7vfco5aq3ml2tn09ok4wh.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-405234. Pickup: Phoenix, NC ...",
+      "preview": "Please find attached the rate confirmation for Load #L-405234. Pickup: Phoenix, NC ...",
       "threadId": "j8g9kc21trr6vpyc44dcbd",
       "labels": [
         "inbox",
@@ -2056,7 +2056,7 @@ export default {
     {
       "id": "fkvlv84qmuec5ljyr1rxne",
       "subject": "Rate Confirmation - Load #L-588125",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-588125. Pickup: San Diego, OH - Delivery: Philadelphia, DE. Total Rate: $1857.71.\n\nRegards,\nApex Transport Solutions 1",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-588125. Pickup: San Diego, OH - Delivery: Philadelphia, DE. Total Rate: $1857.71.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nApex Transport Solutions 1",
       "sender": {
         "name": "Apex Transport Solutions 1",
         "email": "contact@greenlinelogistics.com",
@@ -2083,7 +2083,7 @@ export default {
           "url": "https://example.com/attachments/zzapi3fe7588vdsdmgdb49.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-588125. Pickup: San Diego, O...",
+      "preview": "Please find attached the rate confirmation for Load #L-588125. Pickup: San Diego, O...",
       "threadId": "ikcnsvxih4bngzvz99wsfb",
       "labels": [
         "inbox",
@@ -2123,7 +2123,7 @@ export default {
     {
       "id": "iuibk8mhrzads587ljjim",
       "subject": "Rate Confirmation - Load #L-833052",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-833052. Pickup: Dallas, TN - Delivery: San Diego, MN. Total Rate: $1318.57.\n\nRegards,\nGreen Line Logistics 3",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-833052. Pickup: Dallas, TN - Delivery: San Diego, MN. Total Rate: $1318.57.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nGreen Line Logistics 3",
       "sender": {
         "name": "Green Line Logistics 3",
         "email": "contact@pioneerfreight.com",
@@ -2150,7 +2150,7 @@ export default {
           "url": "https://example.com/attachments/56rfqowdtlj8hlapa42nyp.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-833052. Pickup: Dallas, TN -...",
+      "preview": "Please find attached the rate confirmation for Load #L-833052. Pickup: Dallas, TN -...",
       "threadId": "4p5bhr8xin5zq2ggk6olo9",
       "labels": [
         "inbox",
@@ -2160,7 +2160,7 @@ export default {
     {
       "id": "dskhx8cp6164g0bu1y4rd3",
       "subject": "Important: Insurance Document Request - Green Line Logistics",
-      "content": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\nThank you,\nGreen Line Logistics 3",
+      "content": "Dear Recipient,\n\n&nbsp;\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\n&nbsp;\n\nThank you,\n\n&nbsp;\n\nGreen Line Logistics 3",
       "sender": {
         "name": "Green Line Logistics 3",
         "email": "contact@pioneerfreight.com",
@@ -2187,7 +2187,7 @@ export default {
           "url": "https://example.com/attachments/mbdt9ift6wx2sfye4nntc.pdf"
         }
       ],
-      "preview": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please...",
+      "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
       "threadId": "xukcbcic7vcrr6aanmutaq",
       "labels": [
         "inbox",
@@ -2198,7 +2198,7 @@ export default {
     {
       "id": "i69h8brcnpqu2x9fvu86p",
       "subject": "Rate Confirmation - Load #L-510153",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-510153. Pickup: San Diego, VA - Delivery: San Jose, ND. Total Rate: $3685.55.\n\nRegards,\nReliable Haulers",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-510153. Pickup: San Diego, VA - Delivery: San Jose, ND. Total Rate: $3685.55.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nReliable Haulers",
       "sender": {
         "name": "Reliable Haulers",
         "email": "contact@greenlinelogistics.com",
@@ -2225,7 +2225,7 @@ export default {
           "url": "https://example.com/attachments/eyy0f6cgr2eiwhx9ojq408.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-510153. Pickup: San Diego, V...",
+      "preview": "Please find attached the rate confirmation for Load #L-510153. Pickup: San Diego, V...",
       "threadId": "pomlfb9nclc9wd7tngzn8",
       "labels": [
         "inbox",
@@ -2235,7 +2235,7 @@ export default {
     {
       "id": "acqhmtalpdsr7k0671zgcf",
       "subject": "Rate Confirmation - Load #L-588125",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-588125. Pickup: San Diego, OH - Delivery: Philadelphia, DE. Total Rate: $1857.71.\n\nRegards,\nBlue Sky Carriers 2",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-588125. Pickup: San Diego, OH - Delivery: Philadelphia, DE. Total Rate: $1857.71.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nBlue Sky Carriers 2",
       "sender": {
         "name": "Blue Sky Carriers 2",
         "email": "contact@greenlinelogistics.com",
@@ -2262,7 +2262,7 @@ export default {
           "url": "https://example.com/attachments/zw52tk85jgq79vxuc3pb9j.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-588125. Pickup: San Diego, O...",
+      "preview": "Please find attached the rate confirmation for Load #L-588125. Pickup: San Diego, O...",
       "threadId": "hrxmckrwghhlpowzn6olnc",
       "labels": [
         "inbox",
@@ -2272,7 +2272,7 @@ export default {
     {
       "id": "vcz089aqqvnfvba3py4ggd",
       "subject": "Important: Insurance Document Request - Trans-Continental Shipping",
-      "content": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\nThank you,\nApex Transport Solutions 1",
+      "content": "Dear Recipient,\n\n&nbsp;\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\n&nbsp;\n\nThank you,\n\n&nbsp;\n\nApex Transport Solutions 1",
       "sender": {
         "name": "Apex Transport Solutions 1",
         "email": "contact@greenlinelogistics.com",
@@ -2299,7 +2299,7 @@ export default {
           "url": "https://example.com/attachments/dol947k4vmkddqdwg38roe.pdf"
         }
       ],
-      "preview": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please...",
+      "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
       "threadId": "7sbcjvc8qwhm7jvipriykm",
       "labels": [
         "inbox",
@@ -2310,7 +2310,7 @@ export default {
     {
       "id": "fknot2cfqvpickz6jhsvs8",
       "subject": "Rate Confirmation - Load #L-710406",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-710406. Pickup: Los Angeles, VA - Delivery: Philadelphia, AZ. Total Rate: $3029.97.\n\nRegards,\nReliable Haulers",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-710406. Pickup: Los Angeles, VA - Delivery: Philadelphia, AZ. Total Rate: $3029.97.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nReliable Haulers",
       "sender": {
         "name": "Reliable Haulers",
         "email": "contact@greenlinelogistics.com",
@@ -2337,7 +2337,7 @@ export default {
           "url": "https://example.com/attachments/jjcof7qmpnjksy615up96e.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-710406. Pickup: Los Angeles,...",
+      "preview": "Please find attached the rate confirmation for Load #L-710406. Pickup: Los Angeles,...",
       "threadId": "g243q99bhsaynaxmyivo7",
       "labels": [
         "inbox",
@@ -2347,7 +2347,7 @@ export default {
     {
       "id": "nvkygduh36ofdcchagu3cn",
       "subject": "Rate Confirmation - Load #L-606935",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-606935. Pickup: Philadelphia, NC - Delivery: Dallas, IN. Total Rate: $3245.06.\n\nRegards,\nBlue Sky Carriers 2",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-606935. Pickup: Philadelphia, NC - Delivery: Dallas, IN. Total Rate: $3245.06.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nBlue Sky Carriers 2",
       "sender": {
         "name": "Blue Sky Carriers 2",
         "email": "contact@greenlinelogistics.com",
@@ -2374,7 +2374,7 @@ export default {
           "url": "https://example.com/attachments/87nmybiuf5yta1keodf19c.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-606935. Pickup: Philadelphia...",
+      "preview": "Please find attached the rate confirmation for Load #L-606935. Pickup: Philadelphia...",
       "threadId": "2b3t9uszo8ycry5n2neh3t",
       "labels": [
         "inbox",
@@ -2414,7 +2414,7 @@ export default {
     {
       "id": "pziusmyb3zmn5mvdxw8",
       "subject": "Important: Insurance Document Request - Green Line Logistics",
-      "content": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\nThank you,\nApex Transport Solutions 1",
+      "content": "Dear Recipient,\n\n&nbsp;\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\n&nbsp;\n\nThank you,\n\n&nbsp;\n\nApex Transport Solutions 1",
       "sender": {
         "name": "Apex Transport Solutions 1",
         "email": "contact@greenlinelogistics.com",
@@ -2441,7 +2441,7 @@ export default {
           "url": "https://example.com/attachments/naf45ohj86ipbxz89d55or.pdf"
         }
       ],
-      "preview": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please...",
+      "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
       "threadId": "m69ncz5tvkc3w8ftns55xp",
       "labels": [
         "inbox",
@@ -2452,7 +2452,7 @@ export default {
     {
       "id": "bowcfrmknrkr0mxwv2ft",
       "subject": "Important: Insurance Document Request - Green Line Logistics",
-      "content": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\nThank you,\nReliable Haulers",
+      "content": "Dear Recipient,\n\n&nbsp;\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\n&nbsp;\n\nThank you,\n\n&nbsp;\n\nReliable Haulers",
       "sender": {
         "name": "Reliable Haulers",
         "email": "contact@greenlinelogistics.com",
@@ -2479,7 +2479,7 @@ export default {
           "url": "https://example.com/attachments/313tzpm2x4xkgfeqk4sjol.pdf"
         }
       ],
-      "preview": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please...",
+      "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
       "threadId": "vxo76ttof6hu417bj4cdp",
       "labels": [
         "inbox",
@@ -2490,7 +2490,7 @@ export default {
     {
       "id": "h9s5oq7bufsy04oj0szphs",
       "subject": "Rate Confirmation - Load #L-906435",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-906435. Pickup: Houston, FL - Delivery: San Antonio, MT. Total Rate: $4843.67.\n\nRegards,\nBlue Sky Carriers 2",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-906435. Pickup: Houston, FL - Delivery: San Antonio, MT. Total Rate: $4843.67.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nBlue Sky Carriers 2",
       "sender": {
         "name": "Blue Sky Carriers 2",
         "email": "contact@greenlinelogistics.com",
@@ -2517,7 +2517,7 @@ export default {
           "url": "https://example.com/attachments/2n96mk7lh4kqxnwqwkdik.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-906435. Pickup: Houston, FL ...",
+      "preview": "Please find attached the rate confirmation for Load #L-906435. Pickup: Houston, FL ...",
       "threadId": "d3qgjb0tywjxryx15ux72r",
       "labels": [
         "inbox",
@@ -2527,7 +2527,7 @@ export default {
     {
       "id": "wh7o5rj6dpt67fysdjq3",
       "subject": "Rate Confirmation - Load #L-710406",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-710406. Pickup: Los Angeles, VA - Delivery: Philadelphia, AZ. Total Rate: $3029.97.\n\nRegards,\nBlue Sky Carriers 2",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-710406. Pickup: Los Angeles, VA - Delivery: Philadelphia, AZ. Total Rate: $3029.97.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nBlue Sky Carriers 2",
       "sender": {
         "name": "Blue Sky Carriers 2",
         "email": "contact@greenlinelogistics.com",
@@ -2554,7 +2554,7 @@ export default {
           "url": "https://example.com/attachments/570w010rv6qb7sz332hp8.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-710406. Pickup: Los Angeles,...",
+      "preview": "Please find attached the rate confirmation for Load #L-710406. Pickup: Los Angeles,...",
       "threadId": "803261457xydq808iqon5",
       "labels": [
         "inbox",
@@ -2564,7 +2564,7 @@ export default {
     {
       "id": "qd5uuajk7hc67rps0uweth",
       "subject": "Rate Confirmation - Load #L-880876",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-880876. Pickup: San Diego, NH - Delivery: Phoenix, SD. Total Rate: $4153.76.\n\nRegards,\nApex Transport Solutions 1",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-880876. Pickup: San Diego, NH - Delivery: Phoenix, SD. Total Rate: $4153.76.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nApex Transport Solutions 1",
       "sender": {
         "name": "Apex Transport Solutions 1",
         "email": "contact@greenlinelogistics.com",
@@ -2591,7 +2591,7 @@ export default {
           "url": "https://example.com/attachments/iefqvlur9hysdqpfu2yx.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-880876. Pickup: San Diego, N...",
+      "preview": "Please find attached the rate confirmation for Load #L-880876. Pickup: San Diego, N...",
       "threadId": "dtbwdp6rckis9ftoyrdvp",
       "labels": [
         "inbox",
@@ -2601,7 +2601,7 @@ export default {
     {
       "id": "a22tccz5owa7uvuwpyafvh",
       "subject": "Important: Insurance Document Request - Apex Transport Solutions",
-      "content": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\nThank you,\nReliable Haulers",
+      "content": "Dear Recipient,\n\n&nbsp;\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\n&nbsp;\n\nThank you,\n\n&nbsp;\n\nReliable Haulers",
       "sender": {
         "name": "Reliable Haulers",
         "email": "contact@greenlinelogistics.com",
@@ -2628,7 +2628,7 @@ export default {
           "url": "https://example.com/attachments/t6jbtlcw3e7ga4w7cwzrk.pdf"
         }
       ],
-      "preview": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please...",
+      "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
       "threadId": "b7iydy3u39vc8ux2mn0u",
       "labels": [
         "inbox",
@@ -2639,7 +2639,7 @@ export default {
     {
       "id": "zxqw13ffvfknwcryfiyqf",
       "subject": "Important: Insurance Document Request - Cargo Masters",
-      "content": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\nThank you,\nBlue Sky Carriers 2",
+      "content": "Dear Recipient,\n\n&nbsp;\n\nWe require an updated copy of your Certificate of Insurance for our records. Please provide it as soon as possible to ensure compliance.\n\n&nbsp;\n\nThank you,\n\n&nbsp;\n\nBlue Sky Carriers 2",
       "sender": {
         "name": "Blue Sky Carriers 2",
         "email": "contact@greenlinelogistics.com",
@@ -2666,7 +2666,7 @@ export default {
           "url": "https://example.com/attachments/zel0ewwwwwnepi6kttuabd.pdf"
         }
       ],
-      "preview": "Dear Recipient,\n\nWe require an updated copy of your Certificate of Insurance for our records. Please...",
+      "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
       "threadId": "gq8b9zl3obsrbbih772js",
       "labels": [
         "inbox",
@@ -2677,7 +2677,7 @@ export default {
     {
       "id": "0w94rvib81e6ca8yy994ha",
       "subject": "Rate Confirmation - Load #L-855963",
-      "content": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-855963. Pickup: New York, VT - Delivery: San Diego, IL. Total Rate: $4080.18.\n\nRegards,\nApex Transport Solutions 1",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the rate confirmation for Load #L-855963. Pickup: New York, VT - Delivery: San Diego, IL. Total Rate: $4080.18.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nApex Transport Solutions 1",
       "sender": {
         "name": "Apex Transport Solutions 1",
         "email": "contact@greenlinelogistics.com",
@@ -2704,7 +2704,7 @@ export default {
           "url": "https://example.com/attachments/5of7lclqtdo8mk0gbugm8o.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the rate confirmation for Load #L-855963. Pickup: New York, VT...",
+      "preview": "Please find attached the rate confirmation for Load #L-855963. Pickup: New York, VT...",
       "threadId": "x1ge9dstba93i9a4753b9o",
       "labels": [
         "inbox",
@@ -2716,7 +2716,7 @@ export default {
     {
       "id": "yzvgqcwo6owi4kq9nawnq",
       "subject": "Proof of Delivery - Load #L-833052",
-      "content": "Dear Partner,\n\nPlease find attached the Proof of Delivery (POD) for Load #L-833052, delivered on 7/2/2025. Payment terms as agreed.\n\nRegards,\n[Your Company Name]",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the Proof of Delivery (POD) for Load #L-833052, delivered on 7/2/2025. Payment terms as agreed.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -2743,7 +2743,7 @@ export default {
           "url": "https://example.com/attachments/q27xoweizptfj7xty93e2e.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the Proof of Delivery (POD) for Load #L-833052, delivered on 7...",
+      "preview": "Please find attached the Proof of Delivery (POD) for Load #L-833052, delivered on 7...",
       "threadId": "361hg5dz6xqqksobvhv3n",
       "labels": [
         "sent",
@@ -2753,7 +2753,7 @@ export default {
     {
       "id": "56gott6j59gkyb3e0oleon",
       "subject": "Re: Rate Confirmation - Load #L-228843",
-      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-228843. Our driver is assigned and ready.\n\nBest regards,\n[Your Company Name]",
+      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-228843. Our driver is assigned and ready.\n\n&nbsp;\n\nBest regards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -2790,7 +2790,7 @@ export default {
     {
       "id": "x71aw5ij12v9ttlglklsg",
       "subject": "Re: Rate Confirmation - Load #L-833052",
-      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-833052. Our driver is assigned and ready.\n\nBest regards,\n[Your Company Name]",
+      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-833052. Our driver is assigned and ready.\n\n&nbsp;\n\nBest regards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -2827,7 +2827,7 @@ export default {
     {
       "id": "cyxhqbdox3jh3in7btuu8",
       "subject": "Proof of Delivery - Load #L-606935",
-      "content": "Dear Partner,\n\nPlease find attached the Proof of Delivery (POD) for Load #L-606935, delivered on 7/6/2025. Payment terms as agreed.\n\nRegards,\n[Your Company Name]",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the Proof of Delivery (POD) for Load #L-606935, delivered on 7/6/2025. Payment terms as agreed.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -2854,7 +2854,7 @@ export default {
           "url": "https://example.com/attachments/sk5oc4vp97p9tmbqy1hywk.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the Proof of Delivery (POD) for Load #L-606935, delivered on 7...",
+      "preview": "Please find attached the Proof of Delivery (POD) for Load #L-606935, delivered on 7...",
       "threadId": "o5jank3xgclvh6ygjq1ocb",
       "labels": [
         "sent",
@@ -2864,7 +2864,7 @@ export default {
     {
       "id": "nkvm8sc0ee8qajrc2m1ij",
       "subject": "Proof of Delivery - Load #L-301968",
-      "content": "Dear Partner,\n\nPlease find attached the Proof of Delivery (POD) for Load #L-301968, delivered on 7/14/2025. Payment terms as agreed.\n\nRegards,\n[Your Company Name]",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the Proof of Delivery (POD) for Load #L-301968, delivered on 7/14/2025. Payment terms as agreed.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -2891,7 +2891,7 @@ export default {
           "url": "https://example.com/attachments/tnwyjanfignd34shojenxn.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the Proof of Delivery (POD) for Load #L-301968, delivered on 7...",
+      "preview": "Please find attached the Proof of Delivery (POD) for Load #L-301968, delivered on 7...",
       "threadId": "68bt18lwuekowt8uh249x",
       "labels": [
         "sent",
@@ -2901,7 +2901,7 @@ export default {
     {
       "id": "rex2i5ro3p7m6u57jo7v4p",
       "subject": "Re: Rate Confirmation - Load #L-922013",
-      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-922013. Our driver is assigned and ready.\n\nBest regards,\n[Your Company Name]",
+      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-922013. Our driver is assigned and ready.\n\n&nbsp;\n\nBest regards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -2968,7 +2968,7 @@ export default {
     {
       "id": "og8zrl7ujwc0s8erfs96",
       "subject": "Re: Insurance Documents / Compliance Update",
-      "content": "Hello,\n\nAttached is the updated Certificate of Insurance as requested. Please let us know if anything else is needed.\n\nThank you,\n[Your Company Name]",
+      "content": "Hello,\n\nAttached is the updated Certificate of Insurance as requested. Please let us know if anything else is needed.\n\n&nbsp;\n\nThank you,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -3005,7 +3005,7 @@ export default {
     {
       "id": "au4qpj446cggdgypyih7mt",
       "subject": "Proof of Delivery - Load #L-906435",
-      "content": "Dear Partner,\n\nPlease find attached the Proof of Delivery (POD) for Load #L-906435, delivered on 6/29/2025. Payment terms as agreed.\n\nRegards,\n[Your Company Name]",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the Proof of Delivery (POD) for Load #L-906435, delivered on 6/29/2025. Payment terms as agreed.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -3032,7 +3032,7 @@ export default {
           "url": "https://example.com/attachments/l1bww40uvpqhtvp6bcp7jp.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the Proof of Delivery (POD) for Load #L-906435, delivered on 6...",
+      "preview": "Please find attached the Proof of Delivery (POD) for Load #L-906435, delivered on 6...",
       "threadId": "rtpjv3px99gnka9l1wna0q",
       "labels": [
         "sent",
@@ -3072,7 +3072,7 @@ export default {
     {
       "id": "4oqr1rrqcbswr4ogd4i9ya",
       "subject": "Re: Rate Confirmation - Load #L-926580",
-      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-926580. Our driver is assigned and ready.\n\nBest regards,\n[Your Company Name]",
+      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-926580. Our driver is assigned and ready.\n\n&nbsp;\n\nBest regards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -3109,7 +3109,7 @@ export default {
     {
       "id": "prj3av4dt6aombbowl8xpm",
       "subject": "Re: Rate Confirmation - Load #L-301968",
-      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-301968. Our driver is assigned and ready.\n\nBest regards,\n[Your Company Name]",
+      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-301968. Our driver is assigned and ready.\n\n&nbsp;\n\nBest regards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -3146,7 +3146,7 @@ export default {
     {
       "id": "n9p8sibwda8laahy2vmmc",
       "subject": "Re: Rate Confirmation - Load #L-380667",
-      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-380667. Our driver is assigned and ready.\n\nBest regards,\n[Your Company Name]",
+      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-380667. Our driver is assigned and ready.\n\n&nbsp;\n\nBest regards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -3183,7 +3183,7 @@ export default {
     {
       "id": "ppt3t4udq74xt7fg47i5p",
       "subject": "Proof of Delivery - Load #L-737385",
-      "content": "Dear Partner,\n\nPlease find attached the Proof of Delivery (POD) for Load #L-737385, delivered on 7/14/2025. Payment terms as agreed.\n\nRegards,\n[Your Company Name]",
+      "content": "Dear Partner,\n\n&nbsp;\n\nPlease find attached the Proof of Delivery (POD) for Load #L-737385, delivered on 7/14/2025. Payment terms as agreed.\n\n&nbsp;\n\nRegards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",
@@ -3210,7 +3210,7 @@ export default {
           "url": "https://example.com/attachments/bxkuizy64pkhdm3gfm8ea.pdf"
         }
       ],
-      "preview": "Dear Partner,\n\nPlease find attached the Proof of Delivery (POD) for Load #L-737385, delivered on 7...",
+      "preview": "Please find attached the Proof of Delivery (POD) for Load #L-737385, delivered on 7...",
       "threadId": "ky41yz4gynqmnncdus3kd",
       "labels": [
         "sent",
@@ -3220,7 +3220,7 @@ export default {
     {
       "id": "iyu4s9hg8kgk45gx68sxo",
       "subject": "Re: Rate Confirmation - Load #L-737385",
-      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-737385. Our driver is assigned and ready.\n\nBest regards,\n[Your Company Name]",
+      "content": "Confirming receipt and acceptance of the rate confirmation for Load #L-737385. Our driver is assigned and ready.\n\n&nbsp;\n\nBest regards,\n\n&nbsp;\n\nThe iTruckr Team",
       "sender": {
         "name": "iTruckr (me)",
         "email": "dispatcher@mycompany.com",

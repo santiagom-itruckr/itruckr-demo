@@ -213,9 +213,9 @@ function ProcessArea() {
           if (retryCount < maxRetries) {
             retryCount++;
             console.log(
-              `Retrying after error in 30 seconds... (${retryCount}/${maxRetries})`
+              `Retrying after error in 15 seconds... (${retryCount}/${maxRetries})`
             );
-            setTimeout(callApiWithRetry, 30000);
+            setTimeout(callApiWithRetry, 15000);
           } else {
             console.error('Max retries reached after errors');
           }

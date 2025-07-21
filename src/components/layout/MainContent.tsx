@@ -1,4 +1,5 @@
 import { Chat } from '@/components/pages/Chat';
+import { Dashboard } from '@/components/pages/Dashboard';
 import { Email } from '@/components/pages/Email';
 import { ITruckr } from '@/components/pages/ITruckr';
 import { Loads } from '@/components/pages/Loads';
@@ -13,6 +14,8 @@ export function MainContent() {
 
   const renderPage = () => {
     switch (activePage) {
+      case 'dashboard':
+        return <Dashboard />;
       case 'iTruckr':
         return <ITruckr />;
       case 'loadboard':
@@ -28,7 +31,7 @@ export function MainContent() {
       case 'email':
         return <Email />;
       default:
-        return <ITruckr />;
+        return <Dashboard />;
     }
   };
 

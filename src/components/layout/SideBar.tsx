@@ -1,5 +1,5 @@
 import {
-  CreditCard,
+  BarChart3,
   House,
   LogOut,
   Mail,
@@ -28,28 +28,24 @@ import {
 import { useNavigation } from '@/contexts/NavigationContext';
 import { cn } from '@/lib/utils';
 
+import { useAuth } from '../../contexts/AuthContext';
 import Logo from '../Logo';
 
 const navItems = [
+  { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
   { id: 'itruckr', label: 'ITruckr', icon: House },
   { id: 'email', label: 'Email', icon: Mail },
   { id: 'chat', label: 'Chat', icon: MessageCircle },
   { id: 'loads', label: 'Loads', icon: Truck },
   { id: 'loadboard', label: 'Loadboard', icon: MapPinned },
   { id: 'registration', label: 'Registration', icon: Users },
-  { id: 'payments', label: 'Payments', icon: CreditCard },
 ] as const;
-
-const mockUser = {
-  name: 'John Smith',
-  role: 'Administrator',
-  avatar: '',
-  initials: 'JS',
-};
 
 export function SideBar() {
   const { activePage, setActivePage, sidebarCollapsed, setSidebarCollapsed } =
     useNavigation();
+  const { logout, currentUser } = useAuth()
+
   const [isDesktop, setIsDesktop] = useState(false);
 
   // Memoized styles
@@ -232,9 +228,9 @@ export function SideBar() {
                     )}
                   >
                     <Avatar className='h-8 w-8 flex-shrink-0'>
-                      <AvatarImage src={mockUser.avatar} alt={mockUser.name} />
+                      <AvatarImage src={currentUser?.profilePicture} alt={currentUser?.name} />
                       <AvatarFallback className='bg-custom-primary-accent text-black text-xs'>
-                        {mockUser.initials}
+                        {currentUser?.initials}
                       </AvatarFallback>
                     </Avatar>
                     {!sidebarCollapsed && (
@@ -247,10 +243,10 @@ export function SideBar() {
                         )}
                       >
                         <span className='text-sm font-medium text-absolute-gray-200 whitespace-nowrap truncate max-w-full'>
-                          {mockUser.name}
+                          {currentUser?.name}
                         </span>
                         <span className='text-xs text-absolute-gray-400 whitespace-nowrap truncate max-w-full opacity-75'>
-                          {mockUser.role}
+                          {currentUser?.role}
                         </span>
                       </div>
                     )}
@@ -261,8 +257,8 @@ export function SideBar() {
             {sidebarCollapsed && (
               <TooltipContent side='right' sideOffset={16}>
                 <div className='text-center'>
-                  <div className='font-medium'>{mockUser.name}</div>
-                  <div className='text-xs opacity-75'>{mockUser.role}</div>
+                  <div className='font-medium'>{currentUser?.name}</div>
+                  <div className='text-xs opacity-75'>{currentUser?.role}</div>
                 </div>
               </TooltipContent>
             )}
@@ -278,10 +274,10 @@ export function SideBar() {
               <>
                 <div className='px-2 py-1.5 text-sm'>
                   <div className='font-medium text-custom-text-primary'>
-                    {mockUser.name}
+                    {currentUser?.name}
                   </div>
                   <div className='text-xs text-custom-text-secondary'>
-                    {mockUser.role}
+                    {currentUser?.role}
                   </div>
                 </div>
                 <DropdownMenuSeparator className='bg-custom-border' />
@@ -296,7 +292,10 @@ export function SideBar() {
               <span className='ml-2'>Settings</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator className='bg-custom-border' />
-            <DropdownMenuItem className='text-custom-error hover:bg-custom-surface-hover focus:bg-custom-surface-hover'>
+            <DropdownMenuItem
+              className='cursor-pointer text-custom-error hover:bg-custom-surface-hover focus:bg-custom-surface-hover'
+              onClick={() => logout()}
+            >
               <LogOut className='h-4 w-4' aria-hidden='true' />
               <span className='ml-2'>Logout</span>
             </DropdownMenuItem>

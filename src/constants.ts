@@ -8,36 +8,49 @@ export const LOAD_PROCESS_STEP_1_AGENT_MESSAGE = {
   senderId: 'ai_agent',
   senderType: 'ai_agent',
   timestamp: getCurrentIsoDate(),
-  content: `## Current Load Details
+  content: `## Load Search Configuration
 
-Here are the details of booked load:
+Your load search has been configured with the following parameters:
 
-### ℹ️ General Information
+### 💰 Rate Requirements
+| Parameter | Value |
+|-----------|-------|
+| **Expected Rate** | $2.50/mile |
+| **Minimum Rate** | $1.90/mile |
+
+### 🚛 Equipment & Capacity
 | Parameter | Value |
 |---|---|
-| **Load Number** | 31724985 |
-| **Load Status** | ACTIVE |
-| **Miles** | 760 |
-| **Total Load Value** | $1521 |
-| **Weight of the Load** | 46,600 lbs |
-| **Broker Name** | PLS |
-| **Trailer Type** | OTHER |
+| **Truck Type** | Dry Van |
+| **Max Weight** | 48.0000 lbs |
+| **Insurance Status** | ✅ Valid |
 
-### ⬆️ Pickup Details
+### ⏰ Availability & Schedule
 | Parameter | Value |
 |---|---|
-| **Contact** | RTW LOGISTICS INC |
-| **Pickup Date** | July 25, 2025 |
-| **Pickup Window** | 08:00 - 15:00 |
-| **Address** | 8203 Fischer Road, Baltimore, MD, 21222 |
+| **Remaining Hours** | 12 hours |
+| **Max Distance** | 700 miles |
+| **Weekend Delivery** | ✅ Yes |
+| **Overnight Loads** | ✅ Yes |
+| **Max Layover** | 24 hours |
 
-### ⬇️ Delivery Details
+### 📍 Location Preferences
 | Parameter | Value |
 |---|---|
-| **Contact** | Tsa Processing - Montgomery |
-| **Delivery Date** | July 30, 2025 |
-| **Delivery Window** | 08:00 - 15:00 |
-| **Address** | 325 S Route 31 Suite G103 Building G, Montgomery, IL, 60538 |`,
+| **Current Location** | New Castle County, DE |
+| **Preferred Destinations** | OH, MD, IN, IL |
+| **Banned States** | TX, LA |
+
+### ⚙️ Operational Preferences
+| Parameter | Value |
+|---|---|
+| **Loading Assistance** | Not Required |
+| **Preferred Pickup Times** | 08:00-12:00 |
+| **Preferred Delivery Times** | 09:00-17:00 |
+
+---
+
+**Ready to search for loads matching these criteria. Please approve to proceed with the load search.**`,
 } as ChatMessage;
 
 export const LOAD_PROCESS_STEP_3_AGENT_MESSAGE = {
@@ -52,32 +65,27 @@ Here are the details of booked load:
 ### ℹ️ General Information
 | Parameter | Value |
 |---|---|
-| **Load Number** | 31724985 |
-| **Load Status** | ACTIVE |
 | **Miles** | 760 |
-| **Total Load Value** | $1521 |
+| **Total Load Value** | $1600 |
 | **Weight of the Load** | 46,600 lbs |
 | **Broker Name** | PLS |
-| **Trailer Type** | OTHER |
 
 ### ⬆️ Pickup Details
 | Parameter | Value |
 |---|---|
-| **Contact** | RTW LOGISTICS INC |
-| **Pickup Date** | July 25, 2025 |
+| **Pickup Date** | 07/24/2025 |
 | **Pickup Window** | 08:00 - 15:00 |
-| **Address** | 8203 Fischer Road, Baltimore, MD, 21222 |
+| **Address** | Baltimore, MD, 21222 |
 
 ### ⬇️ Delivery Details
 | Parameter | Value |
 |---|---|
-| **Contact** | Tsa Processing - Montgomery |
-| **Delivery Date** | July 30, 2025 |
+| **Delivery Date** | 07/25/2025 |
 | **Delivery Window** | 08:00 - 15:00 |
-| **Address** | 325 S Route 31 Suite G103 Building G, Montgomery, IL, 60538 |`,
+| **Address** | Montgomery, IL, 60538 |`,
 } as ChatMessage;
 
-export const LOAD_PROCESS_STEP_3_AGENT_CHAT_MESSAGE = {
+export const LOAD_PROCESS_STEP_5_AGENT_CHAT_MESSAGE = {
   senderId: 'ai_agent',
   senderType: 'ai_agent',
   content: `Hi Camilo,
@@ -89,18 +97,18 @@ You’ve been assigned a new load. Please review the details below
 * **Commodity:** 3 Stainless Steel Coils
 * **Weight:** 46600.00 Lbs
 * **Miles:** 760.00
-* **Rate:** $1521.00
+* **Rate:** $1600.00
 
 **⬆️ Pickup Details**
 * **Contact:** RTW LOGISTICS INC
 * **Address:** 8203 Fischer Road, BALTIMORE, MD, 21222
-* **Date:** 07/07/2025 08:00
+* **Date:** 07/24/2025 08:00
 * **Pickup Window:** 8:00 - 15:00
 
 **⬇️ Delivery Details**
 * **Name:** Tsa Processing - Montgomery
 * **Address:** 325 S Route 31, Suite G103 Building G, MONTGOMERY, IL, 60538
-* **Delivery Date:** 07/08/2025 15:00
+* **Delivery Date:** 07/25/2025 15:00
 * **Delivery Window:** 08:00 - 15:00
 
 **📋 Aditional Information**
@@ -211,19 +219,19 @@ Refer to the details of the Rate Confirmation:
 
 Invoice Number: 31724985
 
-Total: 1521.00
+Total: 1600.00
 
 Description: 3 Stainless Steel Coils
 
-Rate: 1521.00
+Rate: 1600.00
 
 Quantity: 3
 
 Facility: RTW LOGISTICS INC
 
-Earliest: 07/07/2025 08:00
+Earliest: 07/24/2025 08:00
 
-Latest: 07/07/2025 15:00
+Latest: 07/24/2025 15:00
 
 Origin: 8203 Fischer Road, Baltimore, Maryland, 21222
 
@@ -233,7 +241,7 @@ Size: Flatbed
 
 MC: 4132509
 
-Dispatcher: CAROLINA ESPINOSA ARAMBURO
+Dispatcher: Maya Mondragón
 
 Phone: (754) 305-9234`,
   sender: { name: 'iTruckr', email: 'inbound@itruckrapp.com' },
@@ -283,6 +291,90 @@ export const EMAIL_POD_OUTBOUND_STEP_10 = {
   threadId: generateId(),
   labels: ['Load'],
 } as Email;
+
+// LOAD PROCESS # 2
+
+export const LOAD_2_PROCESS_STEP_1_AGENT_MESSAGE = {
+  id: '001',
+  senderId: 'ai_agent',
+  senderType: 'ai_agent',
+  timestamp: getCurrentIsoDate(),
+  content: `## Load Search Configuration
+
+Your load search has been configured with the following parameters:
+
+### 💰 Rate Requirements
+| Parameter | Value |
+|-----------|-------|
+| **Expected Rate** | $2.50/mile |
+| **Minimum Rate** | $1.90/mile |
+
+### 🚛 Equipment & Capacity
+| Parameter | Value |
+|---|---|
+| **Truck Type** | Dry Van |
+| **Max Weight** | 48.0000 lbs |
+| **Insurance Status** | ✅ Valid |
+
+### ⏰ Availability & Schedule
+| Parameter | Value |
+|---|---|
+| **Remaining Hours** | 12 hours |
+| **Max Distance** | 700 miles |
+| **Weekend Delivery** | ✅ Yes |
+| **Overnight Loads** | ✅ Yes |
+| **Max Layover** | 24 hours |
+
+### 📍 Location Preferences
+| Parameter | Value |
+|---|---|
+| **Current Location** | New Castle County, DE |
+| **Preferred Destinations** | OH, MD, IN, IL |
+| **Banned States** | TX, LA |
+
+### ⚙️ Operational Preferences
+| Parameter | Value |
+|---|---|
+| **Loading Assistance** | Not Required |
+| **Preferred Pickup Times** | 08:00-12:00 |
+| **Preferred Delivery Times** | 09:00-17:00 |
+
+---
+
+**Ready to search for loads matching these criteria. Please approve to proceed with the load search.**`,
+} as ChatMessage;
+
+export const LOAD_2_PROCESS_STEP_3_AGENT_MESSAGE = {
+  id: '002',
+  senderId: 'ai_agent',
+  senderType: 'ai_agent',
+  timestamp: getCurrentIsoDate(),
+  content: `## Current Load Details
+
+Here are the details of booked load:
+
+### ℹ️ General Information
+| Parameter | Value |
+|---|---|
+| **Miles** | 760 |
+| **Total Load Value** | $1600 |
+| **Weight of the Load** | 46,600 lbs |
+| **Broker Name** | PLS |
+
+### ⬆️ Pickup Details
+| Parameter | Value |
+|---|---|
+| **Pickup Date** | 07/24/2025 |
+| **Pickup Window** | 08:00 - 15:00 |
+| **Address** | Baltimore, MD, 21222 |
+
+### ⬇️ Delivery Details
+| Parameter | Value |
+|---|---|
+| **Delivery Date** | 07/25/2025 |
+| **Delivery Window** | 08:00 - 15:00 |
+| **Address** | Montgomery, IL, 60538 |`,
+} as ChatMessage;
 
 // OIL CHANGE PROCESS
 
@@ -399,9 +491,9 @@ export const LOAD_1 = {
   carrierCompanyId: 'c-001',
   factoring: false,
   rate: {
-    total: 2450,
+    total: 2350,
     currency: 'USD',
-    ratePerMile: 2.45,
+    ratePerMile: 2.26,
   },
   paymentTerms: 'Net 30',
   weightLbs: 45000,
@@ -426,15 +518,15 @@ export const LOAD_2 = {
     zipCode: '60538',
     address: '325 S Route 31 Suite G103 Building G',
   },
-  pickUpDate: 'July 25, 2025',
-  deliveryDate: 'July 30, 2025',
+  pickUpDate: 'July 24, 2025',
+  deliveryDate: 'July 25, 2025',
   brokerCompanyId: 'B-001',
   carrierCompanyId: 'c-001',
   factoring: false,
   rate: {
-    total: 1521,
+    total: 1600,
     currency: 'USD',
-    ratePerMile: 1.96,
+    ratePerMile: 2.15,
   },
   weightLbs: 46600,
 } as Load;
@@ -451,23 +543,21 @@ export const LOAD_3 = {
     zipCode: "26836",
   },
   dropOffLocation: {
-    address: "2216 Main St",
-    city: "Dallas",
-    state: "TX",
-    zipCode: "15580",
+    address: "1461 Moreland Ave SE",
+    city: "Atlanta",
+    state: "GA",
+    zipCode: "30316",
   },
-  pickUpDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // Tomorrow
-  deliveryDate: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(), // Day after tomorrow
+  pickUpDate: 'July 26, 2025',
+  deliveryDate: 'July 28, 2025',
   brokerCompanyId: 'B-001',
   carrierCompanyId: 'c-001',
   factoring: false,
   rate: {
-    total: 2450,
+    total: 1440,
     currency: 'USD',
-    ratePerMile: 2.45,
+    ratePerMile: 2,
   },
-  paymentTerms: 'Net 30',
   weightLbs: 45000,
-  cargoDescription: 'Electronics',
-  specialInstructions: 'Handle with care',
+  cargoDescription: 'Food',
 } as Load;

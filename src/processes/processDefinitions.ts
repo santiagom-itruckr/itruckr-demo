@@ -32,8 +32,8 @@ import {
   LOAD_PROCESS_STEP_13_DRIVER_CHAT_MESSAGE_1,
   LOAD_PROCESS_STEP_13_DRIVER_CHAT_MESSAGE_2,
   LOAD_PROCESS_STEP_1_AGENT_MESSAGE,
-  LOAD_PROCESS_STEP_3_AGENT_CHAT_MESSAGE,
   LOAD_PROCESS_STEP_3_AGENT_MESSAGE,
+  LOAD_PROCESS_STEP_5_AGENT_CHAT_MESSAGE,
   LOAD_PROCESS_STEP_6_DRIVER_CHAT_MESSAGE,
   OIL_CHANGE_STEP_1_AGENT_CHAT_MESSAGE,
   OIL_CHANGE_STEP_2_AGENT_CHAT_MESSAGE,
@@ -198,7 +198,7 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
         {
           entityType: 'conversation',
           entityId: '',
-          updateData: LOAD_PROCESS_STEP_3_AGENT_CHAT_MESSAGE,
+          updateData: LOAD_PROCESS_STEP_5_AGENT_CHAT_MESSAGE,
         },
       ],
       startedAt: '',

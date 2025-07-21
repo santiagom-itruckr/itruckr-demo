@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 
 type Page =
+  | 'dashboard'
   | 'iTruckr'
   | 'loadboard'
   | 'chat'
@@ -25,7 +26,7 @@ export function NavigationProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [activePage, setActivePage] = useState<Page>('iTruckr');
+  const [activePage, setActivePage] = useState<Page>('dashboard');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (

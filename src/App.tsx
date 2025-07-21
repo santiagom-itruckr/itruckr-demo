@@ -4,6 +4,7 @@ import { MainContent } from '@/components/layout/MainContent';
 import { SideBar } from '@/components/layout/SideBar';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { NavigationProvider } from '@/contexts/NavigationContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import './App.css';
@@ -17,10 +18,12 @@ import { useNotificationsStore } from '@/stores/notificationsStore';
 import { useTrucksStore } from '@/stores/trucksStore';
 
 import { TitleBar } from './components/layout/TitleBar';
+import LoginPage from './components/LoginPage';
 import { DRIVER_1, LOAD_1, TRUCK_1 } from './constants';
 import { NotificationDefinitions } from './notifications/notificationDefinitions';
 
-function App() {
+function AppContent() {
+  const { isAuthenticated } = useAuth();
   const { addNotification } = useNotificationsStore();
   const { addLoad } = useLoadsStore();
   const { addDriver, updateDriver } = useDriversStore();
@@ -29,6 +32,8 @@ function App() {
   const { addConversation } = useConversationsStore();
 
   useEffect(() => {
+    if (!isAuthenticated) return;
+
     addCompany({
       id: 'B-001',
       name: 'ABC Logistics',
@@ -75,20 +80,32 @@ function App() {
 
     // Create a demo conversation for John Smith (driverId: 'D-158')
     addConversation('D-158', [{ timestamp: new Date() }] as any);
-  }, []);
+  }, [isAuthenticated]);
+
+  if (!isAuthenticated) {
+    return <LoginPage />;
+  }
 
   return (
+    <NavigationProvider>
+      <TooltipProvider>
+        <div className='h-screen p-3 rounded-sm overflow-hidden bg-custom-background grid grid-cols-1 lg:grid-rows-[auto_1fr] lg:grid-cols-[auto_1fr]'>
+          <SideBar />
+          <TitleBar />
+          <MainContent />
+          <Toaster />
+        </div>
+      </TooltipProvider>
+    </NavigationProvider>
+  );
+}
+
+function App() {
+  return (
     <ThemeProvider>
-      <NavigationProvider>
-        <TooltipProvider>
-          <div className='h-screen p-3 rounded-sm overflow-hidden bg-custom-background grid grid-cols-1 lg:grid-rows-[auto_1fr] lg:grid-cols-[auto_1fr]'>
-            <SideBar />
-            <TitleBar />
-            <MainContent />
-            <Toaster />
-          </div>
-        </TooltipProvider>
-      </NavigationProvider>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
     </ThemeProvider>
   );
 }

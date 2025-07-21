@@ -12,7 +12,6 @@ export interface User {
   initials: string;
 }
 
-// Dummy users array
 export const dummyUsers: User[] = [
   {
     id: '1',

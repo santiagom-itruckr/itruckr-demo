@@ -59,7 +59,7 @@ function AppContent() {
     updateDriver(driver1.id, { currentLoadId: load1.id });
 
     const loadProcessNotification =
-      NotificationDefinitions.createStep2NewLoadProcess({
+      NotificationDefinitions.createNewLoadProcess({
         driver: driver1,
         truck: truck1,
         load: load1,

@@ -241,7 +241,7 @@ Size: Flatbed
 
 MC: 4132509
 
-Dispatcher: Maya Mondragón
+Dispatcher: Maya Jordan
 
 Phone: (754) 305-9234`,
   sender: { name: 'iTruckr', email: 'inbound@itruckrapp.com' },

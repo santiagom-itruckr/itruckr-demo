@@ -215,11 +215,7 @@ export function getLoadProcessSteps(step: 1 | 2): ProcessStep<LoadProcessStepNam
         'Driver has been notified and is expected to confirm the load.',
       messages: [],
       aiAgentAssigned: 'Operations Agent',
-      triggersApiCall: {
-        endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/confirmation-driver',
-        method: 'GET',
-        expect: { message: 'confirmed' },
-      },
+      awaitFor: 20000,
       updatesEntities: [
         {
           entityType: 'conversation',

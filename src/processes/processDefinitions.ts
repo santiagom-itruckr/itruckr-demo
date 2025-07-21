@@ -305,12 +305,7 @@ export function getLoadProcessSteps(step: 1 | 2): ProcessStep<LoadProcessStepNam
       status: 'pending',
       description: 'Driver has arrived at the delivery location.',
       messages: [],
-      // awaitFor: 1000,
-      triggersApiCall: {
-        endpoint: 'https://itruckrlabs.app.n8n.cloud/webhook/submitted-image',
-        method: 'GET',
-        expect: { message: 'Email POD Accepted' },
-      },
+      awaitFor: 20000,
       updatesEntities: [
         {
           entityType: 'conversation',

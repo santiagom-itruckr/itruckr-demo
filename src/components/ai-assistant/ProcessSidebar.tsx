@@ -22,6 +22,7 @@ function ProcessSidebar() {
     const title = `General Inquiry ${new Date().toLocaleTimeString()}`;
 
     const notification = addNotification({
+      step: 1,
       userId: currentUserId,
       message: 'New Inquiry Created',
       title: 'New Inquiry',
@@ -31,6 +32,7 @@ function ProcessSidebar() {
     });
 
     createCase({
+      step: 1,
       notificationId: notification.id,
       userId: currentUserId,
       type: 'load_process',

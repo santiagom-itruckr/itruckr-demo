@@ -47,6 +47,7 @@ function NotificationItem({ notification }: NotificationItemProps) {
     const caseType =
       notification.type === 'oil_change' ? 'oil_change' : 'load_process';
     const newCase = createCase({
+      step: notification.step,
       notificationId: notification.id,
       userId: notification.userId,
       type: caseType,

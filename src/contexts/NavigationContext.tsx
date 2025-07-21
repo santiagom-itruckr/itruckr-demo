@@ -1,3 +1,12 @@
+import {
+  BarChart3,
+  House,
+  Mail,
+  MapPinned,
+  MessageCircle,
+  Truck,
+  Users,
+} from 'lucide-react';
 import React, { createContext, useContext, useState } from 'react';
 
 type Page =
@@ -20,6 +29,16 @@ interface NavigationContextType {
 const NavigationContext = createContext<NavigationContextType | undefined>(
   undefined
 );
+
+export const navItems = [
+  { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+  { id: 'iTruckr', label: 'iTruckr', icon: House },
+  { id: 'email', label: 'Email', icon: Mail },
+  { id: 'chat', label: 'Chat', icon: MessageCircle },
+  { id: 'loads', label: 'Loads', icon: Truck },
+  { id: 'loadboard', label: 'Loadboard', icon: MapPinned },
+  { id: 'registration', label: 'Registration', icon: Users },
+] as const;
 
 export function NavigationProvider({
   children,

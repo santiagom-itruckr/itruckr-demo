@@ -18,6 +18,7 @@ interface NotificationsState {
 
   // Original method - still works for manual notification creation
   addNotification: (payload: {
+    step: 1 | 2;
     userId: string;
     type: NotificationType;
     title: string;
@@ -32,6 +33,7 @@ interface NotificationsState {
     userId: string,
     definition: NotificationDefinition,
     relatedEntityId: string,
+    step: 1 | 2,
     status?: NotificationStatus
   ) => Notification;
 
@@ -49,6 +51,7 @@ export const useNotificationsStore = create<NotificationsState>()(
 
       addNotification: ({
         userId,
+        step,
         type,
         title,
         message,
@@ -58,6 +61,7 @@ export const useNotificationsStore = create<NotificationsState>()(
       }) => {
         const newNotification: Notification = {
           id: generateId(),
+          step,
           userId,
           type,
           title,
@@ -74,16 +78,17 @@ export const useNotificationsStore = create<NotificationsState>()(
         return newNotification;
       },
 
-      // New method to create notifications from definitions
       addNotificationFromDefinition: (
         userId,
         definition,
         relatedEntityId,
+        step,
         status
       ) => {
         const newNotification: Notification = {
           id: generateId(),
           userId,
+          step,
           type: definition.type,
           title: definition.title,
           message: definition.message,

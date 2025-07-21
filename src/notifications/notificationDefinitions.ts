@@ -7,6 +7,7 @@ import {
 } from '../types/app';
 
 interface BaseNotificationDefinition {
+  step: 1 | 2,
   type: NotificationType;
   title: string;
   message: string;
@@ -15,6 +16,7 @@ interface BaseNotificationDefinition {
 
 export interface GenericNotificationDefinition
   extends BaseNotificationDefinition {
+  step: 1 | 2,
   type: NotificationType; // Use the actual NotificationType from your types
   title: string;
   message: string;
@@ -23,6 +25,7 @@ export interface GenericNotificationDefinition
 
 export interface NewLoadProcessNotificationDefinition
   extends BaseNotificationDefinition {
+  step: 1 | 2,
   type: 'new_load';
   title: string;
   message: string;
@@ -32,6 +35,7 @@ export interface NewLoadProcessNotificationDefinition
 
 export interface OilChangeNotificationDefinition
   extends BaseNotificationDefinition {
+  step: 1 | 2,
   type: 'oil_change';
   title: string;
   message: string;
@@ -46,12 +50,14 @@ export type NotificationDefinition =
 
 export const NotificationDefinitions = {
   createGeneric: (
+    step: 1 | 2,
     type: NotificationType,
     title: string,
     message: string,
     relatedEntityType?: EntityType
   ): GenericNotificationDefinition => {
     const notification: GenericNotificationDefinition = {
+      step,
       type,
       title,
       message,
@@ -70,6 +76,24 @@ export const NotificationDefinitions = {
     load: Load;
   }): NewLoadProcessNotificationDefinition => {
     return {
+      step: 1,
+      type: 'new_load',
+      title: `New Load for Driver ${driver.name} (${driver.id})`,
+      message: 'Driver ',
+      relatedEntityType: 'driver',
+      driverId: '',
+    };
+  },
+
+  createStep2NewLoadProcess: ({
+    driver,
+  }: {
+    driver: Driver;
+    truck: Truck;
+    load: Load;
+  }): NewLoadProcessNotificationDefinition => {
+    return {
+      step: 2,
       type: 'new_load',
       title: `New Load for Driver ${driver.name} (${driver.id})`,
       message: 'Driver ',
@@ -85,6 +109,7 @@ export const NotificationDefinitions = {
     driver: Driver;
     truck: Truck;
   }): OilChangeNotificationDefinition => ({
+    step: 1,
     type: 'oil_change',
     title: `Oil change required for Truck (${truck.id})`,
     message: `Truck (${truck.id}) currently with ${driver.name} ${driver.id} is about to reach 15.000 km since its last oil change.`,
@@ -96,6 +121,7 @@ export const NotificationDefinitions = {
 export const NotificationTemplates = {
   DRIVER_HOURS_WARNING: (driverName: string, remainingHours: number) =>
     NotificationDefinitions.createGeneric(
+      1,
       'driver_hours_warning' as NotificationType, // Replace with actual type
       'Driver Hours Warning',
       `${driverName} has ${remainingHours} driving hours remaining`,

@@ -7,7 +7,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { useNavigation } from '@/contexts/NavigationContext';
+import { navItems, useNavigation } from '@/contexts/NavigationContext';
 
 export function TitleBar() {
   const { activePage, sidebarCollapsed, setSidebarCollapsed } = useNavigation();
@@ -42,7 +42,7 @@ export function TitleBar() {
           </TooltipContent>
         </Tooltip>
         <h1 className='text-3xl font-bold text-custom-text-primary'>
-          {activePage}
+          {navItems.find(item => item.id === activePage)?.label || activePage}
         </h1>
       </div>
       <div className='text-sm text-custom-text-secondary'>

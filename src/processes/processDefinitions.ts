@@ -27,6 +27,8 @@ import {
   EMAIL_RATECON_OUTBOUND_STEP_7,
   LOAD_1,
   LOAD_2,
+  LOAD_2_PROCESS_STEP_1_AGENT_MESSAGE,
+  LOAD_2_PROCESS_STEP_3_AGENT_MESSAGE,
   LOAD_3,
   LOAD_PROCESS_STEP_13_AGENT_CHAT_MESSAGE,
   LOAD_PROCESS_STEP_13_DRIVER_CHAT_MESSAGE_1,
@@ -58,7 +60,7 @@ import {
  * Generates the initial steps for a Load Process.
  * @returns An array of ProcessStep objects specific to a Load Process.
  */
-export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
+export function getLoadProcessSteps(step: 1 | 2): ProcessStep<LoadProcessStepName>[] {
   return [
     {
       id: generateId(),
@@ -67,7 +69,7 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
       status: 'pending',
       description:
         'Driver D-158 is near their destination. A new load search can start.',
-      messages: [LOAD_PROCESS_STEP_1_AGENT_MESSAGE],
+      messages: step === 1 ? [LOAD_PROCESS_STEP_1_AGENT_MESSAGE] : [LOAD_2_PROCESS_STEP_1_AGENT_MESSAGE],
       aiAgentAssigned: 'Operations Agent',
       requiredUserInput: ['review_load_details', 'accept_or_decline'],
       nextStepOptions: [
@@ -127,7 +129,7 @@ export function getLoadProcessSteps(): ProcessStep<LoadProcessStepName>[] {
       status: 'completed',
       description:
         "A load matching the driver's preferences & location has been found and it has been booked.",
-      messages: [LOAD_PROCESS_STEP_3_AGENT_MESSAGE],
+      messages: step === 1 ? [LOAD_PROCESS_STEP_3_AGENT_MESSAGE] : [LOAD_2_PROCESS_STEP_3_AGENT_MESSAGE],
       requiredUserInput: ['review_load_details', 'accept_or_decline'],
       nextStepOptions: [
         {
@@ -521,7 +523,7 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       createsEntities: [
         {
           entityType: 'notification',
-          newEntity: NotificationDefinitions.createNewLoadProcess({
+          newEntity: NotificationDefinitions.createStep2NewLoadProcess({
             driver: DRIVER_1,
             truck: TRUCK_1,
             load: LOAD_3

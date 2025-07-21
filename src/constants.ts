@@ -328,7 +328,7 @@ Your load search has been configured with the following parameters:
 ### 📍 Location Preferences
 | Parameter | Value |
 |---|---|
-| **Current Location** | New Castle County, DE |
+| **Current Location** | Montgomery, IL |
 | **Preferred Destinations** | OH, MD, IN, IL |
 | **Banned States** | TX, LA |
 
@@ -356,24 +356,24 @@ Here are the details of booked load:
 ### ℹ️ General Information
 | Parameter | Value |
 |---|---|
-| **Miles** | 760 |
-| **Total Load Value** | $1600 |
-| **Weight of the Load** | 46,600 lbs |
+| **Miles** | 720 |
+| **Total Load Value** | $1440 |
+| **Weight of the Load** | 44,000 lbs |
 | **Broker Name** | PLS |
 
 ### ⬆️ Pickup Details
 | Parameter | Value |
 |---|---|
-| **Pickup Date** | 07/24/2025 |
+| **Pickup Date** | 07/26/2025 |
 | **Pickup Window** | 08:00 - 15:00 |
-| **Address** | Baltimore, MD, 21222 |
+| **Address** | Chicago, IL, 26836 |
 
 ### ⬇️ Delivery Details
 | Parameter | Value |
 |---|---|
-| **Delivery Date** | 07/25/2025 |
+| **Delivery Date** | 07/28/2025 |
 | **Delivery Window** | 08:00 - 15:00 |
-| **Address** | Montgomery, IL, 60538 |`,
+| **Address** | Atlanta, GA, 30316 |`,
 } as ChatMessage;
 
 // OIL CHANGE PROCESS
@@ -558,6 +558,6 @@ export const LOAD_3 = {
     currency: 'USD',
     ratePerMile: 2,
   },
-  weightLbs: 45000,
+  weightLbs: 44000,
   cargoDescription: 'Food',
 } as Load;

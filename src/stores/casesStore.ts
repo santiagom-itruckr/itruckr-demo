@@ -17,6 +17,7 @@ interface CasesState {
   selectedCaseId: string | null;
   setSelectedCase: (caseId: string | null) => void;
   createCase: (payload: {
+    step: 1 | 2
     notificationId: string;
     userId: string;
     type: CaseType;
@@ -43,6 +44,7 @@ export const useCasesStore = create<CasesState>()(
       },
 
       createCase: ({
+        step,
         notificationId,
         userId,
         type,
@@ -66,7 +68,7 @@ export const useCasesStore = create<CasesState>()(
         // Determine which process steps to use based on case type
         let initialSteps: ProcessStep[] = [];
         if (type === 'load_process') {
-          initialSteps = getLoadProcessSteps();
+          initialSteps = getLoadProcessSteps(step);
         } else if (type === 'oil_change') {
           initialSteps = getOilChangeProcessSteps();
         } else {

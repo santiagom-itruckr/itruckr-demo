@@ -358,6 +358,7 @@ export interface Notification {
   message: string;
   timestamp: string;
   status: NotificationStatus;
+  step: 1 | 2;
   relatedEntityType?: EntityType | undefined;
   relatedEntityId?: string;
   caseId?: string;

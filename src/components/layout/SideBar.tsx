@@ -1,15 +1,4 @@
-import {
-  BarChart3,
-  House,
-  LogOut,
-  Mail,
-  MapPinned,
-  MessageCircle,
-  Settings,
-  Truck,
-  User,
-  Users,
-} from 'lucide-react';
+import { LogOut, Settings, User } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -25,21 +14,11 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { useNavigation } from '@/contexts/NavigationContext';
+import { navItems, useNavigation } from '@/contexts/NavigationContext';
 import { cn } from '@/lib/utils';
 
 import { useAuth } from '../../contexts/AuthContext';
 import Logo from '../Logo';
-
-const navItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
-  { id: 'itruckr', label: 'ITruckr', icon: House },
-  { id: 'email', label: 'Email', icon: Mail },
-  { id: 'chat', label: 'Chat', icon: MessageCircle },
-  { id: 'loads', label: 'Loads', icon: Truck },
-  { id: 'loadboard', label: 'Loadboard', icon: MapPinned },
-  { id: 'registration', label: 'Registration', icon: Users },
-] as const;
 
 export function SideBar() {
   const { activePage, setActivePage, sidebarCollapsed, setSidebarCollapsed } =

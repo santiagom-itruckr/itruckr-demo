@@ -43,25 +43,20 @@ interface DashboardMetrics {
 }
 
 // Reusable Metric Card Component
-function MetricCard({ title, value, subtitle, icon: Icon, gradient, iconColor }: MetricCardProps) {
+function MetricCard({ title, value, icon: Icon, gradient, iconColor }: MetricCardProps) {
   return (
-    <Card className={`relative overflow-hidden border-0 text-start ${gradient}`}>
-      <CardContent className="flex flex-col p-6">
-        <p className="text-sm font-medium text-current/70">{title}</p>
-        <div className='flex'>
-          <div className='flex-1'>
-            <p className="text-3xl font-bold text-current">
+    <Card className={`relative overflow-hidden border-0 text-start text-absolute-black ${gradient}`}>
+      <div className="flex items-center gap-3 py-4 px-5 h-full">
+        <Icon width={40} height={40} className={iconColor} />
+        <div className='flex flex-col'>
+          <p className="text-sm">{title}</p>
+          <div className='flex flex-col flex-1'>
+            <p className="text-3xl font-bold text-current flex-1">
               {typeof value === 'number' ? value.toLocaleString() : value}
             </p>
-            {subtitle && (
-              <p className="text-xs text-current/70 mt-1">
-                {subtitle}
-              </p>
-            )}
           </div>
-          <Icon width={24} className={iconColor} />
         </div>
-      </CardContent>
+      </div>
     </Card>
   );
 }
@@ -128,9 +123,9 @@ export function Dashboard() {
   // Metric cards data
   const metricCards = [
     {
-      title: 'Messages Handled',
-      value: metrics.totalMessages,
-      icon: MessageCircle,
+      title: 'Monthly Income',
+      value: `$${metrics.monthlyIncome.toLocaleString()}`,
+      icon: DollarSign,
       gradient: 'bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900',
       iconColor: 'text-green-600',
     },
@@ -143,9 +138,9 @@ export function Dashboard() {
       iconColor: 'text-purple-600',
     },
     {
-      title: 'Monthly Income',
-      value: `$${metrics.monthlyIncome.toLocaleString()}`,
-      icon: DollarSign,
+      title: 'Messages Handled',
+      value: metrics.totalMessages,
+      icon: MessageCircle,
       gradient: 'bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-950 dark:to-yellow-900',
       iconColor: 'text-yellow-600',
     },
@@ -160,28 +155,28 @@ export function Dashboard() {
 
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="flex flex-col gap-5 h-full w-full">
       {/* Welcome Section */}
-      <Card className="border-0 shadow-lg bg-gradient-to-r from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-        <CardContent className="p-6">
-          <div className="flex items-center gap-4">
-            <Avatar className="h-16 w-16">
-              <AvatarImage src={currentUser?.profilePicture} alt={currentUser?.name} />
-              <AvatarFallback className="bg-green-accent text-black text-2xl font-bold">
-                {currentUser?.initials}
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                Welcome, {currentUser?.name}!
-              </h1>
-              <p className="text-gray-600 dark:text-gray-300">
-                {currentUser?.role} • Ready to manage your fleet operations
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+
+      <div className="flex items-center gap-4">
+        <Avatar className="h-20 w-20">
+          <AvatarImage src={currentUser?.profilePicture} alt={currentUser?.name} />
+          <AvatarFallback className="bg-green-accent text-black text-2xl font-bold">
+            {currentUser?.initials}
+          </AvatarFallback>
+        </Avatar>
+        <div className='flex flex-col justify-center gap-1 text-start h-full'>
+          <p className="leading-[10px] text-gray-900 dark:text-gray-300">
+            Welcome,
+          </p>
+          <h1 className="leading-[24px] text-2xl font-bold text-gray-900 dark:text-white">
+            {currentUser?.name}!
+          </h1>
+          <p className="text-sm text-gray-700 dark:text-gray-300">
+            {currentUser?.role}
+          </p>
+        </div>
+      </div>
 
       {/* Key Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

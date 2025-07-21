@@ -27,12 +27,6 @@ interface MetricCardProps {
   iconColor: string;
 }
 
-interface ChartData {
-  loadStatusData: Array<{ name: string; value: number }>;
-  monthlyData: Array<{ month: string; loads: number; income: number }>;
-  truckStatusData: Array<{ name: string; value: number }>;
-}
-
 interface DashboardMetrics {
   totalEmails: number;
   totalMessages: number;

@@ -16,12 +16,12 @@ export interface User {
 export const dummyUsers: User[] = [
   {
     id: '1',
-    name: 'Maya Mondragón',
-    username: 'maya.mondragon',
+    name: 'Maya Jordan',
+    username: 'maya.jordan',
     role: 'Dispatcher',
-    email: 'maya.mondragon@itruckr.com',
+    email: 'maya.jordan@itruckr.com',
     password: '12345678',
-    profilePicture: '/maya.jpg',
+    profilePicture: './maya.jpg',
     initials: 'MM',
   },
   {

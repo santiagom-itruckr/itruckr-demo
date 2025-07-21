@@ -85,6 +85,7 @@ function ProcessArea() {
             case 'notification':
               addNotification({
                 userId: '1',
+                step: newEntity.step,
                 type: newEntity.type,
                 title: newEntity.title,
                 message: newEntity.message,

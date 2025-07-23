@@ -9,7 +9,7 @@
 
   /* Theme-agnostic colors - these stay the same regardless of theme */
   --color-black: #10104c;
-  --color-black-hover: #1e1e66;
+  --color-black-hover: #1e1e67;
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
   --color-gray-200: #e5e7eb;
@@ -20,7 +20,7 @@
   --color-gray-700: #374151;
   --color-gray-800: #1f2937;
   --color-gray-900: #111827;
-  --green-accent: #3cbd7a;
+  --green-accent: #3cbe7b;
 
   /* Light mode colors */
   --custom-background: #f5f6f7;
@@ -34,7 +34,7 @@
   --custom-primary-hover: #5adb99;
   --custom-primary-active: #5adb99;
   --custom-success: #28a745;
-  --custom-warning: #ffc107;
+  --custom-warning: hsl(50, 100%, 51%);
   --custom-error: #dc3545;
 
   /* Original shadcn variables */

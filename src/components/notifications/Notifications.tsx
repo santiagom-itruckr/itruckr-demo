@@ -120,6 +120,22 @@ function NotificationItem({ notification }: NotificationItemProps) {
     }
   };
 
+  const getNotificationColorClasses = () => {
+    switch (notification.type) {
+      case 'emergency_alert':
+      case 'oil_change':
+        return 'border-l-custom-warning bg-yellow-500/20';
+      case 'driver_alert':
+      case 'process_update':
+        return 'border-l-absolute-black-hover bg-sky-500/15';
+      case 'new_load':
+      case 'load_update':
+      case 'system_message':
+      default:
+        return 'border-l-green-accent bg-green-500/15';
+    }
+  };
+
   const entityName = getRelatedEntityName();
 
   return (
@@ -128,9 +144,9 @@ function NotificationItem({ notification }: NotificationItemProps) {
       className={cn(
         'flex items-center gap-3 py-4 px-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 border-x-4 border-x-transparent last:border-b-0',
         'animate-in slide-in-from-bottom-2 duration-300',
-        notification.status === 'unread'
-          ? 'border-l-green-accent bg-green-accent/50'
-          : ''
+        getNotificationColorClasses(),
+        notification.status === 'read' ? 'bg-transparent' : '',
+        notification.status === 'actioned' ? 'bg-transparent' : ''
       )}
     >
       <div className='flex-shrink-0 text-absolute-gray-400 p-2 rounded-lg border border-absolute-gray-200'>

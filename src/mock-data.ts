@@ -3327,7 +3327,7 @@ export default {
       "title": "System Notification",
       "message": "Important information regarding your account.",
       "timestamp": "2025-07-17T07:36:45.309Z",
-      "status": "actioned"
+      "status": "read"
     },
     {
       "id": "stkukv9xuocx1sr40ywqje",

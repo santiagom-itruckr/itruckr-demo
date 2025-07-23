@@ -112,7 +112,7 @@ export const NotificationDefinitions = {
     step: 1,
     type: 'oil_change',
     title: `Oil change required for Truck (${truck.id})`,
-    message: `Truck (${truck.id}) currently with ${driver.name} ${driver.id} is about to reach 15.000 km since its last oil change.`,
+    message: `Truck (${truck.id}) currently with ${driver.name} ${driver.id} is about to reach 15.000 miles since its last oil change.`,
     relatedEntityType: 'driver',
     driverId: driver.id,
   }),

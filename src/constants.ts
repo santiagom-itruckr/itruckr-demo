@@ -88,7 +88,7 @@ Here are the details of booked load:
 export const LOAD_PROCESS_STEP_5_AGENT_CHAT_MESSAGE = {
   senderId: 'ai_agent',
   senderType: 'ai_agent',
-  content: `Hi Camilo,
+  content: `Hi John,
 
 You’ve been assigned a new load. Please review the details below
 
@@ -485,8 +485,8 @@ export const LOAD_1 = {
     state: 'FL',
     zipCode: '32801',
   },
-  pickUpDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // Tomorrow
-  deliveryDate: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(), // Day after tomorrow
+  pickUpDate: 'July 23, 2025 11:23 AM',
+  deliveryDate: 'July 24, 2025 09:00 PM',
   brokerCompanyId: 'B-001',
   carrierCompanyId: 'c-001',
   factoring: false,

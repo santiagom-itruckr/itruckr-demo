@@ -111,7 +111,7 @@ export function getLoadProcessSteps(step: 1 | 2): ProcessStep<LoadProcessStepNam
       title: 'Negotiating Load',
       status: 'pending',
       description:
-        "A Load has been found and is currently being negocitated with the broker.",
+        "A Load has been found and is currently being negociated with the broker.",
       messages: [],
       aiAgentAssigned: 'Rate Negotiator',
       triggersApiCall: {

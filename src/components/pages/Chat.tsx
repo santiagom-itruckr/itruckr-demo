@@ -414,10 +414,10 @@ export function Chat() {
               )}
             </div>
             <div>
-              <h3 className='font-medium text-custom-text-primary'>
+              <h3 className='font-medium text-custom-text-primary text-start'>
                 {selectedContact?.name}
               </h3>
-              <p className='text-sm text-custom-text-secondary'>
+              <p className='text-sm text-custom-text-secondary  text-start'>
                 {selectedContact?.online ? 'Online' : 'Last seen recently'}
               </p>
             </div>

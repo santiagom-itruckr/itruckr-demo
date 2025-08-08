@@ -304,6 +304,15 @@ function IntegratedProcessTimeline({
     return initialExpanded;
   });
 
+  useEffect(() => {
+    const initialExpanded = new Set<number>();
+    if (process.currentStepIndex >= 0) {
+      initialExpanded.add(process.currentStepIndex);
+    }
+    setExpandedSteps(initialExpanded);
+    prevCurrentStepRef.current = process.currentStepIndex;
+  }, [process.id]);
+
   const getStepStatus = (stepIndex: number) => {
     return process.steps[stepIndex]?.status || 'pending';
   };
@@ -406,8 +415,8 @@ function IntegratedProcessTimeline({
         const hasExpandableContent = stepHasMessages || stepHasActions;
 
         return (
-          <div
-            key={step.name}
+          <div /** Case Step */
+            key={step.id}
             className={cn(
               'relative flex flex-col rounded-xl border transition-all py-5 px-4',
               isExpanded ? 'gap-4' : 'gap-0',

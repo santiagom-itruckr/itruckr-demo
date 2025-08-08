@@ -1,7 +1,6 @@
 import { Bot } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-import { DRIVER_1 } from '@/constants';
 import { useCasesStore } from '@/stores/casesStore';
 import { useConversationsStore } from '@/stores/conversationsStore';
 import { useDriversStore } from '@/stores/driversStore';
@@ -82,7 +81,16 @@ function ProcessArea() {
                 addEmail(newEntity);
               }
               break;
-            case 'notification':
+            case 'notification': {
+              const caseForThisProcess = process?.caseId
+                ? getCaseById(process.caseId)
+                : undefined;
+              const targetRelatedEntityId =
+                newEntity.relatedEntityId ||
+                caseForThisProcess?.relatedEntityId ||
+                activeCase?.relatedEntityId ||
+                driver?.id ||
+                '';
               addNotification({
                 userId: '1',
                 step: newEntity.step,
@@ -90,9 +98,10 @@ function ProcessArea() {
                 title: newEntity.title,
                 message: newEntity.message,
                 relatedEntityType: newEntity.relatedEntityType,
-                relatedEntityId: DRIVER_1.id,
+                relatedEntityId: targetRelatedEntityId,
               });
               break;
+            }
           }
         } catch (error) {
           console.error(`Error creating entity of type ${entityType}:`, error);
@@ -126,15 +135,29 @@ function ProcessArea() {
 
               updateLoad(entityId, updateData as unknown as Load);
               break;
-            case 'conversation':
-              if (driver?.id) {
-                addMessageToConversation(driver.id, {
-                  senderId: updateData['senderId'] as string,
-                  senderType: updateData['senderType'] as MessageSenderType,
+            case 'conversation': {
+              const caseForThisProcess = process?.caseId
+                ? getCaseById(process.caseId)
+                : undefined;
+              const targetConversationId =
+                (entityId && entityId.length > 0)
+                  ? entityId
+                  : caseForThisProcess?.relatedEntityId || activeCase?.relatedEntityId || driver?.id || '';
+
+              if (targetConversationId) {
+                const senderType = updateData['senderType'] as MessageSenderType;
+                const computedSenderId =
+                  senderType === 'user'
+                    ? targetConversationId
+                    : ((updateData['senderId'] as string) || 'ai_agent');
+                addMessageToConversation(targetConversationId, {
+                  senderId: computedSenderId,
+                  senderType,
                   content: updateData['content'] as string,
                 });
               }
               break;
+            }
           }
         } catch (error) {
           console.error(`Error updating entity of type ${entityType}:`, error);

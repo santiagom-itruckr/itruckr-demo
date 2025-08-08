@@ -1,4 +1,16 @@
-<svg width="300px" height="101px" viewBox='0 0 301 101' fill='none' xmlns='http://www.w3.org/2000/svg'>
-  <path d='M0.984375 0.0561523H200.984V100.056H0.984375V0.0561523Z' fill='white'/>
-  <path d='M200.984 0.0561523H300.984V100.056L200.984 0.0561523Z' fill='#3cbd7a'/>
+<style>
+  @media (prefers-color-scheme: light) {
+    .bg-color { fill: black; }
+    .accent-color { fill: #3cbd7a; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-color { fill: white; }
+    .accent-color { fill: #3cbd7a; }
+  }
+</style>
+
+<svg width="300px" height="101px" viewBox="0 0 301 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path class="bg-color" d="M0.984375 0.0561523H200.984V100.056H0.984375V0.0561523Z"/>
+  <path class="accent-color" d="M200.984 0.0561523H300.984V100.056L200.984 0.0561523Z"/>
 </svg>

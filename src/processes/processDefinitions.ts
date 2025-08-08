@@ -344,13 +344,6 @@ export function getLoadProcessSteps(step: 1 | 2): ProcessStep<LoadProcessStepNam
       aiAgentAssigned: 'General Assistant',
       createsEntities: [
         {
-          entityType: 'notification',
-          newEntity: NotificationDefinitions.creatOilChangeNotification({
-            driver: DRIVER_1,
-            truck: TRUCK_1,
-          })
-        },
-        {
           entityType: 'email',
           newEntity: EMAIL_POD_OUTBOUND_STEP_10 as Email,
         }
@@ -396,7 +389,7 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       updatesEntities: [
         {
           entityType: 'conversation',
-          entityId: '',
+          entityId: 'D-200',
           updateData: OIL_CHANGE_STEP_1_AGENT_CHAT_MESSAGE,
         },
       ],
@@ -428,13 +421,14 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       updatesEntities: [
         {
           entityType: 'conversation',
-          entityId: '',
+          entityId: 'D-200',
           updateData: OIL_CHANGE_STEP_2_DRIVER_CHAT_MESSAGE,
         },
         {
           entityType: 'conversation',
-          entityId: '',
+          entityId: 'D-200',
           updateData: OIL_CHANGE_STEP_2_AGENT_CHAT_MESSAGE,
+          withDelay: 1000
         },
       ],
       aiAgentAssigned: 'Maintenance Support Agent',
@@ -457,12 +451,12 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       updatesEntities: [
         {
           entityType: 'conversation',
-          entityId: '',
+          entityId: 'D-200',
           updateData: OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_1,
         },
         {
           entityType: 'conversation',
-          entityId: '',
+          entityId: 'D-200',
           updateData: OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_2,
           withDelay: 1000
         },
@@ -495,7 +489,7 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       updatesEntities: [
         {
           entityType: 'conversation',
-          entityId: '',
+          entityId: 'D-200',
           updateData: OIL_CHANGE_STEP_4_DRIVER_MESSAGE,
         },
       ],

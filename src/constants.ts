@@ -381,11 +381,11 @@ Here are the details of booked load:
 export const OIL_CHANGE_STEP_1_AGENT_CHAT_MESSAGE = {
   senderId: 'ai_agent',
   senderType: 'ai_agent',
-  content: 'Hi John Smith, your truck is due for a routine oil change. Want me to help you find a nearby workshop?'
+  content: 'Hi Robert García, your truck is due for a routine oil change. Want me to help you find a nearby workshop?'
 };
 
 export const OIL_CHANGE_STEP_2_DRIVER_CHAT_MESSAGE = {
-  senderId: 'D-158',
+  senderId: 'D-200',
   senderType: 'user',
   content: 'YES'
 };
@@ -417,7 +417,7 @@ export const OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_2 = {
 };
 
 export const OIL_CHANGE_STEP_4_DRIVER_MESSAGE = {
-  senderId: 'D-158',
+  senderId: 'D-200',
   senderType: 'user',
   content: 'Invoice'
 };
@@ -438,10 +438,25 @@ export const TRUCK_1 = {
   status: 'in_transit',
 } as Truck;
 
+// Additional demo truck/driver/load for preloaded case & maintenance
+export const TRUCK_ROBERT = {
+  id: '72',
+  type: 'dry_van',
+  brand: 'Freightliner',
+  model: '2019',
+  licensePlate: 'XYZ-720',
+  capacity: {
+    weightLbs: 80000,
+    volumeCubicFt: 3000,
+  },
+  companyId: 'C-001',
+  status: 'in_transit',
+} as Truck;
+
 export const DRIVER_1 = {
   id: 'D-158',
   name: 'John Smith',
-  email: 'john@example.com',
+  email: 'john@itruckr-test.com',
   phone: '(555) 123-4567',
   companyId: 'C-001',
   licenseNumber: 'DL123456789',
@@ -460,6 +475,38 @@ export const DRIVER_1 = {
     lowestRatePerMile: 2.0,
     maxDrivingDistanceMiles: 500,
     preferredStateDestinations: ['SC', 'NC', 'GA'],
+    bannedStateDestinations: ['TX', 'LA'],
+    acceptWeekendDelivery: true,
+    acceptOvernightLoads: false,
+    maxLayoverHours: 24,
+    requiresLoadingAssistance: false,
+    preferredPickupTimeRanges: ['08:00-12:00'],
+    preferredDeliveryTimeRanges: ['09:00-17:00'],
+  },
+} as Driver;
+
+export const DRIVER_ROBERT = {
+  id: 'D-200',
+  name: 'Robert García',
+  email: 'robert@itruckr-test.com',
+  phone: '(555) 987-6543',
+  companyId: 'C-001',
+  licenseNumber: 'DL987654321',
+  truckId: '72',
+  isInsuranceValid: true,
+  remainingDrivingHours: 10,
+  currentLocation: {
+    city: 'Chicago',
+    state: 'IL',
+  },
+  status: 'in_transit',
+  currentLoadId: null,
+  nextLoadId: null,
+  driverPreferences: {
+    expectedRatePerMile: 2.4,
+    lowestRatePerMile: 2.0,
+    maxDrivingDistanceMiles: 600,
+    preferredStateDestinations: ['IN', 'OH', 'MI', 'GA'],
     bannedStateDestinations: ['TX', 'LA'],
     acceptWeekendDelivery: true,
     acceptOvernightLoads: false,
@@ -560,4 +607,35 @@ export const LOAD_3 = {
   },
   weightLbs: 44000,
   cargoDescription: 'Food',
+} as Load;
+
+export const LOAD_ROBERT = {
+  id: 'L-004',
+  externalLoadId: 'L-2024-004',
+  driverId: 'D-200',
+  status: 'new',
+  pickUpLocation: {
+    address: '6466 Pine Rd',
+    city: 'Chicago',
+    state: 'IL',
+    zipCode: '60612',
+  },
+  dropOffLocation: {
+    address: '1461 Moreland Ave SE',
+    city: 'Atlanta',
+    state: 'GA',
+    zipCode: '30316',
+  },
+  pickUpDate: 'July 26, 2025',
+  deliveryDate: 'July 28, 2025',
+  brokerCompanyId: 'B-001',
+  carrierCompanyId: 'c-001',
+  factoring: false,
+  rate: {
+    total: 1440,
+    currency: 'USD',
+    ratePerMile: 2.0,
+  },
+  weightLbs: 44000,
+  cargoDescription: 'Consumer Goods',
 } as Load;

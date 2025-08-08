@@ -50,6 +50,11 @@ interface ProcessesState {
   ) => void;
   setProcessCurrentStep: (processId: string, stepId: string) => void;
   updateProcessStepExecution: (processId: string, stepId: string, executionId: string) => void;
+  updateProcessStepDataByName: (
+    processId: string,
+    stepName: string,
+    data: Partial<ProcessStep>
+  ) => void;
 }
 
 export const useProcessesStore = create<ProcessesState>()(
@@ -238,6 +243,17 @@ export const useProcessesStore = create<ProcessesState>()(
             step.lastExecutedAt = getCurrentIsoDate();
             process.updatedAt = getCurrentIsoDate();
           }
+        });
+      },
+
+      updateProcessStepDataByName: (processId, stepName, data) => {
+        set(state => {
+          const process = state.processes.find(p => p.id === processId);
+          if (!process) return;
+          const step = process.steps.find(s => s.name === (stepName as any));
+          if (!step) return;
+          Object.assign(step, data);
+          process.updatedAt = getCurrentIsoDate();
         });
       },
     })),

@@ -462,7 +462,7 @@ export function Email() {
       addEmail({
         subject: emailData.subject,
         content: emailData.content,
-        sender: { name: 'You', email: 'you@example.com' },
+        sender: { name: 'You', email: 'you@itruckr-test.com' },
         recipients: emailData.to,
         cc: emailData.cc || [],
         bcc: emailData.bcc || [],

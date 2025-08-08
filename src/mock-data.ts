@@ -1969,7 +1969,7 @@ export default {
           "name": "RateConf_Load_L-588125.pdf",
           "size": "797 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/t22cn4u52ihqh464t4y96.pdf"
+          "url": "https://itruckr-test.com/attachments/t22cn4u52ihqh464t4y96.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-588125. Pickup: San Diego, O...",
@@ -2006,7 +2006,7 @@ export default {
           "name": "RateConf_Load_L-301968.pdf",
           "size": "185 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/dph9mwzxde6wvmunywognp.pdf"
+          "url": "https://itruckr-test.com/attachments/dph9mwzxde6wvmunywognp.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-301968. Pickup: Houston, MD ...",
@@ -2043,7 +2043,7 @@ export default {
           "name": "RateConf_Load_L-405234.pdf",
           "size": "466 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/x7vfco5aq3ml2tn09ok4wh.pdf"
+          "url": "https://itruckr-test.com/attachments/x7vfco5aq3ml2tn09ok4wh.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-405234. Pickup: Phoenix, NC ...",
@@ -2080,7 +2080,7 @@ export default {
           "name": "RateConf_Load_L-588125.pdf",
           "size": "445 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/zzapi3fe7588vdsdmgdb49.pdf"
+          "url": "https://itruckr-test.com/attachments/zzapi3fe7588vdsdmgdb49.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-588125. Pickup: San Diego, O...",
@@ -2147,7 +2147,7 @@ export default {
           "name": "RateConf_Load_L-833052.pdf",
           "size": "175 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/56rfqowdtlj8hlapa42nyp.pdf"
+          "url": "https://itruckr-test.com/attachments/56rfqowdtlj8hlapa42nyp.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-833052. Pickup: Dallas, TN -...",
@@ -2184,7 +2184,7 @@ export default {
           "name": "Insurance_COI.pdf",
           "size": "784 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/mbdt9ift6wx2sfye4nntc.pdf"
+          "url": "https://itruckr-test.com/attachments/mbdt9ift6wx2sfye4nntc.pdf"
         }
       ],
       "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
@@ -2222,7 +2222,7 @@ export default {
           "name": "RateConf_Load_L-510153.pdf",
           "size": "298 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/eyy0f6cgr2eiwhx9ojq408.pdf"
+          "url": "https://itruckr-test.com/attachments/eyy0f6cgr2eiwhx9ojq408.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-510153. Pickup: San Diego, V...",
@@ -2259,7 +2259,7 @@ export default {
           "name": "RateConf_Load_L-588125.pdf",
           "size": "891 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/zw52tk85jgq79vxuc3pb9j.pdf"
+          "url": "https://itruckr-test.com/attachments/zw52tk85jgq79vxuc3pb9j.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-588125. Pickup: San Diego, O...",
@@ -2296,7 +2296,7 @@ export default {
           "name": "Insurance_COI.pdf",
           "size": "603 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/dol947k4vmkddqdwg38roe.pdf"
+          "url": "https://itruckr-test.com/attachments/dol947k4vmkddqdwg38roe.pdf"
         }
       ],
       "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
@@ -2334,7 +2334,7 @@ export default {
           "name": "RateConf_Load_L-710406.pdf",
           "size": "343 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/jjcof7qmpnjksy615up96e.pdf"
+          "url": "https://itruckr-test.com/attachments/jjcof7qmpnjksy615up96e.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-710406. Pickup: Los Angeles,...",
@@ -2371,7 +2371,7 @@ export default {
           "name": "RateConf_Load_L-606935.pdf",
           "size": "561 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/87nmybiuf5yta1keodf19c.pdf"
+          "url": "https://itruckr-test.com/attachments/87nmybiuf5yta1keodf19c.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-606935. Pickup: Philadelphia...",
@@ -2438,7 +2438,7 @@ export default {
           "name": "Insurance_COI.pdf",
           "size": "109 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/naf45ohj86ipbxz89d55or.pdf"
+          "url": "https://itruckr-test.com/attachments/naf45ohj86ipbxz89d55or.pdf"
         }
       ],
       "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
@@ -2476,7 +2476,7 @@ export default {
           "name": "Insurance_COI.pdf",
           "size": "897 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/313tzpm2x4xkgfeqk4sjol.pdf"
+          "url": "https://itruckr-test.com/attachments/313tzpm2x4xkgfeqk4sjol.pdf"
         }
       ],
       "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
@@ -2514,7 +2514,7 @@ export default {
           "name": "RateConf_Load_L-906435.pdf",
           "size": "450 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/2n96mk7lh4kqxnwqwkdik.pdf"
+          "url": "https://itruckr-test.com/attachments/2n96mk7lh4kqxnwqwkdik.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-906435. Pickup: Houston, FL ...",
@@ -2551,7 +2551,7 @@ export default {
           "name": "RateConf_Load_L-710406.pdf",
           "size": "335 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/570w010rv6qb7sz332hp8.pdf"
+          "url": "https://itruckr-test.com/attachments/570w010rv6qb7sz332hp8.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-710406. Pickup: Los Angeles,...",
@@ -2588,7 +2588,7 @@ export default {
           "name": "RateConf_Load_L-880876.pdf",
           "size": "238 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/iefqvlur9hysdqpfu2yx.pdf"
+          "url": "https://itruckr-test.com/attachments/iefqvlur9hysdqpfu2yx.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-880876. Pickup: San Diego, N...",
@@ -2625,7 +2625,7 @@ export default {
           "name": "Insurance_COI.pdf",
           "size": "358 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/t6jbtlcw3e7ga4w7cwzrk.pdf"
+          "url": "https://itruckr-test.com/attachments/t6jbtlcw3e7ga4w7cwzrk.pdf"
         }
       ],
       "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
@@ -2663,7 +2663,7 @@ export default {
           "name": "Insurance_COI.pdf",
           "size": "541 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/zel0ewwwwwnepi6kttuabd.pdf"
+          "url": "https://itruckr-test.com/attachments/zel0ewwwwwnepi6kttuabd.pdf"
         }
       ],
       "preview": "We require an updated copy of your Certificate of Insurance for our records. Please...",
@@ -2701,7 +2701,7 @@ export default {
           "name": "RateConf_Load_L-855963.pdf",
           "size": "619 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/5of7lclqtdo8mk0gbugm8o.pdf"
+          "url": "https://itruckr-test.com/attachments/5of7lclqtdo8mk0gbugm8o.pdf"
         }
       ],
       "preview": "Please find attached the rate confirmation for Load #L-855963. Pickup: New York, VT...",
@@ -2740,7 +2740,7 @@ export default {
           "name": "POD_Load_L-833052.pdf",
           "size": "669 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/q27xoweizptfj7xty93e2e.pdf"
+          "url": "https://itruckr-test.com/attachments/q27xoweizptfj7xty93e2e.pdf"
         }
       ],
       "preview": "Please find attached the Proof of Delivery (POD) for Load #L-833052, delivered on 7...",
@@ -2777,7 +2777,7 @@ export default {
           "name": "RateConf_Accepted_Load_L-228843.pdf",
           "size": "64 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/ckfwknnhm45m9d5j4xqnpb.pdf"
+          "url": "https://itruckr-test.com/attachments/ckfwknnhm45m9d5j4xqnpb.pdf"
         }
       ],
       "preview": "Confirming receipt and acceptance of the rate confirmation for Load #L-228843. Our driver is assig...",
@@ -2814,7 +2814,7 @@ export default {
           "name": "RateConf_Accepted_Load_L-833052.pdf",
           "size": "370 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/wbmnwxs9q9sjimsnshn1e8.pdf"
+          "url": "https://itruckr-test.com/attachments/wbmnwxs9q9sjimsnshn1e8.pdf"
         }
       ],
       "preview": "Confirming receipt and acceptance of the rate confirmation for Load #L-833052. Our driver is assig...",
@@ -2851,7 +2851,7 @@ export default {
           "name": "POD_Load_L-606935.pdf",
           "size": "650 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/sk5oc4vp97p9tmbqy1hywk.pdf"
+          "url": "https://itruckr-test.com/attachments/sk5oc4vp97p9tmbqy1hywk.pdf"
         }
       ],
       "preview": "Please find attached the Proof of Delivery (POD) for Load #L-606935, delivered on 7...",
@@ -2888,7 +2888,7 @@ export default {
           "name": "POD_Load_L-301968.pdf",
           "size": "481 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/tnwyjanfignd34shojenxn.pdf"
+          "url": "https://itruckr-test.com/attachments/tnwyjanfignd34shojenxn.pdf"
         }
       ],
       "preview": "Please find attached the Proof of Delivery (POD) for Load #L-301968, delivered on 7...",
@@ -2925,7 +2925,7 @@ export default {
           "name": "RateConf_Accepted_Load_L-922013.pdf",
           "size": "362 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/r0yv1ejct98b9pnfqfkn7a.pdf"
+          "url": "https://itruckr-test.com/attachments/r0yv1ejct98b9pnfqfkn7a.pdf"
         }
       ],
       "preview": "Confirming receipt and acceptance of the rate confirmation for Load #L-922013. Our driver is assig...",
@@ -2992,7 +2992,7 @@ export default {
           "name": "Updated_COI.pdf",
           "size": "396 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/5bx4xi8gdj6t9c1lbf6vdf.pdf"
+          "url": "https://itruckr-test.com/attachments/5bx4xi8gdj6t9c1lbf6vdf.pdf"
         }
       ],
       "preview": "Hello,\n\nAttached is the updated Certificate of Insurance as requested. Please let us know if anythin...",
@@ -3029,7 +3029,7 @@ export default {
           "name": "POD_Load_L-906435.pdf",
           "size": "382 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/l1bww40uvpqhtvp6bcp7jp.pdf"
+          "url": "https://itruckr-test.com/attachments/l1bww40uvpqhtvp6bcp7jp.pdf"
         }
       ],
       "preview": "Please find attached the Proof of Delivery (POD) for Load #L-906435, delivered on 6...",
@@ -3096,7 +3096,7 @@ export default {
           "name": "RateConf_Accepted_Load_L-926580.pdf",
           "size": "192 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/1wcu1sg5dscijfpcy4gnuh.pdf"
+          "url": "https://itruckr-test.com/attachments/1wcu1sg5dscijfpcy4gnuh.pdf"
         }
       ],
       "preview": "Confirming receipt and acceptance of the rate confirmation for Load #L-926580. Our driver is assig...",
@@ -3133,7 +3133,7 @@ export default {
           "name": "RateConf_Accepted_Load_L-301968.pdf",
           "size": "450 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/q7m518f7quctlbekvlomr.pdf"
+          "url": "https://itruckr-test.com/attachments/q7m518f7quctlbekvlomr.pdf"
         }
       ],
       "preview": "Confirming receipt and acceptance of the rate confirmation for Load #L-301968. Our driver is assig...",
@@ -3170,7 +3170,7 @@ export default {
           "name": "RateConf_Accepted_Load_L-380667.pdf",
           "size": "584 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/czehl9oq5ux5zzpd3c8y.pdf"
+          "url": "https://itruckr-test.com/attachments/czehl9oq5ux5zzpd3c8y.pdf"
         }
       ],
       "preview": "Confirming receipt and acceptance of the rate confirmation for Load #L-380667. Our driver is assig...",
@@ -3207,7 +3207,7 @@ export default {
           "name": "POD_Load_L-737385.pdf",
           "size": "784 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/bxkuizy64pkhdm3gfm8ea.pdf"
+          "url": "https://itruckr-test.com/attachments/bxkuizy64pkhdm3gfm8ea.pdf"
         }
       ],
       "preview": "Please find attached the Proof of Delivery (POD) for Load #L-737385, delivered on 7...",
@@ -3244,7 +3244,7 @@ export default {
           "name": "RateConf_Accepted_Load_L-737385.pdf",
           "size": "391 KB",
           "type": "application/pdf",
-          "url": "https://example.com/attachments/jdasucpkw9lrprkb1rd31p.pdf"
+          "url": "https://itruckr-test.com/attachments/jdasucpkw9lrprkb1rd31p.pdf"
         }
       ],
       "preview": "Confirming receipt and acceptance of the rate confirmation for Load #L-737385. Our driver is assig...",

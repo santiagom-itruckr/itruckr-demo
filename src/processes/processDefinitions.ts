@@ -29,7 +29,6 @@ import {
   LOAD_2,
   LOAD_2_PROCESS_STEP_1_AGENT_MESSAGE,
   LOAD_2_PROCESS_STEP_3_AGENT_MESSAGE,
-  LOAD_3,
   LOAD_PROCESS_STEP_13_AGENT_CHAT_MESSAGE,
   LOAD_PROCESS_STEP_13_DRIVER_CHAT_MESSAGE_1,
   LOAD_PROCESS_STEP_13_DRIVER_CHAT_MESSAGE_2,
@@ -42,11 +41,9 @@ import {
   OIL_CHANGE_STEP_2_DRIVER_CHAT_MESSAGE,
   OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_1,
   OIL_CHANGE_STEP_3_AGENT_CHAT_MESSAGE_2,
-  OIL_CHANGE_STEP_4_DRIVER_MESSAGE,
-  TRUCK_1,
+  OIL_CHANGE_STEP_4_DRIVER_MESSAGE
 } from '@/constants';
 
-import { NotificationDefinitions } from '../notifications/notificationDefinitions';
 import { generateId } from '../stores/utils'; // Assuming utils.ts is in store folder
 import {
   Email,
@@ -505,16 +502,6 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       status: 'pending',
       description: 'The oil change service has been successfully completed.',
       messages: [],
-      createsEntities: [
-        {
-          entityType: 'notification',
-          newEntity: NotificationDefinitions.createStep2NewLoadProcess({
-            driver: DRIVER_1,
-            truck: TRUCK_1,
-            load: LOAD_3
-          })
-        }
-      ],
       aiAgentAssigned: 'Maintenance Support Agent',
       lucideIcon: CheckCircle2,
       startedAt: '',

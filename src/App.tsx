@@ -73,24 +73,13 @@ function AppContent() {
     updateDriver(driver1.id, { currentLoadId: null });
     updateDriver(driverRobert.id, { currentLoadId: loadRobert.id });
 
-    // 1) Pre-create a case with a Load Process already at step 4 (load_booked)
-    // const preloadedCaseNotification = addNotification({
-    //   userId: '1',
-    //   step: 2,
-    //   type: 'system_message',
-    //   title: 'Load Booked for Robert García',
-    //   message: 'Demo: Load booked Chicago, IL → Atlanta, GA for Driver Robert García.',
-    //   status: 'actioned',
-    //   relatedEntityId: driverRobert.id,
-    // });
-
     const preloadedCase = createCase({
       step: 2,
       notificationId: '2',
       userId: '1',
       type: 'load_process',
-      title: 'Load: Chicago, IL → Atlanta, GA',
-      description: 'Booked load for Driver Robert García. Case starts at step 4 (Load Booked).',
+      title: 'New Load for Driver Robert Garcia',
+      description: 'Case for booking load for Driver Robert Garcia (D-200) with Truck (T-072)',
       relatedEntityId: driverRobert.id,
     });
 
@@ -139,7 +128,7 @@ function AppContent() {
         relatedEntityType: oilChangeDefinition.relatedEntityType,
         relatedEntityId: driver1.id,
       });
-    }, 2000);
+    }, 5000);
 
     // Ensure chats exist for both drivers (John and Robert)
     addConversation('D-158', [{ timestamp: new Date() }] as any);

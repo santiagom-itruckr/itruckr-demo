@@ -73,14 +73,14 @@ Here are the details of booked load:
 ### ⬆️ Pickup Details
 | Parameter | Value |
 |---|---|
-| **Pickup Date** | 07/24/2025 |
+| **Pickup Date** | 08/11/2025 |
 | **Pickup Window** | 08:00 - 15:00 |
 | **Address** | Baltimore, MD, 21222 |
 
 ### ⬇️ Delivery Details
 | Parameter | Value |
 |---|---|
-| **Delivery Date** | 07/25/2025 |
+| **Delivery Date** | 08/12/2025 |
 | **Delivery Window** | 08:00 - 15:00 |
 | **Address** | Montgomery, IL, 60538 |`,
 } as ChatMessage;
@@ -102,13 +102,13 @@ You’ve been assigned a new load. Please review the details below
 **⬆️ Pickup Details**
 * **Contact:** RTW LOGISTICS INC
 * **Address:** 8203 Fischer Road, BALTIMORE, MD, 21222
-* **Date:** 07/24/2025 08:00
+* **Date:** 08/11/2025 08:00
 * **Pickup Window:** 8:00 - 15:00
 
 **⬇️ Delivery Details**
 * **Name:** Tsa Processing - Montgomery
 * **Address:** 325 S Route 31, Suite G103 Building G, MONTGOMERY, IL, 60538
-* **Delivery Date:** 07/25/2025 15:00
+* **Delivery Date:** 08/12/2025 15:00
 * **Delivery Window:** 08:00 - 15:00
 
 **📋 Aditional Information**
@@ -229,9 +229,9 @@ Quantity: 3
 
 Facility: RTW LOGISTICS INC
 
-Earliest: 07/24/2025 08:00
+Earliest: 08/11/2025 08:00
 
-Latest: 07/24/2025 15:00
+Latest: 08/11/2025 15:00
 
 Origin: 8203 Fischer Road, Baltimore, Maryland, 21222
 
@@ -364,14 +364,14 @@ Here are the details of booked load:
 ### ⬆️ Pickup Details
 | Parameter | Value |
 |---|---|
-| **Pickup Date** | 07/26/2025 |
+| **Pickup Date** | 08/13/2025 |
 | **Pickup Window** | 08:00 - 15:00 |
 | **Address** | Chicago, IL, 26836 |
 
 ### ⬇️ Delivery Details
 | Parameter | Value |
 |---|---|
-| **Delivery Date** | 07/28/2025 |
+| **Delivery Date** | 08/15/2025 |
 | **Delivery Window** | 08:00 - 15:00 |
 | **Address** | Atlanta, GA, 30316 |`,
 } as ChatMessage;
@@ -425,7 +425,7 @@ export const OIL_CHANGE_STEP_4_DRIVER_MESSAGE = {
 // ENTITIES
 
 export const TRUCK_1 = {
-  id: '58',
+  id: 'T-058',
   type: 'dry_van',
   brand: 'Freightliner',
   model: '2017',
@@ -440,7 +440,7 @@ export const TRUCK_1 = {
 
 // Additional demo truck/driver/load for preloaded case & maintenance
 export const TRUCK_ROBERT = {
-  id: '72',
+  id: 'T-072',
   type: 'dry_van',
   brand: 'Freightliner',
   model: '2019',
@@ -460,7 +460,7 @@ export const DRIVER_1 = {
   phone: '(555) 123-4567',
   companyId: 'C-001',
   licenseNumber: 'DL123456789',
-  truckId: '58',
+  truckId: 'T-058',
   isInsuranceValid: true,
   remainingDrivingHours: 8,
   currentLocation: {

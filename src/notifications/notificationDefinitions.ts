@@ -70,6 +70,7 @@ export const NotificationDefinitions = {
 
   createNewLoadProcess: ({
     driver,
+    truck
   }: {
     driver: Driver;
     truck: Truck;
@@ -78,10 +79,10 @@ export const NotificationDefinitions = {
     return {
       step: 1,
       type: 'new_load',
-      title: `New Load for Driver ${driver.name} (${driver.id})`,
-      message: 'Driver ',
+      title: `New Load for Driver ${driver.name}`,
+      message: `Case for booking load for Driver ${driver.name} (${driver.id}) with Truck (${truck.id})`,
       relatedEntityType: 'driver',
-      driverId: '',
+      driverId: driver.id,
     };
   },
 
@@ -95,10 +96,10 @@ export const NotificationDefinitions = {
     return {
       step: 2,
       type: 'new_load',
-      title: `New Load for Driver ${driver.name} (${driver.id})`,
-      message: 'Driver ',
+      title: `New Load for Driver ${driver.name}`,
+      message: `Case for booking load for Driver ${driver.name} (${driver.id})`,
       relatedEntityType: 'driver',
-      driverId: '',
+      driverId: driver.id,
     };
   },
 

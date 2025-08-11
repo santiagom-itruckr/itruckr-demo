@@ -19,7 +19,8 @@ import IntegratedProcessTimeline from './IntegratedProcessTimeline';
 import ProcessInput from './ProcessInput';
 
 function ProcessArea() {
-  const [isLoading, setIsLoading] = useState(false);
+  // Track loading state per process to avoid cross-case bleed
+  const [loadingByProcess, setLoadingByProcess] = useState<Record<string, boolean>>({});
   const { selectedCaseId, getCaseById } = useCasesStore();
   const {
     getProcessById,
@@ -34,6 +35,7 @@ function ProcessArea() {
   const { addNotification } = useNotificationsStore();
 
   const timelineCompleteStepRef = useRef<(() => void) | null>(null);
+  const currentStepIdRef = useRef<string | null>(null);
 
   const setTimelineCompleteStep = (completeStepFn: () => void) => {
     timelineCompleteStepRef.current = completeStepFn;
@@ -47,9 +49,17 @@ function ProcessArea() {
       : undefined;
   const driver = getDriverById(activeCase?.relatedEntityId!);
 
+  const isLoading = process ? !!loadingByProcess[process.id] : false;
+  const setProcessLoading = (pid: string, value: boolean) => {
+    setLoadingByProcess(prev => ({ ...prev, [pid]: value }));
+  };
+
   useEffect(() => {
+    if (!process) return;
+
     let isCancelled = false;
     let isProcessing = false;
+    const effectProcessId = process.id;
 
     const createEntities = async (
       createsEntities: EntityCreationConfig[] | undefined,
@@ -165,9 +175,16 @@ function ProcessArea() {
       }
     };
 
-    const completeStep = () => {
+    const completeStep = (pid?: string, sid?: string) => {
       if (isCancelled) return;
 
+      // If we have explicit process and step, advance directly to avoid cross-process issues
+      if (pid && sid) {
+        advanceProcessStep(pid, sid, 'user_input');
+        return;
+      }
+
+      // Fallback to timeline or handler (used for user-driven actions)
       if (timelineCompleteStepRef.current) {
         timelineCompleteStepRef.current();
       } else {
@@ -211,30 +228,23 @@ function ProcessArea() {
             ? deepEqual(apiCall.expect, responseBody)
             : true;
 
-          // const expectMatched = true;
-
           if (expectMatched && !isCancelled) {
             await updateEntities(updatesEntities, stepIndex, 'api');
-            completeStep();
-            setIsLoading(false);
+            completeStep(effectProcessId, currentStepIdRef.current || undefined);
+            setProcessLoading(effectProcessId, false);
           } else if (retryCount < maxRetries && !isCancelled) {
             retryCount++;
-            console.log(
-              `Retrying in 10 seconds... (${retryCount}/${maxRetries})`
-            );
+            console.log(`Retrying in 10 seconds... (${retryCount}/${maxRetries})`);
             setTimeout(callApiWithRetry, 10000);
           } else if (!isCancelled) {
             console.error('Max retries reached or expected value not found');
           }
         } catch (error) {
           if (isCancelled) return;
-
           console.error('Error in API call:', error);
           if (retryCount < maxRetries) {
             retryCount++;
-            console.log(
-              `Retrying after error in 10 seconds... (${retryCount}/${maxRetries})`
-            );
+            console.log(`Retrying after error in 10 seconds... (${retryCount}/${maxRetries})`);
             setTimeout(callApiWithRetry, 10000);
           } else {
             console.error('Max retries reached after errors');
@@ -265,6 +275,9 @@ function ProcessArea() {
         awaitFor,
       } = currentStep!;
 
+      // Keep a ref of the step id for async callbacks inside this effect
+      currentStepIdRef.current = stepId;
+
       // Check if this step has already been executed
       const executionId = `${process.id}-${stepId}-${process.currentStepIndex}`;
       if (stepExecutionId === executionId) {
@@ -275,13 +288,13 @@ function ProcessArea() {
       isProcessing = true;
 
       try {
-        updateProcessStepExecution(process.id, stepId, executionId);
+        updateProcessStepExecution(effectProcessId, stepId, executionId);
 
         // Create entities first (no await to prevent blocking)
         createEntities(createsEntities, process.currentStepIndex);
 
         if (triggersApiCall) {
-          setIsLoading(true);
+          setProcessLoading(effectProcessId, true);
 
           if (awaitFor) await new Promise(resolve => setTimeout(resolve, awaitFor));
 
@@ -291,7 +304,7 @@ function ProcessArea() {
             process.currentStepIndex
           );
         } else if (awaitFor && !triggersApiCall! && !requiredUserInput) {
-          setIsLoading(true);
+          setProcessLoading(effectProcessId, true);
           await new Promise(resolve => setTimeout(resolve, awaitFor));
 
           if (!isCancelled) {
@@ -300,8 +313,8 @@ function ProcessArea() {
               process.currentStepIndex,
               'await'
             );
-            setIsLoading(false);
-            completeStep();
+            setProcessLoading(effectProcessId, false);
+            completeStep(effectProcessId, stepId);
           }
         } else if (!requiredUserInput) {
           await new Promise(resolve => setTimeout(resolve, 500));
@@ -312,19 +325,22 @@ function ProcessArea() {
               process.currentStepIndex,
               'other'
             );
-            completeStep();
+            completeStep(effectProcessId, stepId);
           }
         }
       } catch (error) {
         console.error('Error in performStepActions:', error);
-        setIsLoading(false);
+        setProcessLoading(effectProcessId, false);
       } finally {
         isProcessing = false;
       }
     };
 
     performStepActions();
-  }, [process?.currentStepIndex]);
+    return () => {
+      isCancelled = true;
+    };
+  }, [process?.id, process?.currentStepIndex]);
 
   if (!activeCase) {
     return (

@@ -419,6 +419,13 @@ export interface ProcessStep<NameType extends string = string> {
   lucideIcon?: LucideIcon;
   executionId?: string;
   lastExecutedAt?: string;
+  /**
+   * Indicates the step is currently performing an async action (API call / await)
+   * and should render as loading. This persists across navigation.
+   */
+  isLoading?: boolean;
+  /** Number of API polling retries attempted for this step. */
+  retryCount?: number;
 }
 
 /**

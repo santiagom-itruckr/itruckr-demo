@@ -50,10 +50,22 @@ interface ProcessesState {
   ) => void;
   setProcessCurrentStep: (processId: string, stepId: string) => void;
   updateProcessStepExecution: (processId: string, stepId: string, executionId: string) => void;
+  /** Update arbitrary fields of a step by stepId */
+  updateProcessStepData: (
+    processId: string,
+    stepId: string,
+    data: Partial<ProcessStep>
+  ) => void;
   updateProcessStepDataByName: (
     processId: string,
     stepName: string,
     data: Partial<ProcessStep>
+  ) => void;
+  /** Convenience: set the isLoading flag for a step */
+  setProcessStepLoading: (
+    processId: string,
+    stepId: string,
+    isLoading: boolean
   ) => void;
 }
 
@@ -126,6 +138,10 @@ export const useProcessesStore = create<ProcessesState>()(
           currentStep.status = 'completed';
           currentStep.completedAt = getCurrentIsoDate();
           currentStep.completionSource = completionSource;
+          // Clear any lingering loading state on the completed step
+          currentStep.isLoading = false;
+          // Reset retry count on completion
+          currentStep.retryCount = 0;
 
           // Find the next step
           const currentStepIndex = process.steps.findIndex(
@@ -246,6 +262,17 @@ export const useProcessesStore = create<ProcessesState>()(
         });
       },
 
+      updateProcessStepData: (processId, stepId, data) => {
+        set(state => {
+          const process = state.processes.find(p => p.id === processId);
+          if (!process) return;
+          const step = process.steps.find(s => s.id === stepId);
+          if (!step) return;
+          Object.assign(step, data);
+          process.updatedAt = getCurrentIsoDate();
+        });
+      },
+
       updateProcessStepDataByName: (processId, stepName, data) => {
         set(state => {
           const process = state.processes.find(p => p.id === processId);
@@ -253,6 +280,17 @@ export const useProcessesStore = create<ProcessesState>()(
           const step = process.steps.find(s => s.name === (stepName as any));
           if (!step) return;
           Object.assign(step, data);
+          process.updatedAt = getCurrentIsoDate();
+        });
+      },
+
+      setProcessStepLoading: (processId, stepId, isLoading) => {
+        set(state => {
+          const process = state.processes.find(p => p.id === processId);
+          if (!process) return;
+          const step = process.steps.find(s => s.id === stepId);
+          if (!step) return;
+          step.isLoading = isLoading;
           process.updatedAt = getCurrentIsoDate();
         });
       },

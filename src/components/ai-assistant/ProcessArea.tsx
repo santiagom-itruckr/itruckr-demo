@@ -1,5 +1,5 @@
 import { Bot } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useCasesStore } from '@/stores/casesStore';
 import { useConversationsStore } from '@/stores/conversationsStore';
@@ -19,14 +19,14 @@ import IntegratedProcessTimeline from './IntegratedProcessTimeline';
 import ProcessInput from './ProcessInput';
 
 function ProcessArea() {
-  // Track loading state per process to avoid cross-case bleed
-  const [loadingByProcess, setLoadingByProcess] = useState<Record<string, boolean>>({});
   const { selectedCaseId, getCaseById } = useCasesStore();
   const {
     getProcessById,
     addMessageToStep,
     advanceProcessStep,
-    updateProcessStepExecution
+    updateProcessStepExecution,
+    setProcessStepLoading,
+    updateProcessStepData,
   } = useProcessesStore();
   const { getDriverById } = useDriversStore();
   const { addMessageToConversation } = useConversationsStore();
@@ -49,10 +49,8 @@ function ProcessArea() {
       : undefined;
   const driver = getDriverById(activeCase?.relatedEntityId!);
 
-  const isLoading = process ? !!loadingByProcess[process.id] : false;
-  const setProcessLoading = (pid: string, value: boolean) => {
-    setLoadingByProcess(prev => ({ ...prev, [pid]: value }));
-  };
+  const currentStep = process?.steps[process?.currentStepIndex ?? 0];
+  const isLoading = !!currentStep?.isLoading;
 
   useEffect(() => {
     if (!process) return;
@@ -195,10 +193,12 @@ function ProcessArea() {
     const performApiCall = async (
       apiCall: any,
       updatesEntities: EntityUpdateConfig[] | undefined,
-      stepIndex: number
+      stepIndex: number,
+      stepId: string,
+      initialRetryCount = 0
     ) => {
-      const maxRetries = 60;
-      let retryCount = 0;
+      const maxRetries = 180;
+      let retryCount = initialRetryCount;
 
       const deepEqual = (obj1: any, obj2: any): boolean => {
         if (typeof obj1 !== typeof obj2) return false;
@@ -231,10 +231,16 @@ function ProcessArea() {
           if (expectMatched && !isCancelled) {
             await updateEntities(updatesEntities, stepIndex, 'api');
             completeStep(effectProcessId, currentStepIdRef.current || undefined);
-            setProcessLoading(effectProcessId, false);
+            if (currentStepIdRef.current) {
+              setProcessStepLoading(effectProcessId, currentStepIdRef.current, false);
+            }
+            // Reset retry count on success
+            updateProcessStepData(effectProcessId, stepId, { retryCount: 0 });
           } else if (retryCount < maxRetries && !isCancelled) {
             retryCount++;
             console.log(`Retrying in 10 seconds... (${retryCount}/${maxRetries})`);
+            // Persist retry count
+            updateProcessStepData(effectProcessId, stepId, { retryCount });
             setTimeout(callApiWithRetry, 10000);
           } else if (!isCancelled) {
             console.error('Max retries reached or expected value not found');
@@ -245,6 +251,8 @@ function ProcessArea() {
           if (retryCount < maxRetries) {
             retryCount++;
             console.log(`Retrying after error in 10 seconds... (${retryCount}/${maxRetries})`);
+            // Persist retry count
+            updateProcessStepData(effectProcessId, stepId, { retryCount });
             setTimeout(callApiWithRetry, 10000);
           } else {
             console.error('Max retries reached after errors');
@@ -264,7 +272,7 @@ function ProcessArea() {
         return;
       }
 
-      const currentStep = process.steps[process.currentStepIndex];
+      const currentStep = process.steps[process.currentStepIndex]!;
       const {
         id: stepId,
         executionId: stepExecutionId,
@@ -277,6 +285,37 @@ function ProcessArea() {
 
       // Keep a ref of the step id for async callbacks inside this effect
       currentStepIdRef.current = stepId;
+
+      // If step is marked loading (persisted), resume its action without re-marking execution
+      if (currentStep.isLoading) {
+        try {
+          // Keep ref updated
+          currentStepIdRef.current = stepId;
+          if (triggersApiCall) {
+            await performApiCall(
+              triggersApiCall,
+              updatesEntities,
+              process.currentStepIndex,
+              stepId,
+              currentStep.retryCount || 0
+            );
+            return;
+          }
+          if (awaitFor && !triggersApiCall && !requiredUserInput) {
+            // Resume await path (cannot know remaining time, so wait full duration again)
+            await new Promise(resolve => setTimeout(resolve, awaitFor));
+            if (!isCancelled) {
+              await updateEntities(updatesEntities, process.currentStepIndex, 'await');
+              setProcessStepLoading(effectProcessId, stepId, false);
+              updateProcessStepData(effectProcessId, stepId, { retryCount: 0 });
+              completeStep(effectProcessId, stepId);
+            }
+            return;
+          }
+        } catch (e) {
+          console.error('Error resuming step actions:', e);
+        }
+      }
 
       // Check if this step has already been executed
       const executionId = `${process.id}-${stepId}-${process.currentStepIndex}`;
@@ -294,17 +333,21 @@ function ProcessArea() {
         createEntities(createsEntities, process.currentStepIndex);
 
         if (triggersApiCall) {
-          setProcessLoading(effectProcessId, true);
+          setProcessStepLoading(effectProcessId, stepId, true);
+          // Initialize retryCount for a fresh API cycle
+          updateProcessStepData(effectProcessId, stepId, { retryCount: 0 });
 
           if (awaitFor) await new Promise(resolve => setTimeout(resolve, awaitFor));
 
           await performApiCall(
             triggersApiCall,
             updatesEntities,
-            process.currentStepIndex
+            process.currentStepIndex,
+            stepId,
+            0
           );
         } else if (awaitFor && !triggersApiCall! && !requiredUserInput) {
-          setProcessLoading(effectProcessId, true);
+          setProcessStepLoading(effectProcessId, stepId, true);
           await new Promise(resolve => setTimeout(resolve, awaitFor));
 
           if (!isCancelled) {
@@ -313,7 +356,8 @@ function ProcessArea() {
               process.currentStepIndex,
               'await'
             );
-            setProcessLoading(effectProcessId, false);
+            setProcessStepLoading(effectProcessId, stepId, false);
+            updateProcessStepData(effectProcessId, stepId, { retryCount: 0 });
             completeStep(effectProcessId, stepId);
           }
         } else if (!requiredUserInput) {
@@ -330,7 +374,7 @@ function ProcessArea() {
         }
       } catch (error) {
         console.error('Error in performStepActions:', error);
-        setProcessLoading(effectProcessId, false);
+        setProcessStepLoading(effectProcessId, currentStepIdRef.current || stepId, false);
       } finally {
         isProcessing = false;
       }

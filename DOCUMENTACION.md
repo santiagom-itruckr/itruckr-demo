@@ -90,6 +90,8 @@ Ubicación: `src/stores/`. Principales métodos por store:
 - `processesStore.ts`
   - Mantiene procesos y su estado de ejecución: pasos, `currentStepIndex`, mensajes por paso.
   - `getProcessById(id)`, `advanceProcessStep(pid, sid, source)`, `addMessageToStep(pid, sid, userId, senderType, content)`, `updateProcessStepExecution(pid, sid, executionId)`.
+  - Utilidades de paso: `updateProcessStepData(pid, sid, data)` para actualizar campos arbitrarios del paso; `setProcessStepLoading(pid, sid, isLoading)` para el flag de carga por paso.
+  - Al completar un paso (`advanceProcessStep`), se limpian `isLoading` y `retryCount` del paso saliente.
 - `loadsStore.ts`, `driversStore.ts`, `trucksStore.ts`
   - CRUD de entidades de logística.
   - `addLoad()`, `updateLoad(id, data)`, `addDriver()`, `updateDriver()`, etc.
@@ -111,6 +113,9 @@ Archivo: `src/types/app.d.ts`.
 
 - Entidades: `Driver`, `Truck`, `Load`, `Email`, `ConversationMessage`.
 - Proceso: `ProcessStep<TStepName>` define el contrato de un paso.
+  - Campos relevantes añadidos:
+    - `isLoading?: boolean` — estado de carga persistente por paso (para reanudar tras navegar).
+    - `retryCount?: number` — reintentos acumulados del polling de API por paso.
 - Enums de pasos: `LoadProcessStepName`, `OilChangeProcessStepName`.
 - Configuraciones de acciones por paso:
   - `requiredUserInput`, `nextStepOptions`.
@@ -140,13 +145,13 @@ Archivo: `src/types/app.d.ts`.
   - Evita re-ejecuciones con `executionId` por paso (`updateProcessStepExecution`).
   - Acciones por paso (orden):
     1) `createsEntities` (no bloqueante; puede tener `withDelay`).
-    2) Si hay `triggersApiCall`: muestra loading, espera `awaitFor` (si existe) y hace fetch al `endpoint`.
+    2) Si hay `triggersApiCall`: marca `isLoading` en el paso, espera `awaitFor` (si existe) y hace fetch al `endpoint`.
        - Compara `response.json()` con `expect` usando `deepEqual`.
-       - Si coincide: aplica `updatesEntities`, avanza paso y apaga loading.
-       - Si no: reintenta cada 10s, hasta 60 veces (backoff simple).
+       - Si coincide: aplica `updatesEntities`, avanza paso y apaga loading. Reinicia `retryCount` a 0.
+       - Si no: reintenta cada 10s, hasta 180 veces. Incrementa y persiste `retryCount` en el paso en cada intento.
     3) Si no hay API pero hay `awaitFor`: espera, hace `updatesEntities` y avanza.
     4) Si nada requiere input: aplica `updatesEntities`, espera mínima, y avanza.
-  - Aislamiento de estado de carga por proceso (`loadingByProcess[process.id]`) para evitar fugas entre casos.
+  - Estado de carga por paso: cada `ProcessStep` mantiene `isLoading` y `retryCount` persistentes, lo que permite reanudar polling/esperas si el usuario navega y vuelve.
   - Maneja actualizaciones de conversaciones: calcula `senderType`/`senderId` si falta y enruta al `conversationId` correcto.
   - Expone `completeStep` que puede llamar el timeline o la UI (acciones del usuario).
 
@@ -233,7 +238,7 @@ Ver `DEPLOYMENT.md` para despliegue (GitHub Pages) y base URL.
     expect: { message: 'ok' },
   }
   ```
-- `ProcessArea` hará fetch y comparará el JSON de respuesta con `expect` (igualdad profunda). Si no coincide, reintenta cada 10s hasta 60 veces.
+- `ProcessArea` hará fetch y comparará el JSON de respuesta con `expect` (igualdad profunda). Si no coincide, reintenta cada 10s hasta 180 veces y persiste `retryCount` por paso.
 - Para manejar autenticación/cabeceras, expandir el `fetch` en `performApiCall()` (añadir headers/token) o inyectar un cliente.
 
 ### 14.3. Crear/actualizar entidades desde pasos

@@ -470,7 +470,7 @@ export function getOilChangeProcessSteps(): ProcessStep<OilChangeProcessStepName
       description:
         'The truck driver has been informed about the details of the confirmed oil change appointment.',
       messages: [],
-      awaitFor: 10000,
+      awaitFor: 3000,
       aiAgentAssigned: 'Maintenance Support Agent',
       lucideIcon: BellRing,
       startedAt: '',
